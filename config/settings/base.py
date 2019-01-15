@@ -4,6 +4,8 @@ Base settings to build other settings files upon.
 
 import environ
 import datetime
+from .base import *  # noqa
+from .base import env
 
 ROOT_DIR = environ.Path(__file__) - 3  # (bluecots_ico/config/settings/base.py - 3 = bluecots_ico/)
 APPS_DIR = ROOT_DIR.path('bluecots_ico')
