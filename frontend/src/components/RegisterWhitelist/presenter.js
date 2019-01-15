@@ -33,14 +33,17 @@ const RegisterWhitelist = (props, context) => {
     return(            
         <Segment className={styles.BodySegment} >
             <p className={styles.TitleText}>REGISTER WHITELIST</p>
-            <Input 
-                type='text' 
-                placeholder='whitelist'
-                value={props.whitelist !== null ? props.whitelist : ""}
-                onChange={props.handleInputChange}
-                name='whitelist'
-                className={styles.InputBox}
-            />
+            <div>
+                <Input 
+                    fluid
+                    type='text' 
+                    placeholder='whitelist'
+                    value={props.whitelist !== null ? props.whitelist : ""}
+                    onChange={props.handleInputChange}
+                    name='whitelist'
+                    className={styles.InputBox}
+                />
+            </div>
             <Button 
                 className={styles.SubmitButton}
                 disabled={!props.isEnableControl}
@@ -84,7 +87,6 @@ RegisterWhitelist.propTypes = {
     temp_string: PropTypes.string,
     visibleErrorModal: PropTypes.bool.isRequired,
     handleCloseErrorModal: PropTypes.func.isRequired,
-    isIcoStarted: PropTypes.bool,
     visibleSuccessModal: PropTypes.bool.isRequired,
     handleCloseSuccessModal: PropTypes.func.isRequired,
     resultTxid: PropTypes.string,

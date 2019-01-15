@@ -1,4 +1,5 @@
 import Web3 from "web3";
+import BigNumber from "bignumber.js"
 import EthereumJsWallet from 'ethereumjs-wallet';
 import EthUtil from 'ethereumjs-util';
 import ProviderEngine from 'web3-provider-engine';
@@ -55,6 +56,62 @@ export const GetBlcBalance = (walletAddress, contractAddress, decimals) => {
             const balance = decimalsBalance / Math.pow(10, decimals);
             resolve(balance);
           });
+    });
+}
+
+
+
+export const GetExchangeRate = (contractAddress) => {
+    const web3 = new Web3(getWeb3HTTPProvider());
+    return new Promise((resolve, reject) => {
+        web3.eth
+        .contract(GetContractAbi())
+        .at(contractAddress)
+        .rate.call(
+            (error, data) => {
+                if (error) {
+                    reject(error);
+                }
+                resolve(new BigNumber(data));
+            }
+        );
+    });
+}
+
+export const SetExchangeRate = (exchangeRate, privateKey, contractAddress, ownerAddress) => {
+    return '0'
+    // const web3 = getWeb3Instance(privateKey)    
+    // return new Promise((resolve, reject) => {
+    //     web3.eth
+    //     .contract(GetContractAbi())
+    //     .at(contractAddress)
+    //     .startstopICO (
+    //         exchangeRate,
+    //         {from: ownerAddress}, (error, data) => {
+    //             if (error) {
+    //                 reject(error);
+    //             }
+    //             resolve(data);
+    //         }
+    //     );
+    // });
+}
+
+export const IsWhitelisted = (contractAddress, address) => {
+    const web3 = new Web3(getWeb3HTTPProvider());
+    return new Promise((resolve, reject) => {
+        web3.eth
+        .contract(GetContractAbi())
+        .at(contractAddress)
+        .isWhitelisted.call(
+            address,
+            (error, data) => {
+                if (error) {
+                    reject(error);
+                }
+                resolve(data);
+            }
+        );
     });
 }
 

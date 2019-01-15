@@ -12,6 +12,8 @@ import StartStopIco from "./../StartStopIco"
 import IcoWalletBalance from "./../IcoWalletBalance"
 import ReturnTokenToOwner from "./../ReturnTokenToOwner"
 import RegisterWhitelist from "./../RegisterWhitelist"
+import IsWhitelist from "./../IsWhitelist"
+import ExchageRate from "./../ExchageRate"
 
 const IcoInfo = (props, context) => {
     return(            
@@ -27,6 +29,11 @@ const IcoInfo = (props, context) => {
                         <IcoWalletBalance />
                     }
                 </Segment>
+                <ExchageRate 
+                    tempkey={props.tempkey}
+                    temp_string={props.temp_string}
+                />
+                <IsWhitelist />
                 <RegisterWhitelist 
                     tempkey={props.tempkey}
                     temp_string={props.temp_string}

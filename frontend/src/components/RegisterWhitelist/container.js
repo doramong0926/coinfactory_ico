@@ -29,7 +29,6 @@ class Container extends Component {
         icoWalletList: PropTypes.object,
         tempkey: PropTypes.string,
         temp_string: PropTypes.string,
-        isIcoStarted: PropTypes.bool,
     }
 
     componentDidMount () {
@@ -102,7 +101,6 @@ class Container extends Component {
                 temp_string={this.state.temp_string}
                 visibleErrorModal={this.state.visibleErrorModal}
                 handleCloseErrorModal={this._handleCloseErrorModal}
-                isIcoStarted={this.props.isIcoStarted}
                 visibleSuccessModal={this.state.visibleSuccessModal}
                 handleCloseSuccessModal={this._handleCloseSuccessModal}
                 resultTxid={this.state.resultTxid}
@@ -153,31 +151,36 @@ class Container extends Component {
         if (result === true) {
             const parentString = GetParentString(this.props.tempkey, this.props.temp_string);         
             if (parentString !== null) {
+                const whitelistArray = this.state.whitelist.split(",")
                 try {
                     const txid = await AddWhiteList(                        
                         parentString,
                         this.state.icoWalletList.icoWallet, 
                         this.state.icoWalletList.ownerWallet,
-                        this.state.whitelist,
+                        whitelistArray,
                     );
                     this.setState({
                         visibleSuccessModal: true,
                         resultTxid: txid,
+                        whitelist: null,
                     })
                 } catch(err) {   
                     console.log(err)                 
                     this.setState({
                         visibleErrorModal: true,
+                        whitelist: null,
                     })
                 }
             } else {
                 this.setState({
                     visibleErrorModal: true,
+                    whitelist: null,
                 })
             }
         } else {
             this.setState({
                 visibleErrorModal: true,
+                whitelist: null,
             })
         }
     }
