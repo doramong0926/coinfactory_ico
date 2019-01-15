@@ -21,8 +21,7 @@ import PhoneVerificationModal from "./../PhoneVerificationModal"
 const KycRegister = (props, context) => {
     const countryOptions = [ 
         { key: 'kr', value: 'ko', flag: 'kr', text: 'Korea'},
-        { key: 'us', value: 'us', flag: 'us', text: 'United States of America'},        
-        { key: 'gu', value: 'gu', flag: 'gu', text: 'Guam'},        
+        { key: 'us', value: 'us', flag: 'us', text: 'United States of America'},         
         { key: 'hk', value: 'hk', flag: 'hk', text: 'Hong Kong'},
         { key: 'cn', value: 'cn', flag: 'cn', text: 'China'},
         { key: 'vn', value: 'vn', flag: 'vn', text: 'Viet Nam'},
@@ -34,7 +33,6 @@ const KycRegister = (props, context) => {
     const mobileCountryOptions = [ 
         { key: 'kr', value: '+82', flag: 'kr', text: '(KR) +82 '},
         { key: 'us', value: '+1', flag: 'us', text: '(US) +01'},
-        { key: 'gu', value: '+1671', flag: 'gu', text: '(GU) +01671'},
         { key: 'hk', value: '+852', flag: 'hk', text: '(HK) +852'},
         { key: 'cn', value: '+86', flag: 'cn', text: '(CN) +86'},
         { key: 'vn', value: '+84', flag: 'vn', text: '(VN) +84'},
