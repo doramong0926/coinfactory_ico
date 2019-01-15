@@ -1,0 +1,250 @@
+@import "./../../config/variables.scss";
+
+.RootDivision {        
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1em;
+    padding-right: 1em;    
+    max-width: 600px;
+    @include breakpoint(phone-tablet) {
+        max-width: 500px;
+    }          
+    @include breakpoint(phone) {
+        max-width: 320px;
+    }    
+
+    .InputFormContainer {
+        text-align: center;        
+        max-width: 600px;
+        margin-left: auto;
+        margin-right: auto;
+        .PhoneInputDivision {
+
+        }
+        .InputDivision, .PhoneInputDivision, .NameInputDivision, .WalletInputDivision, .PhotoInputDivision {
+            margin-bottom: 1em;
+            color: white;
+            .PhoneInputBox {
+                margin-left: 8px;
+                z-index: 100;
+                width: 340px;
+                @include breakpoint(phone) {
+                    width: 230px;
+                }
+                .MobileCountryDropDown {
+                    width: 100px;
+                    text-align: center;
+                    padding-left: 0em;
+                    padding-right: 0em;
+                }
+                input {
+                    width: 240px;
+                    @include breakpoint(phone) {
+                        width: 130px;
+                    }
+                }
+            }
+            .InputBox, .WalletInputBox {
+                margin-left: 8px;
+                z-index: 100;
+                width: 340px;
+                @include breakpoint(phone) {
+                    width: 230px;
+                }
+            }
+            .NameInputBox {
+                margin-left: 8px;
+                width: 166px;
+                @include breakpoint(phone) {
+                    width: 110px;
+                }
+            }
+            .WalletInputBox {
+                width: 508px;
+                max-width: 95%;
+            }
+        }
+        .WalletInputDivision, .PhotoInputDivision {
+            input {
+                border: 0;
+                outline: 0;
+                background: transparent;
+                border-bottom: 1px solid #737e95;
+                border-radius: 0;
+                text-align: center;   
+                padding-left:0 !important;
+                padding-right:0 !important;
+                @include breakpoint(phone) {
+                    font-size: 0.8em;
+                }
+            }
+        }
+        .NameInputDivision {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;            
+        }
+        .PhotoInputDivision {
+            margin-top: 2em;
+            margin-bottom: 2em;
+            .InputPhoto {
+                width: 600px;
+                height:100%;
+                opacity: 0;
+                position: absolute;
+                cursor: pointer;
+                @include breakpoint(phone-tablet) {
+                    width: 500px;
+                }        
+                @include breakpoint(phone) {
+                    width: 320px;
+                }
+            }
+            .PhotoThumnailDefault {
+            }
+            .PhotoThumnail {
+                width: 480px;
+                border-radius: 5px;
+                @include breakpoint(phone-tablet) {
+                    width: 400px;
+                }       
+                @include breakpoint(phone) {
+                    width: 200px;
+                }                
+            }
+            .DescriptionText {
+                max-width: 250px;
+                color: gray;
+                margin-bottom: 1em;
+                margin-left: auto;
+                margin-right: auto;
+            }
+            .DescriptionTextDisappear {
+                display: none;
+            }
+            .SelectButton {
+                margin-left: auto;
+                margin-right: auto;
+                background-color: $light-blue;
+                width: 300px;
+                margin-top: 1em;
+                @include breakpoint(phone) {
+                    width: 200px;
+                }
+                color: white;
+                font-size: 1em;
+                text-align: center;
+                padding: 0.5em;
+            }          
+        }
+        
+    }
+
+    .KycInfoDivision, .WalletDivision, .PhotoDivision {
+        margin-top: 2em;
+        text-align: left;
+        color: white;
+        .HederText {
+            font-size: 2em;        
+            margin-bottom: 0.3em;
+            @include breakpoint(phone) {
+                padding-top: 1em;
+            }
+        }
+        .DescriptionText {
+            font-size: 1em;        
+            margin-bottom: 0.3em;
+        }
+        .PhotoSelectTypeCheckboxDivision {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            margin-left: auto;
+            margin-right: auto;
+            margin-bottom: 2em;            
+            .PhotoSelectTypeCheckbox {
+                margin: 1em;
+                width: 120px;
+                @include breakpoint(phone-tablet) {
+                    font-size: 0.8em;
+                    width: 85px;
+                }      
+                label {
+                    color: white !important;
+                }
+            }
+        }
+        .PhotoSelectType, .PhotoSelectTypeMobile {
+            text-align: center;
+            padding: 1em 0 0 0;            
+            :first-child {
+                margin-right: 1em;
+            }
+            :last-child {
+                margin-left: 1em;
+            }
+            .PhotoSelectTypeText {
+                font-size: 1.2em;
+                font-style: italic;
+            }
+        }
+        .PhotoSelectType {
+            @include breakpoint(phone-tablet) {
+                display: none;
+            }   
+        }   
+        .PhotoSelectTypeMobile {
+            @media (min-width: #{$tablet-width}) {
+                display: none;
+            }
+        }       
+    }
+    .WalletDivision {
+        margin-top: 4em !important;
+    }
+    .TermsDivision {
+        margin-top: 2em;
+        text-align: left;
+        color: white;
+        .HederText {
+            font-size: 2em;        
+            margin-bottom: 0.3em;
+            @include breakpoint(phone) {
+                padding-top: 1em;
+            }
+        }
+        .FormField, .FormField2 {
+            .TermsCheckBox {
+                margin-top: 1em;
+            }
+            .TermsText {
+                margin-left: 2em;
+                position: relative;
+                top: -2.1em;
+                .MoveTermsText {
+                    color: yellow;
+                    cursor: pointer;
+                    font-style: italic;
+                    text-decoration: underline;
+                }
+            }
+        }
+        .FormField2,  {
+            margin-top: -3em !important;
+        }
+    }  
+}
+
+.SubmitButtonContainer {
+    margin-top: 4em !important;
+    
+    .SubmitButton {
+        color: white;
+        background-color: #2185d0;
+        border-radius: 20px;
+        max-width: 300px;
+        margin-left: auto !important;
+        margin-right: auto !important;        
+    }
+}

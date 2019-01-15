@@ -1,0 +1,37 @@
+@import "./../../config/variables.scss";
+
+.NewsContainer {
+    padding: 6em 0em 6em 0em !important;
+    background-image: url($home-news-background-path) !important;      
+    border: 0 !important;    
+    @include breakpoint(phone) {
+        padding: 3em 0em 3em 0em !important;
+    }
+    .Row {  
+        margin-top: 2em !important;      
+        @include breakpoint(phone) {
+            margin-bottom: 2em !important; 
+        }
+        .CardColumn {
+            cursor: pointer;
+            margin: auto !important;            
+            width: 33% !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;            
+            .Card {                
+                .Image{
+
+                }
+                .Date {
+                    color: purple;
+                }
+                .Header {
+                    font-weight: bold;
+
+                }
+
+            }
+        }
+    }
+}

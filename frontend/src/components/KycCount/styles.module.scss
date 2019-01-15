@@ -1,0 +1,24 @@
+@import "./../../config/variables.scss";
+
+.Statistic, .StatisticTop {
+    display: flex;
+    flex-direction: row;
+    align-items: center;                    
+    .StatisticDivision {
+        margin-left: 2em !important;
+        margin-right: 2em !important;
+    }
+}
+
+.Statistic {
+    margin-top: 1em;    
+}     
+.Statistic, .StatisticTop {
+    display: flex;
+    flex-direction: row;
+    align-items: center;                    
+    .StatisticDivision {
+        margin-left: 2em !important;
+        margin-right: 2em !important;
+    }
+}

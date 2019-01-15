@@ -1,0 +1,17 @@
+@import "./../../config/variables.scss";
+
+.RootDivision {
+    display: flex;
+    flex-direction: row;
+    min-height: 100vh;    
+    .MenuBox {
+        background-color: gray !important;
+        .MenuItem {
+            color: white !important;
+        }
+    }
+
+    .RootSegment {
+        padding-left: 3em !important;
+    }
+}

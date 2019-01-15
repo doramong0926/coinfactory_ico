@@ -1,0 +1,157 @@
+@import "./../../config/variables.scss";
+
+.RootDivision {
+    // background-image: url($buy-token-background-path) !important;      
+    .RootContainer {
+        color: white;
+        max-width: 750px;
+        margin-top: 0 !important;
+        margin-left: auto;
+        margin-right: auto;
+        padding-top: 4em;
+        padding-bottom: 4em;
+        @include breakpoint(phone-tablet) {
+            max-width: 450px;
+            padding-top: 2em;
+        }    
+        @include breakpoint(phone) {
+            max-width: 320px;
+            padding-top: 2em;
+        }    
+        .ProfileBox {
+            margin-bottom: 4em ;
+            .ProfileSegment, .ProfileSegmentMultiLine {
+                background-color: rgba($color: #00143f, $alpha: 0.6);
+                border: 1px $light-blue solid;
+                color: white;
+                text-align: center;          
+                border-radius: 5px;  
+                padding-top: 0.3em;
+                padding-bottom: 0.3em;
+                padding-left: 1em;                
+                .ProfileDivision, .ProfileMultiLineDivision {      
+                    display: flex;
+                    flex-direction: row;
+                    align-items: center;
+                    justify-content: flex-start;              
+                    .ProfileLeftDivision, .ProfileIDLeftDivision, .ProfileTopDivision {
+                        display: flex;
+                        flex-direction: row;
+                        align-items: center;
+                        justify-content: flex-start;
+                        width: 200px !important;
+                        @include breakpoint(phone) {
+                            width: 170px !important;
+                        }
+                        .ProfileImageDivision {
+                            width: 30px;
+                            .ProfileImage {
+                                margin-right: 1em;
+                                padding-top: 0.2em;
+                            }
+                        }
+                        .ProfileIdIndexDivision, .ProfileIndexDivision{     
+                            text-align: left;               
+                            .IndexText {
+        
+                            }
+                        }
+                        .ProfileIndexDivision {
+                            width: 150px !important;                                
+                        }
+                        .Divider, .DividerReferral {
+                            height: 2em;
+                            border-right: 1px $light-blue solid;
+                            margin-left: 1em;
+                            margin-right: 1em;
+                        }
+                        .DividerReferral {
+                            height: 2.5em;
+                            @include breakpoint(phone-tablet) {
+                                height: 0em !important;
+                                margin: 0;
+                                padding: 0;
+                            }    
+                        }
+                    }                    
+                    .DividerHorizental {
+                        margin: 0;
+                        padding: 0;                        
+                        @include breakpoint(phone-tablet) {
+                            margin-top: 0.5em;
+                            margin-bottom: 0.5em;
+                            border-bottom: 1px $light-blue solid;
+                        }    
+                    }
+                    .ProfileIDLeftDivision {
+                        width: 70px !important;
+                    }
+                    .ProfileTopDivision {
+                        @include breakpoint(phone) {
+                            width: 500px !important;                            
+                        }
+                    }
+                    .ProfileInfoDivision, .ProfileInfoDivisionMultiLine {
+                        text-align: left !important;        
+                        max-width: 570px;
+                        // min-height: 200px;
+                        word-wrap: break-word !important;            
+                        .ProfileInfoText {                            
+                        }
+                    }
+                    .ProfileInfoDivision {
+                        padding-left: 0 !important;
+                    }
+                }   
+                .ProfileMultiLineDivision {
+                    @include breakpoint(phone-tablet) {
+                        display: block;
+                    }
+                }             
+            }
+            .ProfileSegmentMultiLine {
+                @include breakpoint(phone-tablet) {
+                    padding-left: 0.3em !important;
+                    padding-right: 0.3em !important;
+                }
+                .ProfileMultiLineDivision {                    
+                    .ProfileTopDivision {
+                        @include breakpoint(phone-tablet) {
+                            padding-left: 0.7em !important;
+                            padding-right: 0.7em !important;
+                        }
+                    }
+                }
+                .ProfileInfoDivisionMultiLine {
+                    @include breakpoint(phone-tablet) {
+                        padding-left: 0.7em !important;
+                        padding-right: 0.7em !important;
+                    }
+                }
+            }
+        }        
+        .HeaderDivision {
+            text-align: center;     
+            padding-left: 1em;
+            padding-right: 1em;    
+            max-width: 550px;
+            margin-top: 4em;
+            margin-bottom: 3em;
+            margin-left: auto;
+            margin-right: auto;
+            @include breakpoint(phone) {
+                max-width: 320px;
+                margin-top: 0em;
+            }           
+            .HeaderText {
+                font-size: 2em;
+                margin-bottom: 0.5em;
+                color: white;
+                font-weight: bold;
+            }
+            .DescriptionText {
+                color: gray;
+            }       
+        }
+    }
+}

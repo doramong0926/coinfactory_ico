@@ -1,0 +1,122 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <title>Demystifying Email Design</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </head>
+    <body style="margin: 0; padding: 0;">
+        <table align="center" cellpadding="0" cellspacing="0" width="600"  style="border:1px solid #cccccc">
+            <tr>
+                <td bgcolor="#70bbd9">
+                    <table align="center" cellpadding="0" cellspacing="0" width="600" style="border-collapse: collapse">
+                        <tr>
+                            <td align="center" bgcolor="#70bbd9" style="padding: 40px 0 30px 0;">
+                                <img src="http://{{imagePath}}/bluecotsLogo.png" alt="Bluecots logo" width="200" height="209" style="display: block;" />
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            <tr>
+                <td bgcolor="#ffffff" style="padding: 40px 30px 40px 30px">
+                    <table cellpadding="0" cellspacing="0" width="100%">
+                        <tr>
+                            <td style="color: #153643; font-family: Arial, sans-serif; font-size: 40px; line-height: 20px; padding:0 0 30px 0">
+                                <b>Email verification.</b>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="color: #153643; font-family: Arial, sans-serif; font-size: 16px; line-height: 20px">
+                                Hello, @{{ user.username }}!
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="color: #153643; font-family: Arial, sans-serif; font-size: 16px; line-height: 20px; padding: 20px 0 0 0">
+                                We're super exited to have you joined bluecots.<br>
+                                To complete your 'KYC' you need to verify your email address first.<br>
+                                Please click below to confirm your email address.<br>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 20px 0 20px 0"> 
+                                <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                    <tr>
+                                        <td>
+                                            <table style="border:0; cellspacing:0; cellpadding:0;">
+                                                <tr>
+                                                    <td style="border-radius: 3px" bgcolor="#79C753">
+                                                        <a href="http://{{domain}}/email_activation{%url 'users:email_activation' uidb64=uid token=token%}" style="font-size: 16px; font-family: Helvetica, Arial, sans-serif; color: #ffffff; text-decoration: none; border-radius: 3px; display: inline-block; padding: 12px 18px">
+                                                        <!-- <a href="http://localhost:3000/email_activation{%url 'users:email_activation' uidb64=uid token=token%}" style="font-size: 16px; font-family: Helvetica, Arial, sans-serif; color: #ffffff; text-decoration: none; border-radius: 3px; display: inline-block; padding: 12px 18px"> -->
+                                                            CONFIRM
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="color: #153643; font-family: Arial, sans-serif; font-size: 12px; line-height: 20px">
+                                If the button doesn't work, paste this link into your browser.
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="color: #153643; font-family: Arial, sans-serif; font-size: 12px; line-height: 20px">                   
+                                <a href="http://{{domain}}/email_activation{%url 'users:email_activation' uidb64=uid token=token%}">
+                                    http://{{domain}}/email_activation{%url 'users:email_activation' uidb64=uid token=token%}
+                                    <!-- http://localhost:3000{%url 'users:email_activation' uidb64=uid token=token%} -->
+                                </a>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            <tr>
+                <td bgcolor="#ee4c50" style="padding: 30px 30px 30px 30px">
+                    <table cellpadding="0" cellspacing="0" width="100%">
+                        <tr>
+                            <td width="75%" style="color: #ffffff; font-family: Arial, sans-serif; font-size: 14px">
+                                <a href="http://{{domain}}" style="color: #ffffff; text-decoration: none;">                                    
+                                    <b><font style="font-size:18px; color:#70bbd9;">&reg; Bluecots</font></b>
+                                </a>
+                                 Inc, Republic of Korea 2018<br/>
+                                <a href="http://{{domain}}" style="color: #ffffff; text-decoration: none">
+                                    <font color="#ffffff">
+                                        Subscribe</a>
+                                    </font>
+                                to this newsletter instantly<br/>
+                            </td>       
+                            <td align="right">
+                                <table border="0" cellpadding="0" cellspacing="0">
+                                    <tr>
+                                    <td>
+                                        <a href="http://www.twitter.com/" target="_blank">
+                                            <img src="http://{{imagePath}}/icons/twitter_logo_38x38.png" alt="Twitter" width="38" height="38" style="display: block;" border="0" />
+                                        </a>
+                                    </td>
+                                    <td style="font-size: 0; line-height: 0" width="20">&nbsp;</td>
+                                    <td>
+                                        <a href="http://www.facebook.com/" target="_blank">
+                                            <img src="http://{{imagePath}}/icons/facebook_logo_38x38.png" alt="Facebook" width="38" height="38" style="display: block;" border="0" />
+                                        </a>
+                                    </td>
+                                    <td style="font-size: 0; line-height: 0" width="20">&nbsp;</td>
+                                    <td>
+                                        <a href="https://www.telegram.org/" target="_blank">
+                                            <img src="http://{{imagePath}}/icons/telegram_logo_38x38.png" alt="Telegram" width="38" height="38" style="display: block;" border="0" />
+                                        </a>
+                                    </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>            
+        </table>
+    </body>
+</html>
+

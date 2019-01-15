@@ -1,0 +1,84 @@
+@import "./../../config/variables.scss";
+
+.HeaderText, .HeaderTextBlack{
+    padding-top: 1em;
+    margin-bottom: 2em;
+    color: white;
+    font-size: 1.3em;
+    font-weight: bold;
+}
+
+.HeaderTextBlack {
+    color: black;
+}
+
+.Countdown {
+    margin: 10px auto;
+    padding-bottom: 20px;
+
+    .CountdownCol {
+        display: inline-block;
+
+        .CountdownColElement, .CountdownColElementBlack {
+            display: inline-block;
+            margin: 0 5px;
+            display: flex;
+            flex-direction: column;
+            font-size: 15px;
+            color: white;
+            strong {
+                font-size: 60px;
+                font-weight: 100;
+            }
+        }
+    }
+}
+
+.CountdownText, .CountdownTextBlack {
+    padding-top: 20px !important;
+    color: rgba(255, 255, 255, 0.8)
+}
+
+.CountdownRightNumber {
+    .CountdownColElement, .CountdownColElementBlack {
+        display: inline-block;
+        margin: 0 5px;
+        display: flex;
+        flex-direction: column;
+        font-size: 15px;
+        color: white;
+        @include breakpoint(phone) {
+            margin-top: 40px !important;
+        }
+        strong {
+            font-size: 60px;
+            font-weight: 100;
+        }
+    }    
+}
+
+.ResposiveItems {    
+    .CountdownCol {
+        .CountdownColElement, .CountdownColElementBlack {
+            @include breakpoint(phone) {
+                display: none;
+            }   
+        }    
+    }
+    br {
+        display: none;
+        @include breakpoint(phone) {
+            display: block;
+        }
+    } 
+}
+
+.CountdownColElementBlack {
+    color: black !important;
+}
+
+.CountdownTextBlack {
+    color: #2ecbfb !important;
+}
+
+

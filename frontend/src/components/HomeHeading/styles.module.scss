@@ -1,0 +1,94 @@
+@import "./../../config/variables.scss";
+
+.HomeHeading {
+    padding: 10em 0em 13em 0 !important;
+
+    @include breakpoint(phone) {
+        padding: 2em 0em !important;
+    }
+    .Row {       
+        @include breakpoint(phone) {
+            margin-bottom: 30px !important; 
+        }
+        .LeftColumn {
+            margin: auto;
+            text-align: left;
+            color: white; 
+            min-width: 500px;
+            width: 50% !important;
+            @include breakpoint(phone) {
+                min-width: 200px;
+            }
+            @include breakpoint(tablet-desktop1) {
+                margin-bottom: 25px !important;
+            }
+            @include breakpoint(phone-desktop1) {
+                text-align: center !important;
+            }
+            @include breakpoint(phone-desktop1) {
+                width: 80% !important;
+            }
+            .LeftColumnHeader {
+                font-size: 3em;
+                color: white;
+            }
+            .LeftColumnDescription {
+                margin-top: 20px !important;
+                font-size: 1.8em;
+            }
+            
+            .LeftColumnButton {            
+                padding: 1em 2em;
+                font-size: 1em;
+                border-radius: 20px;
+                background-color: rgba(33, 133, 208, 0.8);
+                margin : 0 5px;
+                @include breakpoint(phone-desktop1) {
+                    margin: 5px 10px;
+                    width: 250px;
+                }
+            }
+            .SocialIcon {
+                align-items: center;
+                justify-content: center;
+                .TelegramButton {
+                    cursor: pointer;
+                    .TelegramButtonIcon {
+                        color: rgb(33,133,208);
+                    }                
+                    .TelegramButtonText {
+                        font-size: 1.1em;
+                        margin-left: 5px;
+                    }
+                }
+                .SocialEtcIcon {
+                    margin-left: 10px;
+                }
+            }
+        }
+        
+        .RightColumn {
+            margin: auto;
+            min-width: 500px;
+            width: 40% !important;
+            @include breakpoint(phone) {
+                min-width: 200px;
+                
+            }
+            @include breakpoint(phone-desktop1) {
+                width: 80% !important;
+            }    
+            .RightColumnBox {
+                border-radius: 10px;
+                background-color: rgba($color: #043d96, $alpha: 0.9);
+                .RightColumnBoxButton {
+                    color: red;
+                    height: 45px;
+                    margin: 2em 0 1em 0;
+                    padding: 1.2em 1em 1em 1em;
+                    font-size: 1em;
+                }
+            }
+        }
+    }
+}

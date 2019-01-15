@@ -1,0 +1,16 @@
+@import "./../../config/variables.scss";
+
+.Container {
+    font-size: 1em;
+    .Flag {
+
+    }
+    .Dropdown {
+
+    }
+    .DropdownOnlyFlag {
+        i {
+            margin-left: 01px !important;
+        }
+    }
+}

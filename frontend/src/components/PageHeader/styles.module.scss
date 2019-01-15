@@ -1,0 +1,47 @@
+@import "./../../config/variables.scss";
+
+.PageHeaderSegment {
+    text-align: center;
+    padding: 0 !important;
+    margin: 0 !important;
+
+    .HeaderImageDiv{
+        position: absolute;
+        top: -4em;
+        width:100%;
+        .HeaderImage {
+            width: 20em;
+            margin-left: auto;
+            margin-right: auto;
+        }
+    }    
+    .TitleText, .TitleTextMultiLine {
+        font-size: 2.3em;
+        font-weight: 900 !important;
+        width: 100%;
+        margin-left: auto;
+        margin-right: auto;
+        position: absolute;
+        top: 1.8em;
+    }
+    .TitleTextMultiLine {
+        top: 1.4em !important;
+    }
+    .BackgroundTitleText {
+        font-size: 8em;
+        font-weight: 900;
+        // color: #ebe8f8 !important;
+        color: rgba(134,64,240, 0.15) !important;
+        width:100%;
+        margin-bottom: 0;        
+    }
+    .DescriptionText {
+        max-width: 470px;
+        color: gray;
+        margin: 0 auto 3em auto !important;
+        @include breakpoint(phone) {
+            width: 90% !important;
+        }
+
+    }
+}

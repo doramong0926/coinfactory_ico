@@ -1,0 +1,57 @@
+@import "./../../config/variables.scss";
+
+.Segment {
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 1em;
+    .TimeoutDivision {
+        margin-top: 1em;
+        margin-bottom: 1em;
+        .TimeoutText {
+            font-weight: bold;
+            color: red;
+        }
+    }
+    .Message {
+        text-align: center;
+        min-height: 3em !important;        
+        padding-left: 2em;
+        padding-right: 2em;
+        padding-bottom: 1em;
+        margin-top: 1em;
+        .ErrorMessage {
+            color: red;
+        }
+        .ReadyMessage {
+            color: black;
+        }
+    }
+    
+    .InputDivision {
+        color: black;       
+        .InputBox {
+            width: 250px;
+            font-size: 4em;                                                
+            @include breakpoint(phone) {
+                width: 230px;
+                font-size: 3em;
+            }
+            input {
+                color: black;
+                text-align: center !important;
+                padding-top: 0.2em;
+                padding-bottom: 0.2em;
+            }
+        }
+    }
+    .Button {
+        background-color: $green;
+        color: white !important;
+        margin-left: 0em !important;
+        margin-bottom: 0.5em !important;    
+        width: 250px !important;
+        @include breakpoint(phone) {
+            width: 230px !important;
+        }
+    }
+}

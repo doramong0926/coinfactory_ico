@@ -1,0 +1,17 @@
+@import "./../../config/variables.scss";
+
+.DividerDivision {
+    .Divider {
+        height: 100px;
+        width: 50%;
+        border-right: 1px solid;
+        border-image: linear-gradient(to bottom, #1a63d6 0%, #12aae6 100%);
+        border-image-slice: 1;
+        position: absolute !important;
+        bottom: 30px !important;
+        @include breakpoint(phone) {
+            height: 50px;
+            bottom: 20px !important;
+        }
+    }
+}

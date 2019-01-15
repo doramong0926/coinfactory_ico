@@ -1,0 +1,11 @@
+/* @import "./../../config/variables.scss"; */
+
+.DiagramImage {
+    width: 400px;
+}
+
+@media (min-width: 320px) and (max-width: 450px) {
+    .DiagramImage {
+        width: 320px;
+    }
+}

@@ -1,0 +1,212 @@
+msgid ""
+msgstr ""
+"Language: en"
+
+#: src/components/Auth/presenter.js
+msgid "로그인 하세요."
+msgstr "Login with your account."
+
+#: src/components/Auth/presenter.js
+msgid "회원가입 하세요."
+msgstr "Signup to your accoutn."
+
+#: src/components/BasicModal/presenter.js
+#: src/components/StandardModal/presenter.js
+msgid "닫기"
+msgstr ""
+
+#: src/components/ConfirmModal/presenter.js
+msgid "취소"
+msgstr ""
+
+#: src/components/Footer/presenter.js
+msgid "회사정보"
+msgstr ""
+
+#: src/components/Footer/presenter.js
+msgid "이메일"
+msgstr ""
+
+#: src/components/Footer/presenter.js
+msgid "언론기사"
+msgstr ""
+
+#: src/components/Footer/presenter.js
+#: src/components/SignupForm/presenter.js
+msgid "약관"
+msgstr ""
+
+#: src/components/Footer/presenter.js
+msgid "정책"
+msgstr ""
+
+#: src/components/Footer/presenter.js
+msgid "라이센스"
+msgstr ""
+
+#: src/components/Footer/presenter.js
+msgid "언어"
+msgstr ""
+
+#: src/components/Footer/presenter.js
+msgid "소셜미디어"
+msgstr ""
+
+#: src/components/LoginForm/presenter.js
+msgid "로그인 실패"
+msgstr ""
+
+#: src/components/LoginForm/presenter.js
+msgid "로그인에 실패하였습니다."
+msgstr ""
+
+#: src/components/LoginForm/presenter.js
+msgid "아이디 및 비밀번호를 확인해 주세요."
+msgstr ""
+
+#: src/components/LoginForm/presenter.js
+#: src/components/SignupForm/presenter.js
+msgid "아이디"
+msgstr ""
+
+#: src/components/LoginForm/presenter.js
+#: src/components/SignupForm/presenter.js
+msgid "비밀번호"
+msgstr ""
+
+#: src/components/LoginForm/presenter.js
+#: src/components/Navigation/container.js
+#: src/components/SignupForm/presenter.js
+msgid "로그인"
+msgstr ""
+
+#: src/components/LoginForm/presenter.js
+msgid "아직 계정이 없으신가요?"
+msgstr ""
+
+#: src/components/LoginForm/presenter.js
+#: src/components/SignupForm/presenter.js
+msgid "회원가입"
+msgstr ""
+
+#: src/components/Navigation/container.js
+msgid "홈\"), key: "
+msgstr ""
+
+#: src/components/Navigation/container.js
+msgid "토큰 구입"
+msgstr ""
+
+#: src/components/Navigation/container.js
+msgid "프로파일"
+msgstr ""
+
+#: src/components/Navigation/container.js
+#: src/components/Navigation/presenter.js
+msgid "로그아웃"
+msgstr ""
+
+#: src/components/Navigation/presenter.js
+msgid "지금 바로 로그아웃 하시겠습니까?"
+msgstr ""
+
+#: src/components/Navigation/presenter.js
+msgid "로그인 상태 확인"
+msgstr ""
+
+#: src/components/Navigation/presenter.js
+msgid "해당 서비스는 로그인이 필요한 서비스 입니다."
+msgstr ""
+
+#: src/components/Navigation/presenter.js
+msgid "로그인 페이지로 이동하겠습니다."
+msgstr ""
+
+#: src/components/SignupForm/container.js
+msgid "아이디/비밀번호를 입력해 주세요."
+msgstr ""
+
+#: src/components/SignupForm/container.js
+msgid "아이디를 입력해 주세요."
+msgstr ""
+
+#: src/components/SignupForm/container.js
+msgid "첫번째 비밀번호를 입력해 주세요."
+msgstr ""
+
+#: src/components/SignupForm/container.js
+msgid "두번째 비밀번호를 입력해 주세요."
+msgstr ""
+
+#: src/components/SignupForm/container.js
+msgid "비밀번호가 동일하지 않습니다."
+msgstr ""
+
+#: src/components/SignupForm/container.js
+msgid "약관 및 정책을 확인하고 동의해 주세요."
+msgstr ""
+
+#: src/components/SignupForm/container.js
+msgid "회원가입 버튼을 눌러주세요."
+msgstr ""
+
+#: src/components/SignupForm/container.js
+msgid "동일한 아이디가 존재합니다."
+msgstr ""
+
+#: src/components/SignupForm/container.js
+msgid "입력하신 패스워드가 너무 짧습니다."
+msgstr ""
+
+#: src/components/SignupForm/container.js
+msgid "아이디와 패스워드를 정확히 입력해 주세요."
+msgstr ""
+
+#: src/components/SignupForm/container.js
+msgid "패스워드는 최소한 한개의 문자가 포함되어야 합니다."
+msgstr ""
+
+#: src/components/SignupForm/container.js
+msgid "패스워드가 너무 평범합니다."
+msgstr ""
+
+#: src/components/SignupForm/container.js
+msgid "입력한 두개의 패스워드가 일치하지 않습니다."
+msgstr ""
+
+#: src/components/SignupForm/presenter.js
+msgid "약관 & 정책"
+msgstr ""
+
+#: src/components/SignupForm/presenter.js
+msgid "1. 저는 평생 블루코츠 코인에 충성하며 살것을 맹세 합니다."
+msgstr ""
+
+#: src/components/SignupForm/presenter.js
+msgid "1. 저는 블루코츠 산것을 절대 후회하지 않고 살것을 맹세합니다."
+msgstr ""
+
+#: src/components/SignupForm/presenter.js
+msgid "회원가입 실패"
+msgstr ""
+
+#: src/components/SignupForm/presenter.js
+msgid "회원가입에 실패하였습니다."
+msgstr ""
+
+#: src/components/SignupForm/presenter.js
+msgid "비밀번호 확인"
+msgstr ""
+
+#: src/components/SignupForm/presenter.js
+msgid "약관 및 정책에 동의합니다."
+msgstr ""
+
+#: src/components/SignupForm/presenter.js
+msgid "계정이 이미 있으신가요?"
+msgstr ""
+
+#: src/components/Spinner/presenter.js
+msgid "로딩중..."
+msgstr ""
+

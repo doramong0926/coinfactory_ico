@@ -1,0 +1,17 @@
+@import "./../../config/variables.scss";
+
+.BodySegment {
+    .WalletAddr {
+        text-align: left;
+    }
+    .BalanceDiv {
+        display: flex;
+        flex-direction: row;
+        margin-bottom: 1em;
+        .Balance {
+            text-align: left;
+            margin-right: 2em;
+        }
+    }
+}
+

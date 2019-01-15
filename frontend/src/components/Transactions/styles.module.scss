@@ -1,0 +1,99 @@
+@import "./../../config/variables.scss";
+ 
+.TransactionSegment, .TransactionTitleSegment {
+    border-bottom: 1px $light-blue solid !important;
+    color: white;
+    text-align: center;          
+    border-radius: 5px;  
+    padding-top: 0.5em !important;
+    padding-bottom: 0.5em !important;
+    padding-left: 5em;
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+    .TransactionDivision {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: flex-start;
+        min-height: 2em;
+        text-align: left;
+        @include breakpoint(phone-tablet) {
+            display: block;
+        }
+        .TransactionDateDivision, .TransactionDateHeaderDivision {
+            min-width: 190px !important;
+            @include breakpoint(phone-tablet) {
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                justify-content: flex-start;
+                width: 100%;                
+            }
+            .TransactionDateText {
+                margin: 0 !important;
+                margin-left: 0.2em !important;
+                color: white !important;
+            }
+        }
+        .Divider, {
+            height: 2.5em;
+            border-right: 1px $light-blue solid;
+            margin-left: 1em;
+            margin-right: 1em;
+            @include breakpoint(phone-tablet) {
+                margin: 0;
+                padding: 0;
+                display: none;
+            }
+        }
+        .TransactionHashDivision, .TransactionHashHeaderDivision {
+            text-align: left;        
+            width: 580px;
+            @include breakpoint(phone-tablet) {
+                width: 300px;
+            }
+            word-wrap: break-word !important;                 
+            .TransactionHashText {
+                color: $yellow;
+                font-size: 1em;
+            }
+        }
+
+        .TransactionDateHeaderDivision {
+            text-align: center;
+            max-width: 200px;
+            .TransactionDateText {
+                text-align: center;
+                color: white;
+            }
+        }
+        
+        .TransactionHashHeaderDivision {
+            text-align: center;            
+            .TransactionHashText {
+                text-align: center;
+                color: white;
+                font-size: 1em;
+            }
+        }
+    }    
+}
+
+.TransactionTitleSegment {    
+    background-color: rgba($color: #00143f, $alpha: 0.6) !important;
+    border-top: 1px $light-blue solid !important;
+    border-bottom: 1px $light-blue solid !important;
+    @include breakpoint(phone-tablet) {
+        display: none;
+    }
+}
+
+.TransactionTitleSegmentMobile {    
+    display: none;
+    @include breakpoint(phone-tablet) {
+        display: block;
+        margin:0 !important;
+        padding:0 !important;
+        border-bottom: 1px $light-blue solid !important;
+    }
+}

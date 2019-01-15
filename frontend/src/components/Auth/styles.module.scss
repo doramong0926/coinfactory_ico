@@ -1,0 +1,33 @@
+@import "./../../config/variables.scss";
+
+.RootContainerSignin {
+    // background-image: url($signin-background-path) !important;
+}
+
+.RootContainerSignup {
+    // background-image: url($signup-background-path) !important;
+}
+
+.RootContainerSignin, .RootContainerSignup {
+    .Division {
+        height: 89.4vh;
+    }
+    .DivisionMobile {
+        height: 96vh;
+    }
+}
+
+.Grid {
+    text-align: center; 
+    height: 100%;
+}
+.GridColumn {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 400px;
+}
+.GridColumnMobile {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 320px;
+}

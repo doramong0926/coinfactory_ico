@@ -1,0 +1,11 @@
+@import "./../../config/variables.scss";
+
+.RootSegment {
+    .TitleDivision {
+        .HeaderText {
+            text-align: center;
+            font-size: 3em !important;
+            color: black;
+        }
+    }
+}

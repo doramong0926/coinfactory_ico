@@ -1,0 +1,109 @@
+@import "./../../config/variables.scss";
+
+.ContactContainer {
+    padding: 6em 0em 6em 0em !important; 
+    border: 0 !important;    
+    background-color: white !important;    
+    @include breakpoint(phone) {
+        padding: 3em 0em 3em 0em !important;
+    }
+    .FromDivision {
+        width: 100%;
+        margin-left: auto !important;
+        margin-right: auto !important;      
+        padding-left: 1em;
+        padding-right: 1em;  
+        max-width: 750px;
+
+        .ButtonContainer {
+            padding-left: 16px;
+            padding-right: 16px;
+            width: 300px;
+            margin-left: auto !important;
+            margin-right: auto !important;  
+            .SubmitButton {
+                margin-top:4em;
+                color: white;
+                background-color: #2185d0;
+                border-radius: 20px !important;
+                margin-right: 10px !important;
+                margin-bottom: 1em !important;
+            }
+        }
+        .InputDivision {
+            text-align: center !important;
+            .Input, .TextAreaInput {
+                width: 100%;
+                border-bottom: 1px $light-blue solid;
+                margin-top: 2em;       
+                padding: 1em 2em 1em 2em;     
+                input {
+                    text-align: center;
+                }
+            }
+            .TextAreaInput{
+                border-top: 0px !important;
+                border-left: 0px !important;
+                border-right: 0px !important;
+                border-radius: 0px !important;
+                text-align: center !important;
+                padding: 3em 2em 1em 2em !important;     
+                overflow-y:hidden;
+            }
+        }
+    }
+    .GridRow {
+        max-width: 700px;
+        margin-left: auto !important;
+        margin-right: auto !important;
+        padding-top: 4em !important;
+        margin-bottom: 2em;        
+        @include breakpoint(phone-tablet) {
+            padding-top: 2em !important;
+            margin-bottom: 2em;
+        }
+        .GridColumn {
+            margin: auto;
+            text-align: left;
+            color: black; 
+            width: 210px !important;
+            padding: 0em !important;
+            .ItemDivisionTelegram {
+                cursor: pointer;
+            }
+            .ItemDivision, .ItemDivisionTelegram {
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                justify-content: center;
+                height: 45px;
+                @include breakpoint(phone-tablet) {
+                    justify-content: left;
+                    margin-left: auto !important;
+                    margin-right: auto !important;
+                    width: 210px !important;
+                }                
+                .IconDivision {
+                    background-image: linear-gradient(to right, #1a63d6, #12aae6);
+                    border-radius: 50%;
+                    width: 2.7em;
+                    height: 2.7em;
+                    text-align: center;
+                    .Icon {
+                        padding-top: 8px;
+                        color: white;
+                    }
+                }
+                .TextDivision {
+                    padding-left: 1em;
+                    .Text {
+                        color: gray;
+                    }
+                    a {
+                        color: gray;
+                    }
+                }
+            }
+        }
+    }
+}

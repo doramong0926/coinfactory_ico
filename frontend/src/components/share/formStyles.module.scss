@@ -1,0 +1,23 @@
+@import "./../../config/variables.scss";
+
+.LoginForm {
+    .info {
+        margin-bottom: 25px;
+    }
+    .form {
+        .formInput {
+        }
+        .formTerm {
+            text-align: center;
+            .termsButton {
+                padding-left: 10px;
+                color: $light-blue;
+                cursor: pointer;
+            }
+        }
+        .formButton {           
+            margin-top: 15px;            
+            text-align: center;            
+        }
+    }
+}

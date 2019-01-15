@@ -1,0 +1,87 @@
+@import "./../../config/variables.scss";
+
+.InputContainer {
+    min-height: 500px !important;
+    color: white;
+    .ToggleTextBox {
+        padding-left: 0.2em;
+        padding-right: 0.2em;
+    }
+    .InputDescriptionText {
+        padding-left: 0.5em;
+        padding-right: 0.5em;
+    }
+    .HeaderText {
+        color: white;
+        padding-top: 20px;
+    }    
+    .HeaderTextMobile{
+        color: white;
+    }
+
+    .InputFormContainer {
+        text-align: left;
+        color: white !important;
+        .InputBox {
+            margin-left: 16px;
+            margin-bottom: 10px;
+            width: 300px;
+        }
+        .InputBoxMobile {
+            margin-left: 8px;
+            margin-bottom: 10px;
+            width: 230px;
+        }
+    }
+    
+    .SubmitButtonContainer {
+        padding-left: 16px;
+        padding-right: 16px;
+        margin-top: 5em;
+        .SubmitButton {
+            color: white;
+            background-color: #2185d0;
+            border-radius: 20px;
+            margin-right: 10px;
+            margin-bottom: 0.5em !important;
+        }
+    }
+
+    .ForgotButtonContainer {
+        padding-left: 16px;
+        padding-right: 16px;
+        margin-top: 0.7em !important;
+        margin-bottom: 1em !important;
+        .ForgotButton {
+            color: white;
+            background-color: #2185d0;
+            border-radius: 20px;
+            margin-right: 10px;
+            margin-bottom: 1em !important;
+        }
+    }
+
+    .CheckBoxContainer {
+        text-align: right;
+        padding-right: 1em;
+        color: white !important;
+        .CheckBox {
+            margin-top: 1em;
+            margin-left: 2px;
+            margin-right: 16px;
+            padding-top: 0.2em;
+        }
+        .CheckBoxMobile {
+            margin-top: 1em;
+            margin-left: 2px;
+            margin-right: 8px;
+        }
+    }
+    
+    .SignupText {
+        font-style: italic;
+        padding-left: 1em;
+        color: #ebe32f;
+        cursor: pointer;
+    }
+}

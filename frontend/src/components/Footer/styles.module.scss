@@ -1,0 +1,66 @@
+@import "./../../config/variables.scss";
+
+.FooterContainer {
+    min-height: 430px !important;
+    background-image: url($footer-background-path) !important;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-color: white;
+    text-align: center;
+    padding: 6em 0em 6em 0em !important;    
+    border: 0px !important;    
+    @include breakpoint(phone) {
+        padding: 3em 0em 3em 0em !important;
+    }
+
+    .Divider {
+        margin: 0 !important;
+        padding: 0 !important;
+        height: 1px !important;
+        position: relative;
+        width:100%;
+        border: 0 !important;
+    }
+    .SubscribeTitle {
+        font-size: 2em !important;
+    }
+    .SubscribeInput {
+        font-size: 1em !important;
+        width: 300px;
+        margin-bottom: 8em;
+        border: 0;
+        height: 3em;
+        input {
+            text-align: center;
+            border-radius: 20px !important;
+        }
+        button {
+            border-top-right-radius: 20px !important;
+            border-bottom-right-radius: 20px !important;
+            font-size: 1em !important;
+            color: white;
+            background-color: #009fe8;
+            &:hover {
+                background-color: #21ba45 !important; 
+            }
+        }
+    }
+    .SocialIcon {
+        margin-bottom: 3em;
+        .LeftColumnBoxSocialIcon {
+            background-color: white;
+            margin-left: 10px;
+        }
+    }
+    .Language {
+        font-size: 1em;
+        margin-bottom: 1em !important;
+    }
+    .Copyright {
+        font-size: 1em;
+        p {
+            margin-bottom: 0em !important;
+        }
+    }
+}

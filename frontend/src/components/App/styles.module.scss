@@ -1,0 +1,56 @@
+// @import "reset-css";
+@import "./../../config/variables.scss";
+@import url('https://fonts.googleapis.com/css?family=Noto+Sans');
+
+body {
+    background-color: $bg-color;
+    font-family:  'Noto Sans', apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    font-size:16px;    
+}
+
+.RootDivisionHome {
+}
+
+.RootDivisionBuyToken {
+    background-repeat: no-repeat !important;
+    background-size: contain !important;    
+    background-image: url($buy-token-background-path) !important;
+    background-color: $navbar !important;
+}
+
+.RootDivisionKyc {
+    background-repeat: no-repeat !important;
+    background-size: contain !important;    
+    background-image: url($kyc-background-path) !important;
+    background-color: $navbar !important;
+}
+
+.RootDivisionProfile {
+    background-repeat: no-repeat !important;
+    background-size: contain !important;    
+    background-image: url($profile-background-path) !important;
+    background-color: $navbar !important;
+}
+
+.RootDivisionLogin {
+    background-repeat: no-repeat !important;
+    background-size: contain !important;    
+    background-image: url($signin-background-path) !important;
+    background-color: $navbar !important;
+    height: 100vh;
+}
+
+.RootDivisionSignup {
+    background-repeat: no-repeat !important;
+    background-size: contain !important;    
+    background-image: url($signup-background-path) !important;
+    background-color: $navbar !important;
+    height: 100vh;
+}
+
+.RootDivisionVerification {
+    background-repeat: no-repeat !important;
+    background-size: contain !important;    
+    background-image: url($confirm-background-path) !important;
+    background-color: $navbar !important;
+}

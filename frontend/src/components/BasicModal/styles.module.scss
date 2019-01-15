@@ -1,0 +1,16 @@
+@import "./../../config/variables.scss";
+
+.Segment {
+    @include breakpoint(phone) {
+        max-width: 300px !important;
+    }
+    width: 320px;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    // background-color: $dark-gray !important;
+    .Button {
+        background-color: $green;
+        color: white !important;
+        margin-bottom: 0.5em !important;    
+    }
+}

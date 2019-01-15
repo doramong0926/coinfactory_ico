@@ -1,0 +1,93 @@
+@import "./../../config/variables.scss";
+
+.WalletContainer {
+    padding: 6em 0em 6em 0em !important;
+    background-image: linear-gradient(white, #edf6ff) !important;
+    border: 0 !important;    
+    @include breakpoint(phone) {
+        padding: 3em 0em 3em 0em !important;
+    }
+    .Row {       
+        @include breakpoint(phone) {
+            // margin-bottom: 30px !important; 
+        }
+        .TextColumn {
+            margin: auto;
+            text-align: left;
+            color: black; 
+            max-width: 500px;
+            width: 50% !important;
+            @include breakpoint(phone-desktop1) {
+                text-align: center !important;
+                max-width: none;
+                width: 80% !important;
+            }
+            @include breakpoint(tablet-desktop1) {
+                margin-bottom: 25px !important;
+            }
+            @include breakpoint(phone) {
+                min-width: 200px;
+            }
+            .TextColumnDescription {
+                margin-top: 25px !important;
+                font-size: 1em;
+                margin-bottom: 2em;
+                color: gray;
+            }           
+
+            .TextColumnDescriptionList {                
+                @include breakpoint(phone-desktop1) {
+                    max-width: 230px;
+                    margin-right: auto;
+                    margin-left: auto;
+                    text-align: left;
+                }  
+                :last-child {
+                    margin-bottom: 2em !important;
+                }
+                .TextColumnDescriptionListItem {                                        
+                    color: #2ecbfb;
+                    margin-bottom: 0.4em;                    
+                    span{
+                        color: gray;
+                    }                    
+                }
+            }     
+            .walletLogoImage {                
+                width: 400px;
+                @include breakpoint(phone-desktop1) {
+                    margin: 2em auto 2em auto;
+                    width: 320px;
+                }    
+            }       
+
+            .GetAppNow {
+                .GetAppNowButton {
+                    color: white;
+                    background-image: linear-gradient(to right, #1a63d6, #12aae6);
+                    border-radius: 20px;
+                    margin-right: 10px;
+                }
+                .GetAppNowIcon {
+                    color: #e0e1e2 !important;
+                }             
+            }
+        }
+        
+        .ImageColumn {
+            margin: auto !important;
+            width: 50% !important;
+            @include breakpoint(phone-desktop1) {
+                margin: auto;
+                width: 80% !important;
+            }    
+            .mobileImage1 {
+                margin: auto;
+                width: 500px;
+                @include breakpoint(phone) {
+                    width: 320px;
+                }    
+            }
+        }
+    }
+}

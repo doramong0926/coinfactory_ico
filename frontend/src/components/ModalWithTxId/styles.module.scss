@@ -1,0 +1,37 @@
+@import "./../../config/variables.scss";
+
+.Segment {
+    @include breakpoint(phone) {
+        max-width: 300px !important;
+    }
+    width: 320px;    
+    margin-left: auto !important;
+    margin-right: auto !important;
+    // background-color: $dark-gray !important;
+    .HeaderText {
+        margin-bottom: 1em;
+    }
+    .Contents {
+        text-align: center;
+        margin-bottom: 2em;
+    }
+    .Button {
+        background-color: $green;
+        color: white !important;
+        margin-bottom: 0.5em !important;    
+    }
+    .TxidBox {
+        margin-top: 1em;
+        padding: 0em;
+        p {
+            margin-bottom: 0.3em;
+        }
+        .TransactionHashText {
+            color: red;
+            font-size: 0.8em;
+            word-wrap: break-word;
+            cursor: pointer;
+            margin-bottom: 1em;
+        }
+    }
+}

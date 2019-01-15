@@ -1,0 +1,39 @@
+@import "./../../config/variables.scss";
+
+.RoadmapContainer {
+    padding: 6em 0em 6em 0em !important;
+    background-color: #edf6ff !important;
+    border: 0 !important;    
+    @include breakpoint(phone) {
+        padding: 3em 0em 3em 0em !important;
+    }
+
+    .Divider {
+        margin: 0 !important;
+        padding: 0 !important;
+        height: 1px !important;
+        position: relative;
+        width:100%;
+    }
+    
+    .RoadmapHorizentalImage {
+        margin-top: 2em;
+        width: 1000px;
+        margin-left: auto;
+        margin-right: auto;
+        @include breakpoint(phone-tablet) {
+            display: none !important;
+        }
+    }
+    .RoadmapVerticalImage {
+        margin-top: 2em;
+        width: 90%;
+        margin-left: auto;
+        margin-right: auto;
+        display: none !important;
+        @include breakpoint(phone-tablet) {
+            display: block !important;
+        }
+    }
+}
+    

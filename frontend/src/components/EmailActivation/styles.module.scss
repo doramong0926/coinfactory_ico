@@ -1,0 +1,22 @@
+@import "./../../config/variables.scss";
+
+.RootDivisionMobile {
+    height: 91.6vh;
+}
+.RootDivision {
+    height: 93vh;
+}
+.RootDivision, .RootDivisionMobile {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .Grid {
+        .Column {
+            .Text {
+                div {
+                    color: white !important;
+                }                
+            }
+        }
+    }
+}

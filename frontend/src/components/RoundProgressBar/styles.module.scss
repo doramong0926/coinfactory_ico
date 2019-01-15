@@ -1,0 +1,30 @@
+@import "./../../config/variables.scss";
+
+.progressDivider, .progressDividerCenter {
+    border-right: 1px solid rgb(147, 148, 150);
+    width: 1px;
+    height: 28px;
+    // margin-top: 5px;
+    // margin-bottom: 5px; 
+    @include breakpoint(phone-tablet) {
+        height: 25px;
+    }
+}
+
+.progressDividerCenter {
+    width: 1px !important;
+    border-right: 5px solid white
+}
+
+.progressStep {
+    position: absolute;
+    bottom: 10px;
+    width: 80px;
+    font-size: 10px;
+    p{
+        color: black !important;
+    }
+    @include breakpoint(phone-tablet) {
+        font-size: 8px;
+    }
+}

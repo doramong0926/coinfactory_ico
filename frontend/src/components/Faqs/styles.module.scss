@@ -1,0 +1,50 @@
+@import "./../../config/variables.scss";
+
+.NewsContainer {
+    padding: 6em 0em 6em 0em !important; 
+    border: 0 !important;    
+    background-color: white !important;
+    @include breakpoint(phone) {
+        padding: 3em 0em 3em 0em !important;
+    }
+    .MenuDivision {
+        width: 100%;
+        max-width: 750px;
+        margin-bottom: 1em;
+        margin-left: auto;
+        margin-right: auto;
+        padding-left: 1em;
+        padding-right: 1em;
+        .Menu {
+            border-bottom: 2px solid #e1eefa !important;
+            .MenuItem, .MenuItemSelected {
+                margin-left: auto !important;
+                margin-right: auto !important;
+                border-bottom: 2px solid #e1eefa !important;
+                text-align: center !important;
+                @include breakpoint(phone) {
+                    font-size: 0.6em;
+                }
+            }
+            .MenuItemSelected {
+                border-bottom:2px  #2ecbfb solid !important;
+            }
+        }
+        
+    }
+    .Accordions {
+        width: 100%;
+        max-width: 750px;
+        padding-left: 1em;
+        padding-right: 1em;
+        margin-left: auto;
+        margin-right: auto;
+        text-align: left;
+        .AccordionDivision {
+            background-color: rgba(225,238,250, 1)
+        }
+        .AccordionDivisionSelected {
+            background-color: rgba(225,238,250, 0.5)
+        }
+    }
+}

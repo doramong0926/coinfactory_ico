@@ -1,0 +1,118 @@
+@import "./../../config/variables.scss";
+
+.AboutContainer {
+    padding: 6em 0em 6em 0em !important;
+    background-color: white !important;
+    border: 0 !important;
+
+    @include breakpoint(phone) {
+        padding: 3em 0em 3em 0em !important;
+    }
+    .Row {       
+        @include breakpoint(phone) {
+            // margin-bottom: 30px !important; 
+        }
+        .TextColumn, .TextColumnTop, .TextColumnBottom {
+            margin: auto;
+            text-align: left;
+            color: black; 
+            max-width: 500px;
+            width: 60% !important;
+            @include breakpoint(phone) {
+                min-width: 200px;
+            }
+            @include breakpoint(tablet-desktop1) {
+                margin-bottom: 25px !important;
+            }
+            @include breakpoint(phone-desktop1) {
+                text-align: center !important;
+            }
+            @include breakpoint(phone-desktop1) {
+                max-width: none;
+                width: 80% !important;
+            }
+            .TextColumnHeader {
+                max-width: 300px;
+                font-size: 2em;
+                color: black;
+                font-weight: bold;
+                @include breakpoint(tablet-desktop1) {
+                    margin: auto;
+                    max-width: none;
+                    text-align: center !important;
+                }     
+                @include breakpoint(phone-tablet) {
+                    margin: auto;
+                    // max-width: none;
+                    text-align: center !important;
+                }               
+            }
+            .TextColumnSubHeader {
+                font-size: 1.2em;
+                color: black;
+            }
+            .TextColumnDescription {
+                margin-top: 25px !important;
+                font-size: 1em;
+                color: gray;
+            }            
+            .PlayerButton {
+                padding: 0;
+                max-width: 210px;
+                height: 60px;
+                cursor: pointer;
+                @include breakpoint(phone-desktop1) {
+                    margin: auto !important;
+                }    
+                .PlayerButtonImage {
+                    width: 60px;
+                    margin: 0;
+                    @include breakpoint(desktop1) {
+                        margin-right: 10px;
+                    }    
+                }                
+                .PlayerButtonText1 {
+                    font-size: 1.7em;
+                    margin: 0 ;
+                }
+                .PlayerButtonText2 {
+                    color: #cc65ec;
+                    font-size: 0.9em;
+                    margin: 0 ;
+                }
+            }
+        }
+        
+        .ImageColumn {
+            margin: auto;
+            width: 40% !important;
+            padding: 0  !important;
+            @include breakpoint(phone) {
+                min-width: 200px;                
+            }
+            @include breakpoint(phone-desktop1) {
+                width: 80% !important;
+            }    
+            .ImageColumnBox {
+                padding: 0 !important;
+            }
+        }
+    }
+}
+
+.TextColumnTop {    
+    @include breakpoint(phone-desktop1) {
+        display: none !important;
+    }
+}
+
+.TextColumnBottom {
+    margin-bottom: 0px;
+    @include breakpoint(desktop1) {
+        display: none !important;
+    }
+}
+
+.EmptyBox {
+    margin: 50px;
+}

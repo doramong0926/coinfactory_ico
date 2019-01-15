@@ -1,0 +1,20 @@
+@import "./../../config/variables.scss";
+
+.progressDivider {
+    border-right: 1px solid rgb(147, 148, 150);
+    width: 40px;
+    height: 28px;
+    margin-top: 5px;
+    margin-bottom: 5px; 
+    @include breakpoint(phone-tablet) {
+        height: 25px;
+    }
+}
+
+.progressStep {
+    width: 80px;
+    font-size: 10px;
+    @include breakpoint(phone-tablet) {
+        font-size: 8px;
+    }
+}
