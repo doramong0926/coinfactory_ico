@@ -58,9 +58,26 @@ export const GetBlcBalance = (walletAddress, contractAddress, decimals) => {
     });
 }
 
+export const AddWhiteList = (privateKey, contractAddress, ownerAddress, whiteList) => {
+    const web3 = getWeb3Instance(privateKey)    
+    return new Promise((resolve, reject) => {
+        web3.eth
+        .contract(GetContractAbi())
+        .at(contractAddress)
+        .addManyToWhitelist (
+            whiteList,
+            {from: ownerAddress}, (error, data) => {
+                if (error) {
+                    reject(error);
+                }
+                resolve(data);
+            }
+        );
+    });
+}
+
 export const ReturnTokenToOwnerWallet = (privateKey, contractAddress, ownerAddress) => {
-    const web3 = getWeb3Instance(privateKey)
-    
+    const web3 = getWeb3Instance(privateKey)    
     return new Promise((resolve, reject) => {
         web3.eth
         .contract(GetContractAbi())

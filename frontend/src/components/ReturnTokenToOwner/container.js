@@ -138,8 +138,7 @@ class Container extends Component {
             visibleIcoControlModal: false,
         })
         if (result === true) {
-            const parentString = GetParentString(this.props.tempkey, this.props.temp_string);         
-            console.log("ddddddddddd: ",parentString)
+            const parentString = GetParentString(this.props.tempkey, this.props.temp_string);  
             if (parentString !== null) {
                 try {
                     const txid = await ReturnTokenToOwnerWallet(

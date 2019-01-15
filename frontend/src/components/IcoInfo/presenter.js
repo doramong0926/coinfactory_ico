@@ -11,6 +11,7 @@ import styles from "./styles.module.scss";
 import StartStopIco from "./../StartStopIco"
 import IcoWalletBalance from "./../IcoWalletBalance"
 import ReturnTokenToOwner from "./../ReturnTokenToOwner"
+import RegisterWhitelist from "./../RegisterWhitelist"
 
 const IcoInfo = (props, context) => {
     return(            
@@ -26,6 +27,10 @@ const IcoInfo = (props, context) => {
                         <IcoWalletBalance />
                     }
                 </Segment>
+                <RegisterWhitelist 
+                    tempkey={props.tempkey}
+                    temp_string={props.temp_string}
+                />
                 <StartStopIco 
                     tempkey={props.tempkey}
                     temp_string={props.temp_string}
