@@ -4,8 +4,8 @@ export const TOKEN_DECIMALS = 18
 export const HOME_PAGE_ADDRESS = "https://www.bluecots.io/";
 export const AWS_S3_ADDRESS = "https://bluecots-ico-bucket.s3.amazonaws.com/";
 export const WHITEPAPER = {
-    ENG: "http://blcscan.cafe24app.com/doc/withepaper_eng.pdf",
-    KOR: "http://blcscan.cafe24app.com/doc/withepaper_kor.pdf",
+    ENG: "http://blcscan.cafe24app.com/doc/whitepaper_eng.pdf",
+    KOR: "http://blcscan.cafe24app.com/doc/whitepaper_kor.pdf",
 }
 
 export const LOCAL_STORE_JWT = 'jwt';
