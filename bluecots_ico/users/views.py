@@ -806,17 +806,19 @@ class KycCount(APIView):
         userCnt = models.User.objects.all().count()
         readyCnt = models.User.objects.filter(kyc_status='ready').count()
         approvingCnt = models.User.objects.filter(kyc_status='approving').count()
+        approvedCnt = models.User.objects.filter(kyc_status='approved').count()
         pendingCnt = models.User.objects.filter(kyc_status='pending').count()
         rejectedCnt = models.User.objects.filter(kyc_status='rejected').count()
-        approvedCnt = models.User.objects.filter(kyc_status='approved').count()
+        completedCnt = models.User.objects.filter(kyc_status='completed').count()
 
         kycCount = {
             'user': userCnt,
             'ready': readyCnt,
             'approving': approvingCnt,
+            'approved': approvedCnt,
             'pending': pendingCnt,
             'rejected': rejectedCnt,
-            'approved': approvedCnt,
+            'completed': completedCnt,
         }
         ret_data = {
             'status': '1',

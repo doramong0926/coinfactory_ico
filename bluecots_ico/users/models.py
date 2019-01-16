@@ -38,9 +38,10 @@ class User(AbstractUser, TimeStampModel):
     STATUS_TYPE = (
         ('ready', 'Ready'),
         ('approving', 'Approving'),
+        ('approved', 'Approved'),
         ('pending', 'Pending'),
         ('rejected', 'Rejected'),
-        ('approved', 'Approved'),
+        ('completed', 'Completed'),
     )
 
     PHOTO_TYPE = {
