@@ -30,6 +30,14 @@ const KycCount = (props, context) => {
                 <div className={styles.StatisticDivision}>
                     <Statistic>
                         <Statistic.Value>
+                            {props.kycCount === null ? 0 : props.kycCount.approved}
+                        </Statistic.Value>
+                        <Statistic.Label>Num of Approved KYC</Statistic.Label>
+                    </Statistic>
+                </div>
+                <div className={styles.StatisticDivision}>
+                    <Statistic>
+                        <Statistic.Value>
                             {props.kycCount === null ? 0 : props.kycCount.pending}
                         </Statistic.Value>
                         <Statistic.Label>Num of Pending KYC</Statistic.Label>
@@ -38,9 +46,17 @@ const KycCount = (props, context) => {
                 <div className={styles.StatisticDivision}>
                     <Statistic>
                         <Statistic.Value>
-                            {props.kycCount === null ? 0 : props.kycCount.approved}
+                            {props.kycCount === null ? 0 : props.kycCount.completed}
                         </Statistic.Value>
                         <Statistic.Label>Num of Completed KYC</Statistic.Label>
+                    </Statistic>
+                </div>
+                <div className={styles.StatisticDivision}>
+                    <Statistic>
+                        <Statistic.Value>
+                            {props.kycCount === null ? 0 : props.kycCount.rejected}
+                        </Statistic.Value>
+                        <Statistic.Label>Num of Rejected KYC</Statistic.Label>
                     </Statistic>
                 </div>
             </Segment>

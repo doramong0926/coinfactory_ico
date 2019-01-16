@@ -27,7 +27,7 @@ const BuyToken = (props, context) => (
             <EventBox {...props} />
             <CalculateBox {...props} />
             <HowToInveste />
-            {props.kyc_status === KYC_STATUS.APPROVED ? <QrCode {...props} /> : null}
+            {props.kyc_status === KYC_STATUS.COMPLETED ? <QrCode {...props} /> : null}
         </div>
     </div>
 )

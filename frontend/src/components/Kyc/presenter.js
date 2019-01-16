@@ -25,7 +25,8 @@ const Kyc = (props, context) => {
 }
 
 const KycStatus = (props, context) => {
-    if (props.kyc.kyc_status === KYC_STATUS.READY || props.kyc.kyc_status === KYC_STATUS.APPROVING 
+    if (props.kyc.kyc_status === KYC_STATUS.APPROVING 
+        || props.kyc.kyc_status === KYC_STATUS.APPROVED 
         || props.kyc.kyc_status === KYC_STATUS.PENDING) {
         return (
             <React.Fragment>
@@ -41,7 +42,7 @@ const KycStatus = (props, context) => {
                 </div>  
             </React.Fragment>           
         )
-    } else if (props.kyc.kyc_status === KYC_STATUS.APPROVED) {
+    } else if (props.kyc.kyc_status === KYC_STATUS.COMPLETED) {
         return (
             <React.Fragment>
                 <p className={styles.KycHederText}>{context.t("Your KYC Status")}</p>

@@ -30,8 +30,9 @@ export const KYC_STATUS = {
     READY: "ready",
     APPROVING: "approving",
     APPROVED: "approved",
-    REJECTED: "rejected",
     PENDING: "pending",
+    REJECTED: "rejected",
+    COMPLETED: "completed",
 };
 
 export const KYC_REJECT_REASON = {

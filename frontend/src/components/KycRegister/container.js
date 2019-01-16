@@ -21,8 +21,7 @@ class  Container extends Component {
             isCompleteStep3: false,
             isCompleteStep4: false,
             isEnableSubmit: false,
-            isEnableInput: false,            
-            isEnablePhoneVerify: false,
+            isEnableInput: false,         
             
             visibleModal: false,
             visibleConfirm: false,
@@ -134,7 +133,6 @@ class  Container extends Component {
                                 mediaAddress={this.state.mediaAddress}
                                 visiblePhoneVerificationModal={this.state.visiblePhoneVerificationModal}
                                 handleClosePhoneVerificationModal={this._handleClosePhoneVerificationModal}
-                                isEnablePhoneVerify={this.state.isEnablePhoneVerify}
                                 handleChangeMobileCountry={this._handleChangeMobileCountry}
                                 confirmNumber={this.state.mobile_confirm_number}
                                 confirmTimeout={this.state.mobile_confirm_timeout}
@@ -147,10 +145,7 @@ class  Container extends Component {
     }
 
     _checkKycStatusAndInput = () => {
-        this._isEnableInput();    
-        setTimeout(() => {
-            this._isEnablePhoneVerify();
-        }, );   
+        this._isEnableInput();
         setTimeout(() => {
             this._isStepCompleted();    
         }, );   
@@ -186,13 +181,13 @@ class  Container extends Component {
     }
 
     _isEnableInput = () => {    
-        if (this._isKycApproving() === false) {
+        if (this._isKycCompleted() === true || this._isKycApproving() === true) {
             this.setState({
-                isEnableInput: true
+                isEnableInput: false
             })
         } else {
             this.setState({
-                isEnableInput: false
+                isEnableInput: true
             })
         }
     }
@@ -249,7 +244,7 @@ class  Container extends Component {
                 || this.props.kyc.kyc_status === KYC_STATUS.REJECTED)
                 && this.state.isCompleteStep1 === true && this.state.isCompleteStep2 === true 
                 && this.state.isCompleteStep3 === true && this.state.isCompleteStep4 === true
-                && this.state.selectedPhoto !== null
+                && (this.state.selectedPhoto !== null || (this.state.photo !==null && this.state.photo !== undefined && this.state.photo !== ""))
             ) {
                 this.setState({
                     isEnableSubmit: true
@@ -258,20 +253,6 @@ class  Container extends Component {
                 this.setState({
                     isEnableSubmit: false
                 })
-        }
-    }
-
-    _isEnablePhoneVerify = () => {
-        if (this._isKycApproving() === false
-            && this.state.mobile_number !== null && this.state.mobile_number !== '' 
-            && this.state.mobile_country !== null && this.state.mobile_country !== "") {
-            this.setState({
-                isEnablePhoneVerify: true,
-            })
-        } else {
-            this.setState({
-                isEnablePhoneVerify: false,
-            })
         }
     }
 
@@ -355,6 +336,13 @@ class  Container extends Component {
         return false;
     }
 
+    _isKycCompleted = () => {
+        if (this.props.kyc.kyc_status === KYC_STATUS.COMPLETED) {
+            return true;      
+        }
+        return false;
+    }
+
     _confirmMobileProcessDone = (ret) => {
         if (ret === true) {
             this.setState({
@@ -384,8 +372,10 @@ class  Container extends Component {
         data.append('country', this.state.country);                
         data.append('mobile_country', this.state.mobile_country);        
         data.append('mobile_number', this.state.mobile_number);        
-        data.append('photo_type', this.state.photo_type);        
-        data.append('photo', this.state.selectedPhoto);     
+        data.append('photo_type', this.state.photo_type);
+        if (this.state.selectedPhoto !== null) {
+            data.append('photo', this.state.selectedPhoto);     
+        }
 
         fetch(`users/${this.props.username}/kyc/`, {
             method: "PUT",

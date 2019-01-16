@@ -70,7 +70,14 @@ const KycRegister = (props, context) => {
                         <p className={styles.HederText}>{context.t("1. Term of Service")}</p>  
                         <Form.Field className={styles.FormField}>
                             <Checkbox                            
-                                checked={props.kyc.kyc_status !== KYC_STATUS.READY ? props.kyc.kyc_agreement1 : props.kyc_agreement1}
+                                checked={
+                                    (props.kyc.kyc_status !== KYC_STATUS.READY && props.kyc.kyc_status !== KYC_STATUS.REJECTED) 
+                                        ? props.kyc.kyc_agreement1 
+                                        : ((props.kyc_agreement1 !== null)
+                                                ? props.kyc_agreement1
+                                                : props.kyc.kyc_agreement1
+                                        )
+                                }
                                 onChange={props.handleToggleTerms1}
                                 name='kyc_agreement1'
                                 disabled={!props.isEnableInput}
@@ -86,7 +93,14 @@ const KycRegister = (props, context) => {
                         </Form.Field>
                         <Form.Field className={styles.FormField2}>
                             <Checkbox                            
-                                checked={props.kyc.kyc_status !== KYC_STATUS.READY ? props.kyc.kyc_agreement2 : props.kyc_agreement2}
+                                checked={
+                                    (props.kyc.kyc_status !== KYC_STATUS.READY && props.kyc.kyc_status !== KYC_STATUS.REJECTED) 
+                                        ? props.kyc.kyc_agreement2 
+                                        : ((props.kyc_agreement2 !== null)
+                                                ? props.kyc_agreement2
+                                                : props.kyc.kyc_agreement2
+                                        )
+                                }
                                 onChange={props.handleToggleTerms2}
                                 name='kyc_agreement2'
                                 disabled={!props.isEnableInput}
@@ -112,7 +126,15 @@ const KycRegister = (props, context) => {
                                 <Input 
                                     type='text' 
                                     placeholder={context.t('First name')}
-                                    value={props.kyc.kyc_status !== KYC_STATUS.READY ? props.kyc.first_name : props.first_name}
+                                    value={
+                                        (props.kyc.kyc_status !== KYC_STATUS.READY && props.kyc.kyc_status !== KYC_STATUS.REJECTED) 
+                                            ? props.kyc.first_name 
+                                            : ((props.first_name !== null)
+                                                    ? props.first_name
+                                                    : props.kyc.first_name
+                                            )
+                                    }
+                                    
                                     onChange={props.handleInputChange}
                                     name='first_name'
                                     readOnly={!props.isEnableInput}
@@ -121,7 +143,14 @@ const KycRegister = (props, context) => {
                                 <Input 
                                     type='text' 
                                     placeholder={context.t('Last name')}
-                                    value={props.kyc.kyc_status !== KYC_STATUS.READY ? props.kyc.last_name : props.last_name}
+                                    value={
+                                        (props.kyc.kyc_status !== KYC_STATUS.READY && props.kyc.kyc_status !== KYC_STATUS.REJECTED) 
+                                            ? props.kyc.last_name 
+                                            : ((props.last_name !== null)
+                                                    ? props.last_name
+                                                    : props.kyc.last_name
+                                            )
+                                    }
                                     onChange={props.handleInputChange}
                                     name='last_name'
                                     readOnly={!props.isEnableInput}
@@ -148,7 +177,14 @@ const KycRegister = (props, context) => {
                                     selection 
                                     upward
                                     options={countryOptions}
-                                    value={props.kyc.kyc_status !== KYC_STATUS.READY ? props.kyc.country : props.country}
+                                    value={
+                                        (props.kyc.kyc_status !== KYC_STATUS.READY && props.kyc.kyc_status !== KYC_STATUS.REJECTED) 
+                                            ? props.kyc.country 
+                                            : ((props.country !== null)
+                                                    ? props.country
+                                                    : props.kyc.country
+                                            )
+                                    }
                                     onChange={props.handleChangeCountry}
                                     className={styles.InputBox}
                                     readOnly={!props.isEnableInput}
@@ -165,14 +201,28 @@ const KycRegister = (props, context) => {
                                             placeholder={context.t("국가 코드")}
                                             options={mobileCountryOptions} 
                                             className={styles.MobileCountryDropDown}
-                                            value={props.kyc.kyc_status !== KYC_STATUS.READY ? props.kyc.mobile_country : props.mobile_country}
+                                            value={
+                                                (props.kyc.kyc_status !== KYC_STATUS.READY && props.kyc.kyc_status !== KYC_STATUS.REJECTED) 
+                                                    ? props.kyc.mobile_country 
+                                                    : ((props.mobile_country !== null)
+                                                            ? props.mobile_country
+                                                            : props.kyc.mobile_country
+                                                    )
+                                            }
                                             onChange={props.handleChangeMobileCountry}
                                             readOnly={!props.isEnableInput}
                                             disabled={!props.isEnableInput}
                                         />}
                                     labelPosition='left'
                                     placeholder={context.t('Mobile number')}
-                                    value={props.kyc.kyc_status !== KYC_STATUS.READY && props.kyc.mobile_number !== null ? props.kyc.mobile_number : props.mobile_number}
+                                    value={
+                                        (props.kyc.kyc_status !== KYC_STATUS.READY && props.kyc.kyc_status !== KYC_STATUS.REJECTED) 
+                                            ? props.kyc.mobile_number 
+                                            : ((props.mobile_number !== null)
+                                                    ? props.mobile_number
+                                                    : props.kyc.mobile_number
+                                            )
+                                    }
                                     onChange={props.handleInputChange}
                                     name='mobile_number'
                                     readOnly={!props.isEnableInput}
@@ -286,7 +336,14 @@ const KycRegister = (props, context) => {
                                 <input 
                                     type='text' 
                                     placeholder={context.t('Fill your ETH address to receive BLC.')}
-                                    value={props.kyc.kyc_status !== KYC_STATUS.READY ? props.kyc.wallet_address : props.wallet_address}
+                                    value={
+                                        (props.kyc.kyc_status !== KYC_STATUS.READY && props.kyc.kyc_status !== KYC_STATUS.REJECTED) 
+                                            ? props.kyc.wallet_address 
+                                            : ((props.wallet_address !== null)
+                                                    ? props.wallet_address
+                                                    : props.kyc.wallet_address
+                                            )
+                                    }
                                     onChange={props.handleInputChange}
                                     name='wallet_address'
                                     disabled={!props.isEnableInput}
@@ -295,16 +352,23 @@ const KycRegister = (props, context) => {
                             </div>
                         </Segment>
                     </div>
-                    <Segment basic className={styles.SubmitButtonContainer}>
-                        <Button 
-                            fluid
-                            type='submit'
-                            disabled={!props.isEnableSubmit}
-                            className={styles.SubmitButton}
-                        >
-                            {context.t('Register KYC')}
-                        </Button>
-                    </Segment>
+                    {
+                        props.isEnableInput === true ? 
+                        (
+                            <Segment basic className={styles.SubmitButtonContainer}>
+                                <Button 
+                                    fluid
+                                    type='submit'
+                                    disabled={!props.isEnableSubmit}
+                                    className={styles.SubmitButton}
+                                >
+                                    {context.t('Register KYC')}
+                                </Button>
+                            </Segment>
+                        )
+                        : null
+                    }
+                    
                     <Confirm 
                         open={props.visibleConfirm} 
                         header={confirmTitle}
@@ -413,7 +477,6 @@ KycRegister.propTypes = {
     mediaAddress: PropTypes.string.isRequired,
     visiblePhoneVerificationModal: PropTypes.bool.isRequired,
     handleClosePhoneVerificationModal: PropTypes.func.isRequired,
-    isEnablePhoneVerify: PropTypes.bool.isRequired,
     mobile_country: PropTypes.string.isRequired,
     handleChangeMobileCountry: PropTypes.func.isRequired,
     confirmNumber: PropTypes.string,
