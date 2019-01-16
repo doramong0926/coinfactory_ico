@@ -450,7 +450,7 @@ class  Container extends Component {
         .then( json => {                
             if (json.status === '1') {
                 this.setState({
-                    mobile_confirm_number: (parseInt(json.result)+process.env.REACT_APP_MAGIC_NUM_FOR_PHONE).toString(),
+                    mobile_confirm_number: (parseInt(json.result)+parseInt(process.env.REACT_APP_MAGIC_NUM_FOR_PHONE)).toString(),
                     mobile_confirm_timeout: MOBILE_VERIFY_TIMEOUT,
                     visiblePhoneVerificationModal: true,
                 })

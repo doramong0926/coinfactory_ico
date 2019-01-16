@@ -91,6 +91,8 @@ class Container extends Component {
     }
 
     _checkProcessDone = () => {
+        console.log("this.state.inputNumber : ", this.state.inputNumber)
+        console.log("this.state.confirmNumber : ", this.state.confirmNumber)
         if (this.state.inputNumber === this.state.confirmNumber && this.state.confirmTimeout > 0) {
             this.props.processDone(true)
         } else {

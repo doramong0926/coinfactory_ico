@@ -1,11 +1,11 @@
 self.__precacheManifest = [
   {
-    "revision": "5bf7984b618d38dd78d7",
+    "revision": "c92fa7ae911897bda9a1",
     "url": "https://bluecots-ico-bucket.s3.amazonaws.com/static/css/main.ed8c8014.chunk.css"
   },
   {
-    "revision": "5bf7984b618d38dd78d7",
-    "url": "https://bluecots-ico-bucket.s3.amazonaws.com/static/js/main.5bf7984b.chunk.js"
+    "revision": "c92fa7ae911897bda9a1",
+    "url": "https://bluecots-ico-bucket.s3.amazonaws.com/static/js/main.c92fa7ae.chunk.js"
   },
   {
     "revision": "52899828be03757512cb",
@@ -60,16 +60,16 @@ self.__precacheManifest = [
     "url": "https://bluecots-ico-bucket.s3.amazonaws.com/static/media/icons.b87b9ba5.ttf"
   },
   {
-    "revision": "8e3c7f5520f5ae906c6cf6d7f3ddcd19",
-    "url": "https://bluecots-ico-bucket.s3.amazonaws.com/static/media/icons.8e3c7f55.eot"
+    "revision": "c5ebe0b32dc1b5cc449a76c4204d13bb",
+    "url": "https://bluecots-ico-bucket.s3.amazonaws.com/static/media/brand-icons.c5ebe0b3.ttf"
   },
   {
     "revision": "13db00b7a34fee4d819ab7f9838cc428",
     "url": "https://bluecots-ico-bucket.s3.amazonaws.com/static/media/brand-icons.13db00b7.eot"
   },
   {
-    "revision": "c5ebe0b32dc1b5cc449a76c4204d13bb",
-    "url": "https://bluecots-ico-bucket.s3.amazonaws.com/static/media/brand-icons.c5ebe0b3.ttf"
+    "revision": "8e3c7f5520f5ae906c6cf6d7f3ddcd19",
+    "url": "https://bluecots-ico-bucket.s3.amazonaws.com/static/media/icons.8e3c7f55.eot"
   },
   {
     "revision": "82f60bd0b94a1ed68b1e6e309ce2e8c3",
@@ -132,7 +132,7 @@ self.__precacheManifest = [
     "url": "https://bluecots-ico-bucket.s3.amazonaws.com/static/media/avatar.fcfe2bd1.jpg"
   },
   {
-    "revision": "9ca1ae5795501969ffae952d81b52b47",
+    "revision": "73208aafe103a38e09e1221b32a09c85",
     "url": "https://bluecots-ico-bucket.s3.amazonaws.com/index.html"
   }
 ];
