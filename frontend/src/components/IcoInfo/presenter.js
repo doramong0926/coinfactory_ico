@@ -14,7 +14,7 @@ import ReturnTokenToOwner from "./../ReturnTokenToOwner"
 import RegisterWhitelist from "./../RegisterWhitelist"
 import IsWhitelist from "./../IsWhitelist"
 import ExchageRate from "./../ExchageRate"
-import KycList from "./../KycList"
+import KycListWithWhitelist from "./../KycListWithWhitelist"
 
 const IcoInfo = (props, context) => {
     return(            
@@ -26,7 +26,12 @@ const IcoInfo = (props, context) => {
                 {
                     props.icoWalletList === null 
                         ? null 
-                        : <KycList />
+                        : (
+                            <KycListWithWhitelist 
+                                tempkey={props.tempkey}
+                                temp_string={props.temp_string}
+                            />
+                        )
                 }  
                 <Segment className={styles.BodySegment} >
                     <p className={styles.TitleText}>Wallet address</p>

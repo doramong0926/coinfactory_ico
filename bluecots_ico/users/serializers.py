@@ -93,6 +93,7 @@ class UserKycSerializer(serializers.ModelSerializer):
             'photo_type',
             'photo',
             'updated_at',
+            'is_whitelisted',
         )
 
 

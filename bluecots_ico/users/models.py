@@ -81,6 +81,7 @@ class User(AbstractUser, TimeStampModel):
     mobile_country = models.CharField(max_length=254, blank=True, null=True)
     kyc_reject_reason = models.CharField(max_length=254, choices=STATUS_REJECT_REASON, blank=False, default='none', null=True)
     temp_string = models.CharField(max_length=254, blank=True, null=True)
+    is_whitelisted = models.BooleanField(blank=False, default=False)
 
     def __str__(self):
         return self.username

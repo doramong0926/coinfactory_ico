@@ -1,8 +1,7 @@
 import React, { Component } from "react";
 import RegisterWhitelist from "./presenter";
 import PropTypes from "prop-types";
-import { GetParentString } from "./../../utils/web3Control";
-import { AddWhiteList } from "./../../utils/web3Control"
+import { GetParentString, AddWhiteList } from "./../../utils/web3Control";
 
 class Container extends Component {    
     constructor(props, context) {
