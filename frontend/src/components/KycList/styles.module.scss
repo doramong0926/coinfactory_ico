@@ -1,0 +1,32 @@
+@import "./../../config/variables.scss";
+
+.RootSegment {
+    text-align: left ;
+    .SubTitleBox {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        .Button {
+            margin-left: 1em ;
+            margin-bottom: 0.5em;
+            height: 3em;
+        }
+        .SubTitleText {
+            font-size: 2em;
+            padding-top: 0.5em;
+            padding-left: 0.5em;
+        }
+    }
+    .KycStatusText {
+        font-size: 2em;
+        padding-top: 0.5em;
+        padding-left: 0.5em;
+        margin-bottom: 0em;
+    }
+}
+.TableTimeStamp {
+    width: 180px !important; 
+} 
+.TableItem{
+    width: 200px !important; 
+}    

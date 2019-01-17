@@ -50,6 +50,7 @@ class Container extends Component {
         SaveKyc: PropTypes.func.isRequired,
         SaveProfile: PropTypes.func.isRequired,     
         pathname: PropTypes.string,
+        username: PropTypes.string,
     }
 
     render() {
@@ -110,7 +111,7 @@ class Container extends Component {
     }  
 
     _fetchUserType = () => {
-        fetch('/users/usertype/', {
+        fetch(`/users/${this.props.username}/usertype/`, {
             method: "GET",
             headers: {
                 "Authorization": `JWT ${this.props.token}`,

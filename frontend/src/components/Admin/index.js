@@ -9,6 +9,7 @@ const mapStateToProps = (state, ownProps) => {
         icoFundAmount: config.icoFundAmount,
         token: user.token,
         pathname: location.pathname,
+        username: user.username,
     };
 };
 
