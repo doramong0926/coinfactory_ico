@@ -80,14 +80,23 @@ const KycListWithWhitelist = (props, context) => {
                     disabled={!props.isEnableControl}
                     onClick={props.handleOnOpenIcoControlModal}
                 >
-                    REGISTER WHITELIST
+                    REGISTER ALL WHITELIST
+                </Button>
+                <Divider inverted section />
+                {_renderUserListToCompleted(props.userlistToCompleted)}
+                <Button 
+                    className={styles.SubmitButton}
+                    disabled={props.userlistToCompleted.length === 0 ? true : false}
+                    onClick={props.handleClickChangeToCompleted}
+                >
+                    CHANGE TO COMPLETED
                 </Button>
                 <IcoControlConfirmModal 
                     visible = {props.visibleIcoControlModal}
                     handleClose = {props.handleCloseIcoControlModal}
                     handleConfirm = {props.handleOnRegisterWhitelist}
                     size={"mini"} 
-                    title="REGISTER WHITELIST"
+                    title="REGISTER ALL WHITELIST"
                     temp_string={props.temp_string}
                 />
                 <BasicModal 
@@ -112,13 +121,37 @@ const KycListWithWhitelist = (props, context) => {
 
 const _renderWhiteList = (whitelist) => {
     if (whitelist === null) {
-        return null;
-    } else {
-        const new_whitelist = whitelist.split(",")
         return (
-            <div>
-                <p>Num of WhiteList : {new_whitelist.length}</p>
-                {new_whitelist.map((t, index) => {
+            <div className={styles.WhiteListToRegisterDivision}>
+                <p>Num of WhiteList To Register: 0</p>
+            </div>
+        );
+    } else {
+        return (
+            <div className={styles.WhiteListToRegisterDivision}>
+                <p>Num of WhiteList To Register: {whitelist.length}</p>
+                {whitelist.map((t, index) => {
+                    return (
+                        <p key={index} className={styles.WhitelistText}>{t}</p>
+                    )
+                })}
+            </div>
+        )
+    }
+}
+
+const _renderUserListToCompleted = (userlistToCompleted) => {
+    if (userlistToCompleted === null) {
+        return (
+            <div className={styles.WhiteListToRegisterDivision}>
+                <p>Num of UserList To Completed: 0</p>
+            </div>
+        );
+    } else {
+        return (
+            <div className={styles.WhiteListToRegisterDivision}>
+                <p>Num of UserList To Completed: {userlistToCompleted.length}</p>
+                {userlistToCompleted.map((t, index) => {
                     return (
                         <p key={index} className={styles.WhitelistText}>{t}</p>
                     )
@@ -213,7 +246,9 @@ KycListWithWhitelist.propTypes = {
     visibleSuccessModal: PropTypes.bool.isRequired,
     handleCloseSuccessModal: PropTypes.func.isRequired,
     resultTxid: PropTypes.string,
-    whitelist: PropTypes.string,
+    whitelist: PropTypes.array,
+    handleClickChangeToCompleted: PropTypes.func.isRequired,
+    userlistToCompleted: PropTypes.array.isRequired,
 }
 
 KycListWithWhitelist.contextTypes = {

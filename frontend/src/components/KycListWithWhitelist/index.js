@@ -1,5 +1,6 @@
 import { connect } from "react-redux";
 import Container from "./container"
+import ActionCreator from "./../../redux/actions";
 
 const mapStateToProps = (state, ownProps) => {
     const { user, config, router: { location }, } = state;
@@ -13,9 +14,12 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = (dispatch, ownProps) => {
     return {
-        // SaveKycCount: (kycCount) => {
-        //     dispatch(ActionCreator.SaveKycCount(kycCount));
-        // },
+        ShowDefaultSpinner: () => {
+            dispatch(ActionCreator.ShowDefaultSpinner());
+        },
+        HideDefaultSpinner: () => {
+            dispatch(ActionCreator.HideDefaultSpinner());
+        },
     }
 }
 

@@ -650,6 +650,52 @@ class MobileVerification(APIView):
         }
         return Response(data=ret_data, status=status.HTTP_200_OK)
 
+class UserKycStatus(APIView):        
+    def put(self, request, format=None):
+        user = request.user        
+        if isStaff(username=user.username) == False:
+            ret_data = {
+                'status': '0',
+                'message': 'Fail to put kyc_status',
+                'result': '',
+            }
+            return Response(data=ret_data, status=status.HTTP_400_BAD_REQUEST)
+
+        requested_kycStatus = request.data.get('kyc_status', None)
+        requested_userlist = request.data.get('userlist', None)
+
+        for username in requested_userlist:
+            try:
+                found_user = models.User.objects.get(username=username)
+            except models.User.DoesNotExist:
+                ret_data = {
+                    'status': '0',
+                    'message': 'Fail to put kyc_status',
+                    'result': '',
+                }
+                return Response(data=ret_data, status=status.HTTP_404_NOT_FOUND)
+
+        for username in requested_userlist:
+            try:
+                found_user = models.User.objects.get(username=username)
+                found_user.kyc_status = requested_kycStatus
+                found_user.save()
+            except models.User.DoesNotExist:
+                ret_data = {
+                    'status': '0',
+                    'message': 'Fail to put kyc_status',
+                    'result': '',
+                }
+                return Response(data=ret_data, status=status.HTTP_404_NOT_FOUND)
+        
+        ret_data = {
+            'status': '1',
+            'message': 'Succes to put kyc_status',
+            'result': request.data,
+        }
+        return Response(data=ret_data, status=status.HTTP_200_OK)
+
+
 class UserKyc(APIView):
     def get(self, request, username, format=None):
         user=request.user        

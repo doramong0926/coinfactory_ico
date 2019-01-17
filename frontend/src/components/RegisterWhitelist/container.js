@@ -1,7 +1,11 @@
 import React, { Component } from "react";
 import RegisterWhitelist from "./presenter";
 import PropTypes from "prop-types";
-import { GetParentString, AddWhiteList } from "./../../utils/web3Control";
+import { 
+    GetParentString, 
+    AddWhiteList, 
+    RemoveWhiteList, 
+} from "./../../utils/web3Control";
 
 class Container extends Component {    
     constructor(props, context) {
@@ -10,12 +14,15 @@ class Container extends Component {
             icoWalletList: null,
             tempkey: null,
             temp_string: null,
-            isEnableControl: false,
-            visibleIcoControlModal: false,
+            isEnableRegisterWhitelist: false,
+            isEnableRemoveWhitelist: false,
+            visibleRegisterWhitelist: false,
+            visibleRemoveWhitelist: false,
             visibleErrorModal: false,
             visibleSuccessModal: false,
             resultTxid: null,
             whitelist: null,
+            whitelistForRemove: null,
         };    
     }
 
@@ -92,11 +99,16 @@ class Container extends Component {
     render() {
         return (
             <RegisterWhitelist 
-                handleOnOpenIcoControlModal={this._handleOnOpenIcoControlModal}                
-                handleCloseIcoControlModal={this._handleCloseIcoControlModal}
+                handleOnOpenRegisterWhitelistModal={this._handleOnOpenRegisterWhitelistModal}                
+                handleOnCloseRegisterWhitelistModal={this._handleOnCloseRegisterWhitelistModal}
+                handleOnOpenRemoveWhitelistModal={this._handleOnOpenRemoveWhitelistModal}                
+                handleOnCloseRemoveWhitelistModal={this._handleOnCloseRemoveWhitelistModal}
                 handleOnRegisterWhitelist={this._handleOnRegisterWhitelist}
-                visibleIcoControlModal={this.state.visibleIcoControlModal}
-                isEnableControl={this.state.isEnableControl}
+                handleOnRemoveWhitelist={this._handleOnRemoveWhitelist}
+                visibleRegisterWhitelist={this.state.visibleRegisterWhitelist}
+                visibleRemoveWhitelist={this.state.visibleRemoveWhitelist}
+                isEnableRegisterWhitelist={this.state.isEnableRegisterWhitelist}
+                isEnableRemoveWhitelist={this.state.isEnableRemoveWhitelist}
                 temp_string={this.state.temp_string}
                 visibleErrorModal={this.state.visibleErrorModal}
                 handleCloseErrorModal={this._handleCloseErrorModal}
@@ -105,6 +117,7 @@ class Container extends Component {
                 resultTxid={this.state.resultTxid}
                 handleInputChange={this._handleInputChange}
                 whitelist={this.state.whitelist}
+                whitelistForRemove={this.state.whitelistForRemove}
             />
         )
     }
@@ -119,15 +132,27 @@ class Container extends Component {
         }, );
     }
 
-    _handleOnOpenIcoControlModal = () => {
+    _handleOnOpenRegisterWhitelistModal = () => {
         this.setState({
-            visibleIcoControlModal: true,
+            visibleRegisterWhitelist: true,
         })
     }
 
-    _handleCloseIcoControlModal = () => {
+    _handleOnCloseRegisterWhitelistModal = () => {
         this.setState({
-            visibleIcoControlModal: false,
+            visibleRegisterWhitelist: false,
+        })
+    }
+
+    _handleOnOpenRemoveWhitelistModal = () => {
+        this.setState({
+            visibleRemoveWhitelist: true,
+        })
+    }
+
+    _handleOnCloseRemoveWhitelistModal = () => {
+        this.setState({
+            visibleRemoveWhitelist: false,
         })
     }
 
@@ -145,7 +170,7 @@ class Container extends Component {
 
     _handleOnRegisterWhitelist = async (result) => {
         this.setState({
-            visibleIcoControlModal: false,
+            visibleRegisterWhitelist: false,
         })
         if (result === true) {
             const parentString = GetParentString(this.props.tempkey, this.props.temp_string);         
@@ -184,16 +209,67 @@ class Container extends Component {
         }
     }
 
+    _handleOnRemoveWhitelist = async (result) => {
+        this.setState({
+            visibleRemoveWhitelist: false,
+        })
+        if (result === true) {
+            const parentString = GetParentString(this.props.tempkey, this.props.temp_string);         
+            if (parentString !== null) {
+                try {
+                    const txid = await RemoveWhiteList(                        
+                        parentString,
+                        this.state.icoWalletList.icoWallet, 
+                        this.state.icoWalletList.ownerWallet,
+                        this.state.whitelistForRemove,
+                    );
+                    this.setState({
+                        visibleSuccessModal: true,
+                        resultTxid: txid,
+                        whitelistForRemove: null,
+                    })
+                } catch(err) {   
+                    console.log(err)                 
+                    this.setState({
+                        visibleErrorModal: true,
+                        whitelistForRemove: null,
+                    })
+                }   
+            } else {
+                this.setState({
+                    visibleErrorModal: true,
+                    whitelistForRemove: null,
+                })
+            }
+        } else {
+            this.setState({
+                visibleErrorModal: true,
+                whitelistForRemove: null,
+            })
+        }
+    }
+
     _IsEnableControl = () => {
         setTimeout(() => {
             if (this.state.temp_string !== null && this.state.tempkey !== null && this.state.icoWalletList !== null
                 && this.state.whitelist !== null && this.state.whitelist !== "") {
                 this.setState({
-                    isEnableControl: true,
+                    isEnableRegisterWhitelist: true,
                 })
             } else {
                 this.setState({
-                    isEnableControl: false,
+                    isEnableRegisterWhitelist: false,
+                })
+            }
+
+            if (this.state.temp_string !== null && this.state.tempkey !== null && this.state.icoWalletList !== null
+                && this.state.whitelistForRemove !== null && this.state.whitelistForRemove !== "") {
+                this.setState({
+                    isEnableRemoveWhitelist: true,
+                })
+            } else {
+                this.setState({
+                    isEnableRemoveWhitelist: false,
                 })
             }
         }, );

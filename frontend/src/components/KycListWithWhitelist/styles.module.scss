@@ -2,9 +2,13 @@
 
 .RootSegment {
     text-align: left ;
-    .WhitelistText {
-        font-size: 2em;
+    .WhiteListToRegisterDivision {
+        padding-bottom: 1em;
+        .WhitelistText {
+
+        }
     }
+    
     .SubTitleBox {
         display: flex;
         flex-direction: row;

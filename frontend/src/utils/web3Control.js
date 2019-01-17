@@ -116,6 +116,7 @@ export const IsWhitelisted = (contractAddress, address) => {
 }
 
 export const AddWhiteList = (privateKey, contractAddress, ownerAddress, whiteList) => {
+    console.log("whitelist : ", whiteList)
     const web3 = getWeb3Instance(privateKey)    
     return new Promise((resolve, reject) => {
         web3.eth
@@ -132,6 +133,26 @@ export const AddWhiteList = (privateKey, contractAddress, ownerAddress, whiteLis
         );
     });
 }
+
+export const RemoveWhiteList = (privateKey, contractAddress, ownerAddress, whiteList) => {
+    const web3 = getWeb3Instance(privateKey)    
+    return new Promise((resolve, reject) => {
+        web3.eth
+        .contract(GetContractAbi())
+        .at(contractAddress)
+        .removeFromWhitelist (
+            whiteList,
+            {from: ownerAddress}, (error, data) => {
+                if (error) {
+                    reject(error);
+                }
+                resolve(data);
+            }
+        );
+    });
+}
+
+
 
 export const ReturnTokenToOwnerWallet = (privateKey, contractAddress, ownerAddress) => {
     const web3 = getWeb3Instance(privateKey)    

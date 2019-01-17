@@ -3,6 +3,7 @@ import {
     Segment,
     Button,
     Input,
+    Divider,
 } from "semantic-ui-react";
 import 'semantic-ui-css/semantic.min.css';
 import PropTypes from "prop-types";
@@ -46,17 +47,45 @@ const RegisterWhitelist = (props, context) => {
             </div>
             <Button 
                 className={styles.SubmitButton}
-                disabled={!props.isEnableControl}
-                onClick={props.handleOnOpenIcoControlModal}
+                disabled={!props.isEnableRegisterWhitelist}
+                onClick={props.handleOnOpenRegisterWhitelistModal}
             >
                 REGISTER WHITELIST
             </Button>
+            <Divider inverted section />
+            <p className={styles.TitleText}>UNREGISTER WHITELIST</p>
+            <div>
+                <Input 
+                    fluid
+                    type='text' 
+                    placeholder='whitelistForRemove'
+                    value={props.whitelistForRemove !== null ? props.whitelistForRemove : ""}
+                    onChange={props.handleInputChange}
+                    name='whitelistForRemove'
+                    className={styles.InputBox}
+                />
+            </div>
+            <Button 
+                className={styles.SubmitButton}
+                disabled={!props.isEnableRemoveWhitelist}
+                onClick={props.handleOnOpenRemoveWhitelistModal}
+            >
+                UNREGISTER WHITELIST
+            </Button>
             <IcoControlConfirmModal 
-                visible = {props.visibleIcoControlModal}
-                handleClose = {props.handleCloseIcoControlModal}
+                visible = {props.visibleRegisterWhitelist}
+                handleClose = {props.handleOnCloseRegisterWhitelistModal}
                 handleConfirm = {props.handleOnRegisterWhitelist}
                 size={"mini"} 
                 title="REGISTER WHITELIST"
+                temp_string={props.temp_string}
+            />
+            <IcoControlConfirmModal 
+                visible = {props.visibleRemoveWhitelist}
+                handleClose = {props.handleOnCloseRemoveWhitelistModal}
+                handleConfirm = {props.handleOnRemoveWhitelist}
+                size={"mini"} 
+                title="REMOVE WHITELIST"
                 temp_string={props.temp_string}
             />
             <BasicModal 
@@ -79,11 +108,16 @@ const RegisterWhitelist = (props, context) => {
 }
 
 RegisterWhitelist.propTypes = {    
-    handleOnOpenIcoControlModal: PropTypes.func.isRequired,
-    handleCloseIcoControlModal: PropTypes.func.isRequired,
+    handleOnOpenRegisterWhitelistModal: PropTypes.func.isRequired,
+    handleOnCloseRegisterWhitelistModal: PropTypes.func.isRequired,
+    handleOnOpenRemoveWhitelistModal: PropTypes.func.isRequired,
+    handleOnCloseRemoveWhitelistModal: PropTypes.func.isRequired,
     handleOnRegisterWhitelist: PropTypes.func.isRequired,
-    isEnableControl: PropTypes.bool.isRequired,
-    visibleIcoControlModal: PropTypes.bool.isRequired,
+    handleOnRemoveWhitelist: PropTypes.func.isRequired,
+    isEnableRegisterWhitelist: PropTypes.bool.isRequired,
+    isEnableRemoveWhitelist: PropTypes.bool.isRequired,
+    visibleRegisterWhitelist: PropTypes.bool.isRequired,
+    visibleRemoveWhitelist: PropTypes.bool.isRequired,
     temp_string: PropTypes.string,
     visibleErrorModal: PropTypes.bool.isRequired,
     handleCloseErrorModal: PropTypes.func.isRequired,
@@ -92,6 +126,7 @@ RegisterWhitelist.propTypes = {
     resultTxid: PropTypes.string,
     handleInputChange: PropTypes.func.isRequired,
     whitelist: PropTypes.string,
+    whitelistForRemove: PropTypes.string,
 }
 
 RegisterWhitelist.contextTypes = {

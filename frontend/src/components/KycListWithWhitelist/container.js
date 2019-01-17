@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import KycListWithWhitelist from "./presenter";
 import _ from "lodash";
 import { AddWhiteList, IsWhitelisted, GetParentString } from "./../../utils/web3Control"
+import { KYC_STATUS } from "../../config/constants";
 
 class Container extends Component {    
     constructor(props, context) {
@@ -20,7 +21,10 @@ class Container extends Component {
             visibleErrorModal: false,
             visibleSuccessModal: false,
             resultTxid: null,
-            whitelist: null,
+            whitelist: [],
+            userlist: [],
+            userlistToCompleted: [],
+            isEnableCompleted: false,
         }
     }
 
@@ -31,6 +35,8 @@ class Container extends Component {
         pathname: PropTypes.string,
         tempkey: PropTypes.string,
         temp_string: PropTypes.string,
+        ShowDefaultSpinner: PropTypes.func.isRequired,
+        HideDefaultSpinner: PropTypes.func.isRequired,
     }
 
     componentDidMount () {
@@ -122,6 +128,8 @@ class Container extends Component {
                 handleCloseSuccessModal={this._handleCloseSuccessModal}
                 resultTxid={this.state.resultTxid}
                 whitelist={this.state.whitelist}
+                userlistToCompleted={this.state.userlistToCompleted}
+                handleClickChangeToCompleted={this._handleClickChangeToCompleted}
             />
         )
     }
@@ -145,6 +153,7 @@ class Container extends Component {
     _fetchKycList = () => {
         this.setState({
             isLoading: true,
+            userlistToCompleted: [],
         })
         fetch('/users/kyc_list/', {
             method: "GET",
@@ -159,7 +168,7 @@ class Container extends Component {
                     kyc_list: json.result,
                 })
                 setTimeout(() => {
-                    this._checkIsWhiteList();
+                    this._checkWhiteList();
                 }, );
             } else {
                 console.log("fail to get kyc list")
@@ -178,35 +187,37 @@ class Container extends Component {
         )
     }
 
-    _checkIsWhiteList = () => {
-        if (this.state.kyc_list !== null) {
-            this.state.kyc_list.map((t, index) => {                
-                this._handleOnIsWhitelist(t.wallet_address)
-                return null;
-            })
-        }
+    _checkWhiteList = () => {
+        this.setState({
+            whitelist: [],    
+            userlist: [],
+        });
+        setTimeout(() => {
+            if (this.state.kyc_list !== null) {
+                this.state.kyc_list.map((t, index) => {
+                    if (t.kyc_status === KYC_STATUS.APPROVED || t.kyc_status === KYC_STATUS.PENDING) {
+                        this._checkIsWhiteList(t.wallet_address, t.username, t.kyc_status)    
+                    }                
+                    return null;
+                })
+            }
+        }, );        
     }
 
-    _handleOnIsWhitelist = async (address) => {
+    _checkIsWhiteList = async (address, username, kycStatus) => {
         try {
             const result = await IsWhitelisted (   
                 this.state.icoWalletList.icoWallet, 
                 address,
             );
             if (result === true) {  
-                this._updateIsWhitelist(address, true);
-                if (this.state.whitelist === null) {
-                    this.setState({
-                        whitelist: address
-                    })
-                } else {
-                    const new_whitelist = this.state.whitelist + ',' + address;
-                    this.setState({
-                        whitelist: new_whitelist,
-                    })
-                }
+                this._updateIsWhitelist(address, username, kycStatus, true);                
             } else {
-                this._updateIsWhitelist(address, false);
+                this._updateIsWhitelist(address, username, kycStatus, false);
+                if (kycStatus === KYC_STATUS.APPROVED) {
+                    this._updateWhitelistToRegister(address);
+                    this._updateUserListToRegister(username);
+                }
             }
             this._IsEnableControl();            
         } catch(err) {   
@@ -214,7 +225,7 @@ class Container extends Component {
         }
     }
 
-    _updateIsWhitelist = (address, value) => {
+    _updateIsWhitelist = (address, username, kycStatus, value) => {
         this.setState(
             prevState => ({
                 kyc_list: prevState.kyc_list.map((t, index) => {
@@ -228,6 +239,23 @@ class Container extends Component {
                 })
             })
         );
+        if (kycStatus === KYC_STATUS.PENDING && value === true) {
+            this.setState({
+                userlistToCompleted: this.state.userlistToCompleted.concat(username)
+            })
+        }
+    }
+
+    _updateWhitelistToRegister = (whiteList) => {
+        this.setState({
+            whitelist: this.state.whitelist.concat(whiteList)
+        })
+    }
+
+    _updateUserListToRegister = (userlist) => {
+        this.setState({
+            userlist: this.state.userlist.concat(userlist)
+        })
     }
 
     _handleOnRegisterWhitelist = async (result) => {
@@ -235,20 +263,21 @@ class Container extends Component {
             visibleIcoControlModal: false,
         })
         if (result === true) {
-            const parentString = GetParentString(this.props.tempkey, this.props.temp_string);         
-            if (parentString !== null) {                
+            this.props.ShowDefaultSpinner();
+            const parentString = GetParentString(this.props.tempkey, this.props.temp_string);
+            if (parentString !== null) {                                
                 try {
-                    const whitelistArray = this.state.whitelist.split(",")
                     const txid = await AddWhiteList(                        
                         parentString,
                         this.state.icoWalletList.icoWallet, 
                         this.state.icoWalletList.ownerWallet,
-                        whitelistArray,
+                        this.state.whitelist,
                     );
                     this.setState({
                         visibleSuccessModal: true,
                         resultTxid: txid,
                     })
+                    this._changeUserKycStatus(this.state.userlist, KYC_STATUS.PENDING);
                 } catch(err) {   
                     console.log(err)                 
                     this.setState({
@@ -259,18 +288,20 @@ class Container extends Component {
                 this.setState({
                     visibleErrorModal: true,
                 })
-            }
+            }            
         } else {
             this.setState({
                 visibleErrorModal: true,
             })
         }
+        this.props.HideDefaultSpinner();
     }
 
     _IsEnableControl = () => {
         setTimeout(() => {
             if (this.state.temp_string !== null && this.state.tempkey !== null && this.state.icoWalletList !== null
-                && this.state.whitelist !== null && this.state.whitelist !== "") {
+                && this.state.whitelist !== null && this.state.whitelist !== "" && this.state.whitelist.length !== 0
+                && this.state.userlist !== null && this.state.userlist !== "" && this.state.userlist.length !== 0) {
                 this.setState({
                     isEnableControl: true,
                 })
@@ -278,7 +309,7 @@ class Container extends Component {
                 this.setState({
                     isEnableControl: false,
                 })
-            }
+            }            
         }, );
     }
 
@@ -304,6 +335,45 @@ class Container extends Component {
         this.setState({
             visibleSuccessModal: false,
         })
+    }
+
+    _handleClickChangeToCompleted = () => {
+        this._changeUserKycStatus(this.state.userlistToCompleted, KYC_STATUS.COMPLETED);
+    }
+
+    _changeUserKycStatus = (userlist, kycStatus) => {
+        this.props.ShowDefaultSpinner();
+        // event.preventDefault();       
+        fetch(`/users/kyc_status/`, {
+            method: "PUT",
+            headers: {
+                "Authorization": `JWT ${this.props.token}`,
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ 
+                userlist: userlist,
+                kyc_status: kycStatus,           
+            })
+        })
+        .then(response => response.json())
+        .then( json => {                
+            if (json.status === '1') {
+                this._fetchKycList();   
+            } else {
+                this.setState({
+                    visibleErrorModal: true,
+                })
+            }
+        })
+        .then(async() => {
+            this.props.HideDefaultSpinner();
+        })
+        .catch (
+            err => {
+                console.log(err)
+                this.props.HideDefaultSpinner();
+            }
+        )        
     }
 }
 
