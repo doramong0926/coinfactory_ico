@@ -227,7 +227,10 @@ export const getWeb3HTTPProvider = () => {
     }
 }
 
-export const getWeb3Instance = (privateKey) => {
+export const getWeb3Instance = (privateKey) => {    
+    if (privateKey.startsWith('0x') === false && privateKey.startsWith('0X') === false) {
+        privateKey=`0x${privateKey}`
+    }
     const wallet = EthereumJsWallet.fromPrivateKey(EthUtil.toBuffer(privateKey));
     const engine = new ProviderEngine();
     engine.addProvider(new WalletSubprovider(wallet, {}));

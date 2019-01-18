@@ -34,7 +34,7 @@ class Container extends Component {
         ShowDefaultSpinner: PropTypes.func.isRequired,
         HideDefaultSpinner: PropTypes.func.isRequired,
         username: PropTypes.string,
-        // tempkey: PropTypes.string,
+        tempkey: PropTypes.string,
     }
 
     componentDidMount () {
@@ -78,13 +78,15 @@ class Container extends Component {
             }
         }
 
-        if (this.props.tempkey === null && nextProps.tempkey !== null) {
+        if ((this.props.tempkey === null && nextProps.tempkey !== null)
+            || (this.props.tempkey !== null && this.props.tempkey !== nextProps.tempkey)) {
             this.setState({
                 tempkey: nextProps.tempkey,
             })
         }
 
-        if (this.props.token === null && nextProps.token !== null) {
+        if ((this.props.token === null && nextProps.token !== null)
+            || (this.props.token !== null && this.props.token !== nextProps.token !== null)) {
             this.setState({
                 token: nextProps.token,
             })
@@ -179,7 +181,7 @@ class Container extends Component {
         .then(json => {            
             if (json.status === '1') {
                 if (cmdType === "save") {
-                    this.props.SaveTempkey(CryptoJS.AES.encrypt(this.state.tempkeyInputValue, this.state.password1));                        
+                    this.props.SaveTempkey(CryptoJS.AES.encrypt(this.state.tempkeyInputValue, this.state.password1).toString());                        
                 } else {
                     this.props.SaveTempkey('');
                 }
@@ -190,9 +192,9 @@ class Container extends Component {
                 this._fetchTempString();    
             }, );
             this.setState({
-                password1: "",
-                password2: "",
-                tempkeyInputValue: "",
+                password1: null,
+                password2: null,
+                tempkeyInputValue: null,
                 visible_modal: true,
             })
             this.props.HideDefaultSpinner()

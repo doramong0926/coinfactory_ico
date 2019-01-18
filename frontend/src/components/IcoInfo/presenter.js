@@ -64,7 +64,7 @@ const IcoInfo = (props, context) => {
                     <Form size='small' onSubmit={props.handleOnSubmitTempkey}>
                         <div>
                             <Input 
-                                type='text' 
+                                type='password' 
                                 placeholder='TempKey'
                                 value={props.tempkeyInputValue !== null ? props.tempkeyInputValue : ""}
                                 onChange={props.handleInputChange}

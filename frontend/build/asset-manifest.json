@@ -1,10 +1,10 @@
 {
   "main.css": "https://bluecots-ico-bucket.s3.amazonaws.com/static/css/main.82219a17.chunk.css",
-  "main.js": "https://bluecots-ico-bucket.s3.amazonaws.com/static/js/main.653ac303.chunk.js",
-  "main.js.map": "https://bluecots-ico-bucket.s3.amazonaws.com/static/js/main.653ac303.chunk.js.map",
+  "main.js": "https://bluecots-ico-bucket.s3.amazonaws.com/static/js/main.71206d57.chunk.js",
+  "main.js.map": "https://bluecots-ico-bucket.s3.amazonaws.com/static/js/main.71206d57.chunk.js.map",
   "static/css/1.afaecb0c.chunk.css": "https://bluecots-ico-bucket.s3.amazonaws.com/static/css/1.afaecb0c.chunk.css",
-  "static/js/1.f2147c0e.chunk.js": "https://bluecots-ico-bucket.s3.amazonaws.com/static/js/1.f2147c0e.chunk.js",
-  "static/js/1.f2147c0e.chunk.js.map": "https://bluecots-ico-bucket.s3.amazonaws.com/static/js/1.f2147c0e.chunk.js.map",
+  "static/js/1.c82a43a8.chunk.js": "https://bluecots-ico-bucket.s3.amazonaws.com/static/js/1.c82a43a8.chunk.js",
+  "static/js/1.c82a43a8.chunk.js.map": "https://bluecots-ico-bucket.s3.amazonaws.com/static/js/1.c82a43a8.chunk.js.map",
   "runtime~main.js": "https://bluecots-ico-bucket.s3.amazonaws.com/static/js/runtime~main.03af9dc0.js",
   "runtime~main.js.map": "https://bluecots-ico-bucket.s3.amazonaws.com/static/js/runtime~main.03af9dc0.js.map",
   "static/media/semantic.min.css": "https://bluecots-ico-bucket.s3.amazonaws.com/static/media/brand-icons.a1a749e8.svg",
@@ -20,9 +20,9 @@
   "static/media/wallet_image.png": "https://bluecots-ico-bucket.s3.amazonaws.com/static/media/wallet_image.7ee2f1ea.png",
   "static/media/bluecots_wallet_logo.png": "https://bluecots-ico-bucket.s3.amazonaws.com/static/media/bluecots_wallet_logo.44851d39.png",
   "static/media/avatar.jpg": "https://bluecots-ico-bucket.s3.amazonaws.com/static/media/avatar.fcfe2bd1.jpg",
-  "static/css/main.82219a17.chunk.css.map": "https://bluecots-ico-bucket.s3.amazonaws.com/static/css/main.82219a17.chunk.css.map",
   "static/css/1.afaecb0c.chunk.css.map": "https://bluecots-ico-bucket.s3.amazonaws.com/static/css/1.afaecb0c.chunk.css.map",
+  "static/css/main.82219a17.chunk.css.map": "https://bluecots-ico-bucket.s3.amazonaws.com/static/css/main.82219a17.chunk.css.map",
   "index.html": "https://bluecots-ico-bucket.s3.amazonaws.com/index.html",
-  "precache-manifest.78f144991973606b9bf8e3b54c85909f.js": "https://bluecots-ico-bucket.s3.amazonaws.com/precache-manifest.78f144991973606b9bf8e3b54c85909f.js",
+  "precache-manifest.edd67b45584db299bc3a919134c615f8.js": "https://bluecots-ico-bucket.s3.amazonaws.com/precache-manifest.edd67b45584db299bc3a919134c615f8.js",
   "service-worker.js": "https://bluecots-ico-bucket.s3.amazonaws.com/service-worker.js"
 }
