@@ -1,9 +1,6 @@
 import React from "react";
 import {
     Segment,
-    Input,
-    Button,
-    Form,
 } from "semantic-ui-react";
 import 'semantic-ui-css/semantic.min.css';
 import PropTypes from "prop-types";
@@ -15,14 +12,12 @@ import RegisterWhitelist from "./../RegisterWhitelist"
 import IsWhitelist from "./../IsWhitelist"
 import ExchageRate from "./../ExchageRate"
 import KycListWithWhitelist from "./../KycListWithWhitelist"
+import RegisterTempKey from "./../RegisterTempKey"
 
 const IcoInfo = (props, context) => {
     return(            
         <React.Fragment>
             <Segment basic vertical className={styles.RootSegment} >
-                <div className={styles.TitleDivision}>
-                    <p className={styles.HeaderText}>IcoInfo</p>                    
-                </div>
                 {
                     props.icoWalletList === null 
                         ? null 
@@ -59,71 +54,27 @@ const IcoInfo = (props, context) => {
                     tempkey={props.tempkey}
                     temp_string={props.temp_string}
                 />
-                <Segment className={styles.BodySegment} >
-                    <p className={styles.TitleText}>Register tempkey</p>
-                    <Form size='small' onSubmit={props.handleOnSubmitTempkey}>
-                        <div>
-                            <Input 
-                                type='password' 
-                                placeholder='TempKey'
-                                value={props.tempkeyInputValue !== null ? props.tempkeyInputValue : ""}
-                                onChange={props.handleInputChange}
-                                name='tempkeyInputValue'
-                                className={styles.InputBox}
-                            />
-                        </div>
-                        <div>
-                            <Input 
-                                type='password' 
-                                placeholder='password1'
-                                value={props.password1 !== null ? props.password1 : ''}
-                                onChange={props.handleInputChange}
-                                name='password1'
-                                className={styles.InputBox}
-                            />
-                        </div>
-                        <div>
-                            <Input 
-                                type='password' 
-                                placeholder='password2'
-                                value={props.password2 !== null ? props.password2 : ''}
-                                onChange={props.handleInputChange}
-                                name='password2'
-                                className={styles.InputBox}
-                            />
-                        </div>
-                        <Button 
-                            fluid
-                            type='submit'
-                            disabled={!props.isEnableSubmitTempkey}
-                            className={styles.SubmitButton}
-                        >
-                            Submit
-                        </Button>
-                    </Form>
-                    <Button 
-                        fluid
-                        className={styles.SubmitButton}
-                        onClick={props.handleRemoveTempkey}
-                    >
-                        Clear Tempkey
-                    </Button>
-                </Segment>
-            </Segment>
+                <RegisterTempKey 
+                    tempkey={props.tempkey}
+                    saveTempString={props.saveTempString}
+                    fetchTempString={props.fetchTempString}
+                    is_superuser={props.is_superuser}
+                    is_staff={props.is_staff}
+                />
+            </Segment>            
         </React.Fragment>
     )
 }
 
 IcoInfo.propTypes = {    
     icoWalletList: PropTypes.object,
-    tempkeyInputValue: PropTypes.string,
-    handleInputChange: PropTypes.func.isRequired,
-    isEnableSubmitTempkey: PropTypes.bool.isRequired,
-    handleOnSubmitTempkey: PropTypes.func.isRequired,
-    handleRemoveTempkey: PropTypes.func.isRequired,
     tempkey: PropTypes.string,
     temp_string: PropTypes.string,
+    saveTempString: PropTypes.func.isRequired,
     isIcoStarted: PropTypes.bool,
+    fetchTempString: PropTypes.func.isRequired,
+    is_superuser: PropTypes.bool.isRequired,
+    is_staff: PropTypes.bool.isRequired,
 }
 
 IcoInfo.contextTypes = {

@@ -1,11 +1,13 @@
 @import "./../../config/variables.scss";
 
 .RootSegment {
+    max-width: 1200px;
     .TitleDivision {
         .HeaderText {
-            text-align: center;
+            text-align: left;
             font-size: 3em !important;
             color: black;
+            font-weight: bold;
         }
     }    
     .BodySegment {
@@ -18,6 +20,7 @@
             margin-bottom: 1em;
         }
         .SubmitButton {
+            width: 200px;
             margin-bottom: 1em;
         }
     }

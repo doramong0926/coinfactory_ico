@@ -62,6 +62,8 @@ const _getRootDivisionClassName = (backgroundImage) => {
             return styles.RootDivisionSignup;
         case BACKGROUND_IMAGE_TYPE.VERIFICATION :
             return styles.RootDivisionVerification;
+        case BACKGROUND_IMAGE_TYPE.ADMIN :
+            return styles.RootDivisionAdmin;
         default: 
             return styles.RootDivisionHome;
     }

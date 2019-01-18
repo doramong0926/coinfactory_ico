@@ -31,7 +31,7 @@ const Admin = (props, context) => {
     return(            
         <React.Fragment>
             <div className={styles.RootDivision}>
-                <Menu vertical className={styles.MenuBox}>
+                <Menu className={styles.MenuBox}>
                     <Menu.Item 
                         as={Link}
                         to={'/superman/'}

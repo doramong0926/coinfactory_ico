@@ -15,9 +15,6 @@ const DashBoard = (props, context) => {
     return(            
         <React.Fragment>
             <Segment basic vertical className={styles.RootSegment} >
-                <div className={styles.TitleDivision}>
-                    <p className={styles.HeaderText}>DashBoard</p>
-                </div>
                 <div className={styles.BodyDivision}>
                     <KycCount />
                     <CurrentRound />        

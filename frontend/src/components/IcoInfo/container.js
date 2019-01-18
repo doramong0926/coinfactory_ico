@@ -98,51 +98,18 @@ class Container extends Component {
             <IcoInfo 
                 icoWalletList={this.state.icoWalletList}
                 tempkeyInputValue={this.state.tempkeyInputValue}
-                handleInputChange={this._handleInputChange}
                 password1={this.state.password1}
                 password2={this.state.password2}
                 isEnableSubmitTempkey={this.state.isEnableSubmitTempkey}
-                handleOnSubmitTempkey={this._handleOnSubmitTempkey}
-                handleRemoveTempkey={this._handleRemoveTempkey}
                 tempkey={this.state.tempkey}
                 temp_string={this.state.temp_string}
+                saveTempString={this._saveTempString}
+                fetchTempString={this._fetchTempString}
                 isIcoStarted={this.state.isIcoStarted}
+                is_superuser={this.state.is_superuser}
+                is_staff={this.state.is_staff}
             />
         )
-    }
-
-    _handleInputChange = (event) => {
-        const { target : { value, name } } = event;
-        this.setState({
-            [name]: value,
-        })
-        setTimeout(() => {
-           this._checkIsEnable(); 
-        }, );
-    }
-
-    _checkIsEnable = () => {
-        if ((this.state.tempkeyInputValue !== null && this.state.tempkeyInputValue !== '') 
-            && (this.state.password1 !== null && this.state.password1 !== '')
-            && (this.state.password2 !== null && this.state.password2 !== '')
-            && (this.state.password1 === this.state.password2)
-            && (this.state.is_superuser === true)){
-            this.setState({
-                isEnableSubmitTempkey: true,
-            })
-        } else {
-            this.setState({
-                isEnableSubmitTempkey: false,
-            })
-        }
-    }
-
-    _handleOnSubmitTempkey = () => {        
-        this._saveTempString("save");        
-    }
-
-    _handleRemoveTempkey = () => {
-        this._saveTempString("remove");              
     }
 
     _getIsIcoStarted = async () => {
@@ -158,53 +125,10 @@ class Container extends Component {
         }
     }
 
-    _saveTempString = (cmdType) => {
-        // event.preventDefault();
-        this.props.ShowDefaultSpinner();
-        let stringValue = ""
-        if (cmdType === "save") {    
-            stringValue = CryptoJS.AES.encrypt(this.state.password1, process.env.REACT_APP_MAGIC_KEY).toString();
-        }
-        fetch(`/users/${this.props.username}/tempstring/`, {
-            method: "PUT",
-            headers: {
-                "Authorization": `JWT ${this.props.token}`,
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({ 
-                temp_string: stringValue,
-            })
+    _saveTempString = (temp_string) => {
+        this.setState({
+            temp_string: temp_string,
         })
-        .then(
-            response => response.json()
-        )
-        .then(json => {            
-            if (json.status === '1') {
-                if (cmdType === "save") {
-                    this.props.SaveTempkey(CryptoJS.AES.encrypt(this.state.tempkeyInputValue, this.state.password1).toString());                        
-                } else {
-                    this.props.SaveTempkey('');
-                }
-            } else {
-                this.props.SaveTempkey("");    
-            }      
-            setTimeout(() => {
-                this._fetchTempString();    
-            }, );
-            this.setState({
-                password1: null,
-                password2: null,
-                tempkeyInputValue: null,
-                visible_modal: true,
-            })
-            this.props.HideDefaultSpinner()
-        })
-        .catch (
-            err => {
-                console.log(err);
-                this.props.HideDefaultSpinner();
-            }
-        )
     }
 
     _fetchTempString = () => {

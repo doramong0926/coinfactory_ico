@@ -58,6 +58,13 @@ class Container extends Component {
         }
     }
 
+    _handleClose = () => {
+        this.setState({
+            password: null,
+        })
+        this.props.handleClose();
+    }
+
     _handleConfirm = () => {
         if (this.state.password === this.props.temp_string) {     
             this.props.handleConfirm(true);

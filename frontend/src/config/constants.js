@@ -95,6 +95,7 @@ export const BACKGROUND_IMAGE_TYPE = {
     LOGIN: 5,
     SIGN_UP: 6,
     VERIFICATION: 7,
+    ADMIN: 8,
 }
 
 export const COMPANY_INFO ={ 

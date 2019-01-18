@@ -36,6 +36,9 @@ const mapDispatchToProps = (dispatch, ownProps) => {
         SaveProfile: (profile) => {
             dispatch(ActionCreator.SaveProfile(profile));
         },  
+        SaveBackgroundImage: (backgroundImage) => {
+            dispatch(ActionCreator.SaveBackgroundImage(backgroundImage));
+        },
     }
 }
 

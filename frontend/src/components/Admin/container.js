@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import Admin from "./presenter";
 import PropTypes from "prop-types";
+import { BACKGROUND_IMAGE_TYPE } from "./../../config/constants"
+
 
 class Container extends Component {    
     constructor(props, context) {
@@ -15,6 +17,7 @@ class Container extends Component {
     }
 
     componentDidMount() {        
+        this.props.SaveBackgroundImage(BACKGROUND_IMAGE_TYPE.ADMIN)
         if (this.props.isLoggedIn === true) {
             this.setState({
                 isLoggedIn: this.props.isLoggedIn
@@ -51,6 +54,7 @@ class Container extends Component {
         SaveProfile: PropTypes.func.isRequired,     
         pathname: PropTypes.string,
         username: PropTypes.string,
+        SaveBackgroundImage: PropTypes.func.isRequired,
     }
 
     render() {

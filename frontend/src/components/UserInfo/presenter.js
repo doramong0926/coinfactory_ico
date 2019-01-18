@@ -10,9 +10,6 @@ const UserInfo = (props, context) => {
     return(            
         <React.Fragment>
             <Segment basic vertical className={styles.RootSegment} >
-            <div className={styles.TitleDivision}>
-                <p className={styles.HeaderText}>UserInfo</p>
-            </div>
             </Segment>
         </React.Fragment>
     )

@@ -1,0 +1,17 @@
+@import "./../../config/variables.scss";
+
+.BodySegment {
+    .TitleText {
+        font-size: 2em !important;
+        color: black;
+    }
+    .InputBox {
+        width: 500px;
+        margin-bottom: 1em;
+    }
+    .SubmitButton {
+        width: 200px;
+        margin-bottom: 1em;
+    }
+}
+
