@@ -116,7 +116,6 @@ export const IsWhitelisted = (contractAddress, address) => {
 }
 
 export const AddWhiteList = (privateKey, contractAddress, ownerAddress, whiteList) => {
-    console.log("whitelist : ", whiteList)
     const web3 = getWeb3Instance(privateKey)    
     return new Promise((resolve, reject) => {
         web3.eth

@@ -1,10 +1,10 @@
 {
   "main.css": "https://bluecots-ico-bucket.s3.amazonaws.com/static/css/main.82219a17.chunk.css",
-  "main.js": "https://bluecots-ico-bucket.s3.amazonaws.com/static/js/main.9c38237e.chunk.js",
-  "main.js.map": "https://bluecots-ico-bucket.s3.amazonaws.com/static/js/main.9c38237e.chunk.js.map",
+  "main.js": "https://bluecots-ico-bucket.s3.amazonaws.com/static/js/main.653ac303.chunk.js",
+  "main.js.map": "https://bluecots-ico-bucket.s3.amazonaws.com/static/js/main.653ac303.chunk.js.map",
   "static/css/1.afaecb0c.chunk.css": "https://bluecots-ico-bucket.s3.amazonaws.com/static/css/1.afaecb0c.chunk.css",
-  "static/js/1.5be32f8b.chunk.js": "https://bluecots-ico-bucket.s3.amazonaws.com/static/js/1.5be32f8b.chunk.js",
-  "static/js/1.5be32f8b.chunk.js.map": "https://bluecots-ico-bucket.s3.amazonaws.com/static/js/1.5be32f8b.chunk.js.map",
+  "static/js/1.f2147c0e.chunk.js": "https://bluecots-ico-bucket.s3.amazonaws.com/static/js/1.f2147c0e.chunk.js",
+  "static/js/1.f2147c0e.chunk.js.map": "https://bluecots-ico-bucket.s3.amazonaws.com/static/js/1.f2147c0e.chunk.js.map",
   "runtime~main.js": "https://bluecots-ico-bucket.s3.amazonaws.com/static/js/runtime~main.03af9dc0.js",
   "runtime~main.js.map": "https://bluecots-ico-bucket.s3.amazonaws.com/static/js/runtime~main.03af9dc0.js.map",
   "static/media/semantic.min.css": "https://bluecots-ico-bucket.s3.amazonaws.com/static/media/brand-icons.a1a749e8.svg",
@@ -23,6 +23,6 @@
   "static/css/main.82219a17.chunk.css.map": "https://bluecots-ico-bucket.s3.amazonaws.com/static/css/main.82219a17.chunk.css.map",
   "static/css/1.afaecb0c.chunk.css.map": "https://bluecots-ico-bucket.s3.amazonaws.com/static/css/1.afaecb0c.chunk.css.map",
   "index.html": "https://bluecots-ico-bucket.s3.amazonaws.com/index.html",
-  "precache-manifest.f710d5dab16b13086bc694ff11624087.js": "https://bluecots-ico-bucket.s3.amazonaws.com/precache-manifest.f710d5dab16b13086bc694ff11624087.js",
+  "precache-manifest.78f144991973606b9bf8e3b54c85909f.js": "https://bluecots-ico-bucket.s3.amazonaws.com/precache-manifest.78f144991973606b9bf8e3b54c85909f.js",
   "service-worker.js": "https://bluecots-ico-bucket.s3.amazonaws.com/service-worker.js"
 }
