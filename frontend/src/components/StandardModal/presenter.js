@@ -7,6 +7,7 @@ import {
     Icon,
 } from 'semantic-ui-react'
 import 'semantic-ui-css/semantic.min.css';
+import styles from "./styles.module.scss";
 
 const StandardModal = (props, context) => {
     return (        
@@ -17,10 +18,10 @@ const StandardModal = (props, context) => {
             // dimmer={'blurring'}
             // closeIcon
         >
-            <Modal.Header style={{textAlign:"center"}}>
+            <Modal.Header className={styles.HederBox}>
                 <h2>{props.title}</h2>
             </Modal.Header>
-            <Modal.Content image scrolling>
+            <Modal.Content image scrolling className={styles.ContentBox}>
                 <Modal.Description>
                     {_renderModalContents(props.contents)}
                 </Modal.Description>
@@ -39,8 +40,8 @@ const _renderModalContents = (contents) => {
         contents.map( (t, index) => {
             return (
                 <div key={index}>
-                    <Header>{t.title}</Header>
-                    <div>
+                    <Header className={styles.TitleText}>{t.title}</Header>
+                    <div className={styles.DescriptionBox}>
                         {
                             t.text.map( (t, index) =>{
                                 return (<p key={index}>{t}</p>)

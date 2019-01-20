@@ -26,6 +26,7 @@ class  Container extends Component {
             visibleModal: false,
             visibleConfirm: false,
             visiblePhoneVerificationModal: false,
+            visibleTermsModal: false,
 
             isSendSuccess: false,
             successMessage: null,
@@ -140,6 +141,9 @@ class  Container extends Component {
                                 successMessage={this.state.successMessage}
                                 handleOnClickPhoneVerification={this._handleOnClickPhoneVerification}
                                 mobileVerificationError={this.state.mobileVerificationError}
+                                visibleTermsModal={this.state.visibleTermsModal}
+                                handleCloseTermsModal={this._handleCloseTermsModal}
+                                handleClickTerms={this._handleClickTerms}
                             />
         )
     }
@@ -318,6 +322,19 @@ class  Container extends Component {
         this.setState({
             visibleModal: false,
             isSendSuccess: false,
+        })
+    }
+
+    _handleCloseTermsModal = () => {
+        this.setState({
+            visibleTermsModal: false,
+        })
+    }
+
+    _handleClickTerms = () => {
+        console.log("Ddddddddddddddddddddd")
+        this.setState({
+            visibleTermsModal: true,
         })
     }
 

@@ -68,7 +68,7 @@ class Container extends Component {
                 totalSupply: totalSupply.toString(),
             })
         }
-        if (this.props.investmentInfo !== null && this.state.roundSupplyList !== null) {
+        if (this.props.investmentInfo !== null && this.props.roundSupplyList !== null) {
             let totalSupply = 0;
             this.props.roundSupplyList.map(t=> {
                 totalSupply += t.supply 

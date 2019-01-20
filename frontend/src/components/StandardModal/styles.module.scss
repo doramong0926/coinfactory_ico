@@ -1,0 +1,14 @@
+@import "./../../config/variables.scss";
+
+.HederBox {
+    text-align: center;
+}
+.ContentBox {
+    padding: 0em;
+    text-align: left !important;
+    .TitleText {
+    }
+    .DescriptionBox {
+        margin-bottom: 3em;
+    }
+}

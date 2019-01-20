@@ -2,7 +2,7 @@
 
 .Statistic, .StatisticTop {       
     max-width: 1200px;
-    @include breakpoint(tablet-desktop1) {
+    @include breakpoint(desktop1) {
         display: flex;
         flex-direction: row;
         align-items: center;    

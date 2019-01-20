@@ -12,11 +12,13 @@ import {
 import 'semantic-ui-css/semantic.min.css';
 import PropTypes from "prop-types";
 import BasicModal from "../BasicModal";
+import StandardModal from "../StandardModal";
 import serverErrorTypes from "./../share/serverError.js";
 import { KYC_STATUS } from "./../../config/constants";
 import styles from "./styles.module.scss";
 import KycStep from "./../KycStep";
 import PhoneVerificationModal from "./../PhoneVerificationModal"
+
 
 const KycRegister = (props, context) => {
     const countryOptions = [ 
@@ -49,6 +51,39 @@ const KycRegister = (props, context) => {
                 props.isSendSuccess === true ? 
                 context.t(`${props.successMessage}`)
                 : context.t(`${_getErrorMessage(props.errorType)}`)
+            ]
+        },
+    ];
+
+    const termsTitle = context.t("약관 & 정책")
+    const termsContents = [
+        {
+            title: context.t("약관"),
+            text: [
+                context.t("1. 저는 평생 블루코츠 코인에 충성하며 살것을 맹세 합니다."),
+                context.t("1. 저는 평생 블루코츠 코인에 충성하며 살것을 맹세 합니다."),
+                context.t("1. 저는 평생 블루코츠 코인에 충성하며 살것을 맹세 합니다."),
+                context.t("1. 저는 평생 블루코츠 코인에 충성하며 살것을 맹세 합니다."),
+                context.t("1. 저는 평생 블루코츠 코인에 충성하며 살것을 맹세 합니다."),
+                context.t("1. 저는 평생 블루코츠 코인에 충성하며 살것을 맹세 합니다."),
+                context.t("1. 저는 평생 블루코츠 코인에 충성하며 살것을 맹세 합니다."),
+                context.t("1. 저는 평생 블루코츠 코인에 충성하며 살것을 맹세 합니다."),
+                context.t("1. 저는 평생 블루코츠 코인에 충성하며 살것을 맹세 합니다."),
+            ]
+        },
+        {
+            title: context.t("약관"),
+            text: [
+                context.t("1. 저는 블루코츠 산것을 절대 후회하지 않고 살것을 맹세합니다."),
+                context.t("1. 저는 블루코츠 산것을 절대 후회하지 않고 살것을 맹세합니다."),
+                context.t("1. 저는 블루코츠 산것을 절대 후회하지 않고 살것을 맹세합니다."),
+                context.t("1. 저는 블루코츠 산것을 절대 후회하지 않고 살것을 맹세합니다."),
+                context.t("1. 저는 블루코츠 산것을 절대 후회하지 않고 살것을 맹세합니다."),
+                context.t("1. 저는 블루코츠 산것을 절대 후회하지 않고 살것을 맹세합니다."),
+                context.t("1. 저는 블루코츠 산것을 절대 후회하지 않고 살것을 맹세합니다."),
+                context.t("1. 저는 블루코츠 산것을 절대 후회하지 않고 살것을 맹세합니다."),
+                context.t("1. 저는 블루코츠 산것을 절대 후회하지 않고 살것을 맹세합니다."),
+                context.t("1. 저는 블루코츠 산것을 절대 후회하지 않고 살것을 맹세합니다."),
             ]
         },
     ];
@@ -88,7 +123,12 @@ const KycRegister = (props, context) => {
                                 <span> 
                                     {context.t('I agree to the terms of the User Agreement and give my consent to process my personal data for the purposes and conditions set out in the ')}
                                 </span>                     
-                                <span className={styles.MoveTermsText}>Privacy Policy.</span>
+                                <span 
+                                    className={styles.MoveTermsText}
+                                    onClick={props.handleClickTerms}
+                                >
+                                    Privacy Policy.
+                                </span>
                             </div>
                         </Form.Field>
                         <Form.Field className={styles.FormField2}>
@@ -114,7 +154,12 @@ const KycRegister = (props, context) => {
                                 <span> 
                                     {context.t('I Give my consent to process my personal data for the purposes and conditions set out in the ')}
                                 </span>                     
-                                <span className={styles.MoveTermsText}>Privacy Policy.</span>
+                                <span 
+                                    className={styles.MoveTermsText}
+                                    onClick={props.handleClickTerms}
+                                >
+                                    Privacy Policy.
+                                </span>
                             </div>
                         </Form.Field>
                     </div>                    
@@ -395,6 +440,13 @@ const KycRegister = (props, context) => {
                 processDone={props.confirmMobileProcessDone}
                 mobileVerificationError = {props.mobileVerificationError}
             />
+            <StandardModal 
+                visible = {props.visibleTermsModal}
+                handleClose = {props.handleCloseTermsModal}
+                size={"tiny"} 
+                title={termsTitle} 
+                contents={termsContents}
+            />
         </React.Fragment>
     )
 }
@@ -485,6 +537,9 @@ KycRegister.propTypes = {
     successMessage: PropTypes.string,
     handleOnClickPhoneVerification: PropTypes.func.isRequired,
     mobileVerificationError: PropTypes.bool.isRequired,
+    visibleTermsModal: PropTypes.bool.isRequired,
+    handleCloseTermsModal: PropTypes.func.isRequired,
+    handleClickTerms: PropTypes.func.isRequired,
 }
 
 KycRegister.contextTypes = {
