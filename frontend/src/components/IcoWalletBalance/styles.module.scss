@@ -1,15 +1,15 @@
 @import "./../../config/variables.scss";
 
 .BodySegment {
+    text-align: left;
     .WalletAddr {
-        text-align: left;
+        word-wrap: break-word;
     }
     .BalanceDiv {
         display: flex;
         flex-direction: row;
         margin-bottom: 1em;
         .Balance {
-            text-align: left;
             margin-right: 2em;
         }
     }

@@ -6,11 +6,18 @@
         color: black;
     }
     .InputBox {
-        width: 500px;
+        width: 800px;
+        @include breakpoint(phone) {            
+            width: 100%;
+        }    
         margin-bottom: 1em;
+       
     }
     .SubmitButton {
-        width: 200px;
+        width: 200px !important;
+        @include breakpoint(phone) {            
+            width: 100% !important;
+        }   
         margin-bottom: 1em;
     }
 }

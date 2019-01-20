@@ -4,11 +4,22 @@
     min-height: 100px;
     margin-top: 1em;    
 }     
-.Statistic, .StatisticTop {
-    display: flex;
-    flex-direction: row;
-    align-items: center;                    
+.Statistic, .StatisticTop { 
+    max-width: 1200px;
+    @include breakpoint(tablet-desktop1) {
+        display: flex;
+        flex-direction: row;
+        align-items: center;    
+    }   
+    @include breakpoint(tablet) {
+        max-width: 760px;
+    }    
+    @include breakpoint(phone) {
+        max-width: 320px;
+    }                 
     .StatisticDivision {
+        margin-top: 1em;
+        margin-bottom: 1em;
         margin-left: 2em !important;
         margin-right: 2em !important;
     }

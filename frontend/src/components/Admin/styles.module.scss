@@ -1,13 +1,20 @@
 @import "./../../config/variables.scss";
 
 .RootDivision {
-    width: 1200px;
+    max-width: 1200px;
+    @include breakpoint(tablet) {
+        max-width: 760px;
+    }    
+    @include breakpoint(phone) {
+        max-width: 320px;
+    }   
     margin-left: auto;
     margin-right: auto;;
     .MenuBox {
         margin-top: 2em !important;
         background-color: gray !important;
         .MenuItem {
+            padding: 0.9em !important;
             color: white !important;
         }
     }

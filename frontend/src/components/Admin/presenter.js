@@ -46,7 +46,7 @@ const Admin = (props, context) => {
                     <Menu.Item 
                         as={Link}
                         to={'/superman/icoinfo/'}
-                        name={'ICO infomation'}
+                        name={'ICO Info'}
                         onClick={
                             () => {
                                 props.handleOnClickMenuItem("icoinfo")
@@ -57,7 +57,7 @@ const Admin = (props, context) => {
                     <Menu.Item 
                         as={Link}
                         to={'/superman/userinfo/'}
-                        name={'User infomation'}
+                        name={'User Info'}
                         onClick={
                             () => {
                                 props.handleOnClickMenuItem("userinfo")
