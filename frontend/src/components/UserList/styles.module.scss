@@ -40,3 +40,10 @@
 .TableItemMini {
     width: 50px !important; 
 }
+
+.RowBox {
+    cursor: pointer !important;
+    &:hover {
+        background-color: orange;
+    }
+}

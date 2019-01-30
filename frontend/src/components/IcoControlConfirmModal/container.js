@@ -26,7 +26,7 @@ class Container extends Component {
                 visible={this.props.visible}
                 size={this.props.size}
                 title={this.props.title}
-                handleClose={this.props.handleClose}
+                handleClose={this._handleClose}
                 handleConfirm={this._handleConfirm}
                 temp_string={this.props.temp_string}
                 password={this.state.password}

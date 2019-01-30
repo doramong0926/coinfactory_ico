@@ -12,6 +12,7 @@ import 'semantic-ui-css/semantic.min.css';
 import PropTypes from "prop-types";
 import styles from "./styles.module.scss";
 import _ from "lodash";
+import UserInfoModal from "./../UserInfoModal"
 
 const UserList = (props, context) => {
     return(            
@@ -52,6 +53,13 @@ const UserList = (props, context) => {
                     )
                 }
             </Segment>
+            <UserInfoModal 
+                visible={props.visibleUserInfoModal}
+                handleClose={props.handleCloseModal}
+                handleProcessDone={props.handleProcessDoneModal}
+                userInfomation={props.userInfomation}
+                icoWalletList={props.icoWalletList}
+            />
         </React.Fragment>
     )
 }
@@ -115,6 +123,7 @@ const UserListTable = (props) => {
                                         <Table.Row 
                                             key={email}
                                             onClick={() => {props.handleOnClickUser(username)}}
+                                            className={styles.RowBox}
                                         >
                                             <Table.Cell>{email}</Table.Cell>                                    
                                             <Table.Cell>{kyc_status}</Table.Cell>
@@ -128,6 +137,7 @@ const UserListTable = (props) => {
                                     <Table.Row 
                                         key={email}
                                         onClick={() => {props.handleOnClickUser(username)}}
+                                        className={styles.RowBox}
                                     >
                                     <Table.Cell>{email}</Table.Cell>                                    
                                     <Table.Cell>{kyc_status}</Table.Cell>
@@ -154,6 +164,11 @@ UserList.propTypes = {
     filterString: PropTypes.string,
     handleOnClickUser: PropTypes.func.isRequired,
     handleInputChange: PropTypes.func.isRequired,
+    handleProcessDoneModal: PropTypes.func.isRequired,
+    handleCloseModal: PropTypes.func.isRequired,
+    visibleUserInfoModal: PropTypes.bool.isRequired,
+    icoWalletList: PropTypes.object,
+    userInfomation: PropTypes.object,
 }
 
 UserList.contextTypes = {

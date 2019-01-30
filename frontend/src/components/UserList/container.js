@@ -12,9 +12,9 @@ class Container extends Component {
             direction: null,
             isLoading: true,
             icoWalletList: null,   
-            visibleErrorModal: false,
-            visibleSuccessModal: false,
             filterString: null,
+            visibleUserInfoModal: false,
+            userInfomation: null,
         }
     }
 
@@ -64,8 +64,23 @@ class Container extends Component {
                 filterString={this.state.filterString}
                 handleOnClickUser={this._handleOnClickUser}
                 handleInputChange={this._handleInputChange}
+                handleProcessDoneModal={this._handleProcessDoneModal}
+                handleCloseModal={this._handleCloseModal}
+                visibleUserInfoModal={this.state.visibleUserInfoModal}
+                icoWalletList={this.state.icoWalletList}
+                userInfomation={this.state.userInfomation}
             />
         )
+    }
+
+    _handleCloseModal = () => {
+        this.setState({
+            visibleUserInfoModal: false,
+       }) 
+    }
+
+    _handleProcessDoneModal = () => {
+        this._fetchUserList(); 
     }
 
     _handleInputChange = (event) => {        
@@ -76,7 +91,18 @@ class Container extends Component {
     }
 
     _handleOnClickUser = (username) => {
-        console.log(username)
+        const found_userInfomation = _.find(this.state.user_list, (t) => {
+            return (t.username === username)
+        })
+        this.setState({
+            userInfomation: found_userInfomation,
+        })
+        console.log(found_userInfomation)
+        setTimeout(() => {
+           this.setState({
+                visibleUserInfoModal: true,
+           }) 
+        },);
     }
 
     _handleSort = clickedColumn => () => {
