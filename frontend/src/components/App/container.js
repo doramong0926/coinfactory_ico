@@ -13,6 +13,7 @@ class Container extends Component {
         this.state = {
             visibleAuthExpiredModal: false,
             backgroundImage: null,
+            isLoading: false,
         };    
     }
 
@@ -43,14 +44,6 @@ class Container extends Component {
             this._getUser();
         }
         this._fetchInitialData();
-
-        // this._fetchIcoWalletList();
-        // this._fetchInvestmentInfo();
-        // this._fetchWhitepaper();
-        // this._fetchCurrentRound();
-        // this._fetchRoundList();
-        // this._fetchRoundSupplyList();
-        // this._fetchRoundBonusList();
         if (this.props.backgroundImage !== null) {
             this.setState({
                 backgroundImage: this.props.backgroundImage,
@@ -76,6 +69,7 @@ class Container extends Component {
                 handleCloseAuthExpiredModal={this._handleCloseAuthExpiredModal}
                 visibleAuthExpiredModal={this.state.visibleAuthExpiredModal}
                 backgroundImage={this.state.backgroundImage}
+                isLoading={this.state.isLoading}
             />
         )
     }   
@@ -206,7 +200,10 @@ class Container extends Component {
                 } else {
                     console.log("fail to get round bonus list")
                 }
-                this.props.SaveRoundBonusList(round_bonus_list)               
+                this.props.SaveRoundBonusList(round_bonus_list)          
+                this.setState({
+                    isLoading: true,
+                })     
             } else {
                 console.log("fail to get initialdata")
             }      
@@ -243,190 +240,6 @@ class Container extends Component {
             err => console.log(err)
         )
     }
-
-    /*
-
-    _fetchIcoWalletList = () => {
-        fetch('/icoInfos/ico_wallet_list/', {
-            method: "GET",
-            headers: {
-                "Content-Type": "application/json"
-            },
-        })
-        .then(response => response.json())
-        .then( json => {
-            let icoWalletList = {
-                icoWallet:"",
-                contractWallet:"",
-                ownerWallet:"",
-            }
-            if (json.status === '1' && json.result.length > 0) {
-                icoWalletList.icoWallet = _.find(json.result, t => {return t.wallet_type ===  "ico"}).address
-                icoWalletList.contractWallet = _.find(json.result, t => { return t.wallet_type ===  "contract"}).address
-                icoWalletList.ownerWallet = _.find(json.result, t => { return t.wallet_type ===  "owner"}).address
-                this.props.SaveIcoWalletList(icoWalletList)
-                this._getIcoFundAmount();
-            } else {
-                this.props.SaveIcoWalletList(null)
-            }      
-        })
-        .catch (
-            err => {
-                console.log(err);
-            }
-        )
-    }
-
-    _fetchInvestmentInfo = () => {
-        fetch('/icoInfos/investment/', {
-            method: "GET",
-            headers: {
-                "Content-Type": "application/json"
-            },
-        })
-        .then(response => response.json())
-        .then( json => {
-            let investmentInfo = null;
-            if (json.status === '1') {
-                investmentInfo = json.result
-            }
-            this.props.SaveInvestmentInfo(investmentInfo);
-        })
-        .catch (
-            err => {
-                console.log(err);
-            }
-        )
-    }
-
-    _fetchWhitepaper = () => {
-        fetch('/icoInfos/whitepaper_list/', {
-            method: "GET",
-            headers: {
-                "Content-Type": "application/json"
-            },
-        })
-        .then(response => response.json())
-        .then( json => {
-            if (json.status === '1') {
-                this.props.SaveWhitepaper(json.result)
-            } else {
-                console.log("fail to get whitepaper list")
-                this.props.SaveWhitepaper(null)
-            }
-            
-        })
-        .catch (
-            err => {
-                console.log(err);
-            }
-        )        
-    }
-    
-    _fetchRoundList = () => {
-        let round_list = null;
-        fetch('/icoInfos/round_list/', {
-            method: "GET",
-            headers: {
-                "Content-Type": "application/json"
-            },
-        })
-        .then(response => response.json())
-        .then( json => {
-            if (json.status === '1') {
-                round_list = json.result
-            } else {
-                console.log("fail to get round list")
-            }
-            this.props.SaveRoundList(round_list)
-        })
-        .catch (
-            err => {
-                console.log(err);
-            }
-        )        
-    }
-
-    _fetchCurrentRound = () => {
-        let currentRound = {
-            round_type : null,
-            start : null,
-            is_completed : false,
-        }
-        fetch('/icoInfos/current_round/', {
-            method: "GET",
-            headers: {
-                "Content-Type": "application/json"
-            },
-        })
-        .then(response => response.json())
-        .then( json => {
-            if (json.status === '1') {
-                currentRound.round_type = json.result.round_type;
-                currentRound.start = json.result.start;
-                currentRound.end = json.result.end;
-                currentRound.is_completed = json.result.is_completed;
-                currentRound.bonus_rate = json.result.bonus_rate;
-            } else {
-                console.log("fail to get current round")
-            }
-            this.props.SaveCurrentRound(currentRound)
-        })
-        .catch (
-            err => {
-                console.log(err);
-            }
-        )        
-    }
-
-    _fetchRoundSupplyList = () => {
-        fetch('/icoInfos/round_supply_list/', {
-            method: "GET",
-            headers: {
-                "Content-Type": "application/json"
-            },
-        })
-        .then(response => response.json())
-        .then( json => {
-            if (json.status === '1') {
-                this.props.SaveRoundSupplyList(json.result)
-            } else {
-                console.log("fail to get round list")
-                this.props.SaveRoundSupplyList(null)
-            }
-            
-        })
-        .catch (
-            err => {
-                console.log(err);
-            }
-        )
-    }
-
-    _fetchRoundBonusList = () => {
-        fetch('/icoInfos/round_bonus_list/', {
-            method: "GET",
-            headers: {
-                "Content-Type": "application/json"
-            },
-        })
-        .then(response => response.json())
-        .then( json => {
-            if (json.status === '1') {
-                this.props.SaveRoundBonusList(json.result)
-            } else {
-                console.log("fail to get round bonus list")
-                this.props.SaveRoundBonusList(null)
-            }
-            
-        })
-        .catch (
-            err => {
-                console.log(err);
-            }
-        )
-    }    
-    */
 }
 
 export default Container;

@@ -5,11 +5,13 @@ import {
 import 'semantic-ui-css/semantic.min.css';
 // import PropTypes from "prop-types";
 import styles from "./styles.module.scss";
+import UserList from "../UserList";
 
 const UserInfo = (props, context) => {
     return(            
         <React.Fragment>
             <Segment basic vertical className={styles.RootSegment} >
+                <UserList />
             </Segment>
         </React.Fragment>
     )

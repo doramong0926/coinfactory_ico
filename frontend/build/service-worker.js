@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "https://bluecots-ico-bucket.s3.amazonaws.com/precache-manifest.6c41ab78d8126be508a759efbb5686c3.js"
+  "https://bluecots-ico-bucket.s3.amazonaws.com/precache-manifest.4e8fa654c822cc9c23272319d78b5155.js"
 );
 
 workbox.clientsClaim();

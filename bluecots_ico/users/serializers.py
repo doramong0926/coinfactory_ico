@@ -45,6 +45,36 @@ class TempStringSerializer(serializers.ModelSerializer):
             'is_staff',
         )     
 
+class UserListSerializer(serializers.ModelSerializer):
+    invitation = UsernameSerializer()
+    invitees = UsernameSerializer(many=True)
+    class Meta:
+        model = models.User
+        fields = (
+            'username',
+            'country',
+            'mobile_number',
+            'mobile_country',
+            'email',
+            'first_name',
+            'last_name',
+            'referral_address',
+            'invitation',
+            'invitees',
+            'invitees_count',
+            'kyc_status',
+            'kyc_reject_reason',
+            'kyc_agreement1',
+            'kyc_agreement2',
+            'wallet_address',
+            'is_whitelisted',
+            'photo_type',
+            'photo',
+            'user_type',
+            'is_superuser',
+            'is_staff',
+        )
+
 class UserProfileSerializer(serializers.ModelSerializer):
     invitation = UsernameSerializer()
     invitees = UsernameSerializer(many=True)

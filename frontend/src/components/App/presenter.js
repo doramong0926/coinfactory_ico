@@ -15,7 +15,17 @@ import Admin from "../Admin";
 import styles from "./styles.module.scss";
 import { BACKGROUND_IMAGE_TYPE } from "../../config/constants";
 
-const App = (props, context) => {
+const App = (props, context) => {    
+    return (
+        props.isLoading === false ? 
+        <Spinner key={2} size="small" visible={true} >
+            null
+        </Spinner>
+        : <RenderRootDivision {...props} />
+    )
+}
+
+const RenderRootDivision = (props, context) => {
     const AuthExpiredModalTitle = context.t("로그인 만료");
     const AuthExpiredModalContents = [
         {
@@ -26,9 +36,8 @@ const App = (props, context) => {
             ]
         },
     ];
-    return (
-        <div className={_getRootDivisionClassName(props.backgroundImage)}
-        >
+    return (       
+        <div className={_getRootDivisionClassName(props.backgroundImage)}>
             <Navigation key={1}>
                 <Spinner key={2} size="small" visible={props.visibleDefaultSpinner}>
                     <Routes kye={3} isLoggedIn={props.isLoggedIn}/>
@@ -41,9 +50,9 @@ const App = (props, context) => {
                 size={"mini"} 
                 title={AuthExpiredModalTitle}
                 contents={AuthExpiredModalContents}
-            />            
+            />   
         </div>
-    );
+    )
 }
 
 const _getRootDivisionClassName = (backgroundImage) => {
@@ -122,9 +131,14 @@ App.propTypes = {
     visibleAuthExpiredModal: PropTypes.bool.isRequired,
     backgroundImage: PropTypes.number,
     home_location: PropTypes.string,
+    isLoading: PropTypes.bool.isRequired,
 }
 
 App.contextTypes = {
+    t: PropTypes.func.isRequired
+};
+
+RenderRootDivision.contextTypes = {
     t: PropTypes.func.isRequired
 };
 

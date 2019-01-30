@@ -9,6 +9,7 @@ urlpatterns = [
     path("kyc_status/", view=views.UserKycStatus.as_view(), name="kyc_status"),
     path("notification_list/", view=views.NotificationList.as_view(), name="notification_list"),
     path("signup_terms_list/", view=views.Signup_terms_list.as_view(), name="signup_terms_list"),    
+    path("user_list/", view=views.UserList.as_view(), name="user_list"),
     path("<str:username>/notification/", view=views.UserNotification.as_view(), name="notification"),
     path("<str:username>/password/", view=views.ChangePassword.as_view(), name="password"),
     path("<str:username>/kyc/", view=views.UserKyc.as_view(), name="kyc"),    

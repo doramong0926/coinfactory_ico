@@ -314,6 +314,35 @@ class UserProfile(APIView):
                 }
                 return Response(data=ret_data, status=status.HTTP_400_BAD_REQUEST)
 
+class UserList(APIView):
+    def get(self, request, format=None):
+        user = request.user
+
+        if isStaff(username=user.username) == False:
+            ret_data = {
+                'status': '0',
+                'message': 'Fail to get user List',
+                'result': '',
+            }
+            return Response(data=ret_data, status=status.HTTP_400_BAD_REQUEST)
+
+        try:
+            found_userlist = models.User.objects.all()
+        except models.User.DoesNotExist:
+            ret_data = {
+                'status': '0',
+                'message': 'Fail to get user List',
+                'result': '',
+            }
+            return Response(data=ret_data, status=status.HTTP_404_NOT_FOUND)
+        serializer = serializers.UserListSerializer(found_userlist, many=True)
+        ret_data = {
+            'status': '1',
+            'message': 'Succes to get user List',
+            'result': serializer.data,
+        }
+        return Response(data=ret_data, status=status.HTTP_200_OK)
+
 
 class UserInviteeList(APIView):
     def get(self, request, username, format=None):
