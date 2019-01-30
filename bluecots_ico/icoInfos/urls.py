@@ -4,6 +4,8 @@ from . import views
 
 app_name = "icoInfos"
 urlpatterns = [
+    
+    path("initialdata/", view=views.Initialdata.as_view(), name="initialdata"),
     path("investment/", view=views.InvestmentInfo.as_view(), name="investment"),
     path("ico_wallet_list/", view=views.IcoWalletList.as_view(), name="ico_wallet_list"),
     path("round_list/", view=views.RoundList.as_view(), name="round_list"),

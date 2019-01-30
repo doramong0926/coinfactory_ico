@@ -10,6 +10,87 @@ import time
 
 from bluecots_ico.users import models as user_models
 
+class Initialdata(APIView):
+    permission_classes = [AllowAny]
+    def get(self, request, format=None):
+        wallet_address = models.WalletAddress.objects.all()
+        serializer = serializers.WalletAddressSerializer(wallet_address, many=True)
+        result_ico_wallet_list = serializer.data
+
+        info = models.InvestmentInfo.objects.get(key_string='bluecots')
+        serializer = serializers.InvestementInfoSerializer(info)
+        result_investment = serializer.data
+
+        found_whitepaper = models.WhitePaper.objects.all()
+        serializer = serializers.WhitePaperSerializer(found_whitepaper, many=True)
+        result_whitepaper_list = serializer.data        
+
+        timeStampPresaleStart = models.Round.objects.get(round_type='presale').start.timestamp()
+        timeStampPresaleEnd = models.Round.objects.get(round_type='presale').end.timestamp()
+        timeStampRoundAStart = models.Round.objects.get(round_type='rounda').start.timestamp()
+        timeStampRoundAEnd = models.Round.objects.get(round_type='rounda').end.timestamp()
+        timeStampRoundBStart = models.Round.objects.get(round_type='roundb').start.timestamp()
+        timeStampRoundBEnd = models.Round.objects.get(round_type='roundb').end.timestamp()
+        timeStampRoundCStart = models.Round.objects.get(round_type='roundc').start.timestamp()
+        timeStampRoundCEnd = models.Round.objects.get(round_type='roundc').end.timestamp()
+        now = datetime.now().timestamp()        
+        if now < timeStampPresaleStart:
+            rounds = models.Round.objects.get(round_type='notstartd')
+        elif now > timeStampPresaleStart and now < timeStampPresaleEnd:
+            rounds = models.Round.objects.get(round_type='presale')
+        elif now < timeStampRoundAStart:
+            rounds = models.Round.objects.get(round_type='prerounda')
+        elif now < timeStampRoundAEnd:
+            rounds = models.Round.objects.get(round_type='rounda')
+        elif now < timeStampRoundBStart:
+            rounds = models.Round.objects.get(round_type='preroundb')
+        elif now < timeStampRoundBEnd:
+            rounds = models.Round.objects.get(round_type='roundb')
+        elif now < timeStampRoundBStart:
+            rounds = models.Round.objects.get(round_type='preroundc')
+        else:
+            rounds = models.Round.objects.get(round_type='roundc')
+
+        serializer = serializers.RoundScheduleSerializer(rounds)
+        result_current_round = serializer.data
+
+        round_list = models.Round.objects.all()        
+        serializer = serializers.RoundScheduleSerializer(round_list, many=True)
+        result_round_list = serializer.data
+
+        rounds = models.Round.objects.all()
+        serializer = serializers.RoundSupplySerializer(rounds, many=True)
+        result_round_supply_list = serializer.data
+
+        rounds = models.Round.objects.all()
+        serializer = serializers.RoundBonusSerializer(rounds, many=True)
+        result_round_bonus_list = serializer.data
+
+
+        result = {
+            'ico_wallet_list',
+            'investment',
+            'whitepaper_list',
+            'current_round',
+            'round_list',
+            'round_supply_list',
+            'round_bonus_list',
+        }
+        ret_data = {
+            'status': '1',
+            'message': 'Succes to get initialdata',
+            'result': {
+                'ico_wallet_list' : result_ico_wallet_list,
+                'investment' : result_investment,
+                'whitepaper_list' : result_whitepaper_list,
+                'current_round' : result_current_round,
+                'round_list' : result_round_list,
+                'round_supply_list' : result_round_supply_list,
+                'round_bonus_list' : result_round_bonus_list,
+            },
+        }
+        return Response(data=ret_data, status=status.HTTP_200_OK)
+
 
 class SubscribeList(APIView):
     permission_classes = [AllowAny]

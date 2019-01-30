@@ -42,13 +42,15 @@ class Container extends Component {
         if (this.props.isLoggedIn) {
             this._getUser();
         }
-        this._fetchIcoWalletList();
-        this._fetchInvestmentInfo();
-        this._fetchWhitepaper();
-        this._fetchCurrentRound();
-        this._fetchRoundList();
-        this._fetchRoundSupplyList();
-        this._fetchRoundBonusList();
+        this._fetchInitialData();
+
+        // this._fetchIcoWalletList();
+        // this._fetchInvestmentInfo();
+        // this._fetchWhitepaper();
+        // this._fetchCurrentRound();
+        // this._fetchRoundList();
+        // this._fetchRoundSupplyList();
+        // this._fetchRoundBonusList();
         if (this.props.backgroundImage !== null) {
             this.setState({
                 backgroundImage: this.props.backgroundImage,
@@ -120,6 +122,130 @@ class Container extends Component {
         )
     }
 
+    _fetchInitialData = () => {
+        fetch('/icoInfos/initialdata/', {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json"
+            },
+        })
+        .then(response => response.json())
+        .then( json => {        
+            if (json.status === '1') {
+                // _fetchIcoWalletList
+                let icoWalletList = {
+                    icoWallet:"",
+                    contractWallet:"",
+                    ownerWallet:"",
+                }
+                
+                if (json.result.ico_wallet_list !== null && json.result.ico_wallet_list !== undefined) {
+                    icoWalletList.icoWallet = _.find(json.result.ico_wallet_list, t => {return t.wallet_type ===  "ico"}).address
+                    icoWalletList.contractWallet = _.find(json.result.ico_wallet_list, t => { return t.wallet_type ===  "contract"}).address
+                    icoWalletList.ownerWallet = _.find(json.result.ico_wallet_list, t => { return t.wallet_type ===  "owner"}).address
+                    this.props.SaveIcoWalletList(icoWalletList)
+                    this._getIcoFundAmount();
+                } else {
+                    this.props.SaveIcoWalletList(null)
+                }
+
+                //_fetchInvestmentInfo
+                if (json.result.investment !== null && json.result.investment !== undefined) {
+                    this.props.SaveInvestmentInfo(json.result.investment);
+                }
+
+                //_fetchWhitepaper
+                if (json.result.whitepaper_list !== null && json.result.whitepaper_list !== undefined) {
+                    this.props.SaveWhitepaper(json.result.whitepaper_list)
+                } else {
+                    console.log("fail to get whitepaper list")
+                    this.props.SaveWhitepaper(null)
+                }
+
+                //_fetchCurrentRound      
+                let currentRound = {
+                    round_type : null,
+                    start : null,
+                    end: null,
+                    is_completed : false,
+                    bonus_rate: 0,
+                }
+                if (json.result.current_round !== null && json.result.current_round !== undefined) {
+                    currentRound.round_type = json.result.current_round.round_type;
+                    currentRound.start = json.result.current_round.start;
+                    currentRound.end = json.result.current_round.end;
+                    currentRound.is_completed = json.result.current_round.is_completed;
+                    currentRound.bonus_rate = json.result.current_round.bonus_rate;
+                } else {
+                    console.log("fail to get current round")
+                }
+                this.props.SaveCurrentRound(currentRound)
+
+                //_fetchRoundList
+                let round_list = null;
+                if (json.result.round_list !== null && json.result.round_list !== undefined) {
+                    round_list = json.result.round_list
+                } else {
+                    console.log("fail to get round list")
+                }
+                this.props.SaveRoundList(round_list)
+
+                //_fetchRoundSupplyList
+                let round_supply_list = null;
+                if (json.result.round_supply_list !== null && json.result.round_supply_list !== undefined) {
+                    round_supply_list = json.result.round_supply_list
+                } else {
+                    console.log("fail to get round list")
+                }
+                this.props.SaveRoundSupplyList(round_supply_list)
+
+                //_fetchRoundBonusList
+                let round_bonus_list = null;
+                if (json.result.round_bonus_list !== null && json.result.round_bonus_list !== undefined) {
+                    round_bonus_list = json.result.round_bonus_list;
+                } else {
+                    console.log("fail to get round bonus list")
+                }
+                this.props.SaveRoundBonusList(round_bonus_list)               
+            } else {
+                console.log("fail to get initialdata")
+            }      
+        })
+        .catch (
+            err => {
+                console.log(err);
+            }
+        )
+    }
+
+    _getIcoFundAmount = async () => {
+        const networkType = NETWORK;
+        const proxyUrl = 'https://cors-anywhere.herokuapp.com/';
+        fetch(proxyUrl+`http://blcscan.cafe24app.com/api/ico/fund_amount/?api_version=1.0.0&contract_addr=${this.props.icoWalletList.contractWallet}&ico_addr=${this.props.icoWalletList.icoWallet}&owner_addr=${this.props.icoWalletList.ownerWallet}&start_block=0&end_block=999999999&network_type=${networkType}`, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json"
+            },
+        })
+        .then(response => response.json())
+        .then( json => {
+            let icoFundAmount = {
+                "eth_amount": 0,
+                "blc_amount": 0,
+            };
+            if (json.status === '1') {
+                icoFundAmount.eth_amount = parseFloat(json.result.eth_amount, 10);
+                icoFundAmount.blc_amount = parseFloat(json.result.blc_amount, 10);
+                this.props.SaveIcoFundAmount(icoFundAmount)
+            }
+        })
+        .catch (
+            err => console.log(err)
+        )
+    }
+
+    /*
+
     _fetchIcoWalletList = () => {
         fetch('/icoInfos/ico_wallet_list/', {
             method: "GET",
@@ -170,32 +296,6 @@ class Container extends Component {
             err => {
                 console.log(err);
             }
-        )
-    }
-
-    _getIcoFundAmount = async () => {
-        const networkType = NETWORK;
-        const proxyUrl = 'https://cors-anywhere.herokuapp.com/';
-        fetch(proxyUrl+`http://blcscan.cafe24app.com/api/ico/fund_amount/?api_version=1.0.0&contract_addr=${this.props.icoWalletList.contractWallet}&ico_addr=${this.props.icoWalletList.icoWallet}&owner_addr=${this.props.icoWalletList.ownerWallet}&start_block=0&end_block=999999999&network_type=${networkType}`, {
-            method: "GET",
-            headers: {
-                "Content-Type": "application/json"
-            },
-        })
-        .then(response => response.json())
-        .then( json => {
-            let icoFundAmount = {
-                "eth_amount": 0,
-                "blc_amount": 0,
-            };
-            if (json.status === '1') {
-                icoFundAmount.eth_amount = parseFloat(json.result.eth_amount, 10);
-                icoFundAmount.blc_amount = parseFloat(json.result.blc_amount, 10);
-                this.props.SaveIcoFundAmount(icoFundAmount)
-            }
-        })
-        .catch (
-            err => console.log(err)
         )
     }
 
@@ -326,6 +426,7 @@ class Container extends Component {
             }
         )
     }    
+    */
 }
 
 export default Container;
