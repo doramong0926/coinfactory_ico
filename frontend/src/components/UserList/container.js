@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import UserList from "./presenter";
 import _ from "lodash";
 import { NETWORK } from "./../../config/constants"
+import { IsValidWalletAddress } from "./../../utils/web3Control"
 
 class Container extends Component {    
     constructor(props, context) {
@@ -272,6 +273,14 @@ class Container extends Component {
     }
 
     _getUserFundAmount = async (wallet_addr) => {      
+        if (wallet_addr === null || wallet_addr === "" || wallet_addr === undefined 
+            || IsValidWalletAddress(wallet_addr) === false) {
+                this.setState({
+                    investedEth: '0',
+                    receivedBlc: '0',
+                });
+                return;
+        }
         this.setState({
             investedEth: null,
             receivedBlc: null,
