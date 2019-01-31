@@ -35,10 +35,6 @@ class Container extends Component {
         username: PropTypes.string,
         tempkey: PropTypes.string,
         Logout: PropTypes.func.isRequired,
-        DeleteJwt: PropTypes.func.isRequired,
-        DeleteUsername: PropTypes.func.isRequired,
-        DeleteEmail: PropTypes.func.isRequired,
-        SaveKyc: PropTypes.func.isRequired,
     }
 
     componentDidMount () {
@@ -135,15 +131,6 @@ class Container extends Component {
         })
     }
 
-    _DeleteUserInfo = () => { 
-        this.props.DeleteJwt();
-        this.props.DeleteUsername();
-        this.props.DeleteEmail();
-        this.props.SaveKyc(null);
-        this.props.SaveProfile(null);
-        this.props.Logout();
-    }
-
     _fetchTempString = () => {
         fetch(`/users/${this.props.username}/tempstring/`, {
             method: "GET",
@@ -154,7 +141,7 @@ class Container extends Component {
         })
         .then( response => {
             if (response.status === 401){
-                this._DeleteUserInfo();
+                this.props.Logout();
                 this.setState({
                     user_type: null,
                     is_superuser: false,

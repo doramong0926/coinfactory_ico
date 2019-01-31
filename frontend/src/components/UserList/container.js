@@ -20,8 +20,8 @@ class Container extends Component {
             newKycInfo: null,
             visibleSuccessModal: false,
             visibleErrorModal: false,
-            investedEth: false,
-            receivedBlc: false,
+            investedEth: null,
+            receivedBlc: null,
         }
     }
 
@@ -33,10 +33,6 @@ class Container extends Component {
         ShowDefaultSpinner: PropTypes.func.isRequired,
         HideDefaultSpinner: PropTypes.func.isRequired,
         Logout: PropTypes.func.isRequired,
-        DeleteJwt: PropTypes.func.isRequired,
-        DeleteUsername: PropTypes.func.isRequired,
-        DeleteEmail: PropTypes.func.isRequired,
-        SaveKyc: PropTypes.func.isRequired,
     }
 
     componentDidMount () {
@@ -155,9 +151,9 @@ class Container extends Component {
         })        
         setTimeout(() => {
             this._getUserFundAmount(this.state.userInfomation.wallet_address)
-           this.setState({
+            this.setState({
                 visibleUserInfoModal: true,
-           }) 
+            }) 
         },);
     }
 
@@ -189,7 +185,7 @@ class Container extends Component {
         })
         .then( response => {
             if (response.status === 401){
-                this._DeleteUserInfo();
+                this.props.Logout();
                 this.setState({
                     isLoading: false,
                 })
@@ -238,7 +234,17 @@ class Container extends Component {
                 kyc_reject_reason: rejectReason
             })
         })
-        .then(response => response.json())
+        .then( response => {
+            if (response.status === 401){
+                this.props.Logout();
+                this.props.HideDefaultSpinner();
+                this.setState({
+                    visibleErrorModal: true,
+                })
+            } else {
+                return response.json();
+            }
+        })
         .then( json => {                
             if (json.status === '1') {
                 this.setState({
@@ -265,7 +271,7 @@ class Container extends Component {
         )        
     }
 
-    _getUserFundAmount = async (wallet_addr) => {        
+    _getUserFundAmount = async (wallet_addr) => {      
         this.setState({
             investedEth: null,
             receivedBlc: null,
@@ -294,10 +300,6 @@ class Container extends Component {
         })
         .catch (
             err => console.log(err),
-            this.setState({
-                investedEth: 'error',
-                receivedBlc: 'error'
-            })
         )
     }
 }

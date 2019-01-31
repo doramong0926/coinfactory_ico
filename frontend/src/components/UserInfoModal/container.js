@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import UserInfoModal from "./presenter";
 import PropTypes from "prop-types";
-import { KYC_STATUS } from "./../../config/constants"
+import { KYC_STATUS, KYC_REJECT_REASON } from "./../../config/constants"
 
 class Container extends Component {
     constructor(props, context) {
@@ -13,6 +13,9 @@ class Container extends Component {
             newKycStatus: null,
             newKycStatusRejectReason: null,
             userInfomation: null,
+            investedEth: null,
+            receivedBlc: null,
+            showPhoto: false,
         };    
     }
 
@@ -98,9 +101,17 @@ class Container extends Component {
                 handleChangeKycRejectReason={this._handleChangeKycRejectReason}
                 investedEth={this.state.investedEth}
                 receivedBlc={this.state.receivedBlc}
+                showPhoto={this.state.showPhoto}
+                handleShowPhoto={this._handleShowPhoto}
             />
         )
     }    
+
+    _handleShowPhoto = () => {
+        this.setState({
+            showPhoto: true,
+        })
+    }
 
     _handleInputChange = (event) => {
         const { target : { value, name } } = event;
@@ -156,7 +167,10 @@ class Container extends Component {
     _checkEnableSubmit = () => {
         if (this.state.userInfomation.kyc_status === KYC_STATUS.APPROVING 
             &&  this.state.newKycStatus === KYC_STATUS.REJECTED 
-            && this.state.newKycStatusRejectReason !== null && this.state.newKycStatusRejectReason !== '') {
+            && this.state.newKycStatusRejectReason !== null 
+            && this.state.newKycStatusRejectReason !== ''
+            && this.state.newKycStatusRejectReason !== KYC_REJECT_REASON.NONE
+            ) {
                 this.setState({
                     isEnableSubmit: true,
                 })  
@@ -181,6 +195,9 @@ class Container extends Component {
                 isEnableInputKycRejectReason: false,
                 newKycStatus: null,
                 newKycStatusRejectReason: null,
+                showPhoto: false,
+                investedEth: null,
+                receivedBlc: null,
             }
         )
         setTimeout(() => {

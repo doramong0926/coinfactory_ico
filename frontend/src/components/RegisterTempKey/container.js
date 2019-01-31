@@ -30,10 +30,6 @@ class Container extends Component {
         fetchTempString: PropTypes.func.isRequired,
         is_superuser: PropTypes.bool.isRequired,
         Logout: PropTypes.func.isRequired,
-        DeleteJwt: PropTypes.func.isRequired,
-        DeleteUsername: PropTypes.func.isRequired,
-        DeleteEmail: PropTypes.func.isRequired,
-        SaveKyc: PropTypes.func.isRequired,
     }
 
     componentDidMount () {
@@ -120,15 +116,6 @@ class Container extends Component {
         this._saveTempString("remove");              
     }
 
-    _DeleteUserInfo = () => { 
-        this.props.DeleteJwt();
-        this.props.DeleteUsername();
-        this.props.DeleteEmail();
-        this.props.SaveKyc(null);
-        this.props.SaveProfile(null);
-        this.props.Logout();
-    }
-
     _saveTempString = (cmdType) => {
         // event.preventDefault();
         this.props.ShowDefaultSpinner();
@@ -148,8 +135,7 @@ class Container extends Component {
         })
         .then( response => {
             if (response.status === 401){
-                this._DeleteUserInfo();
-                this.props.SaveTempkey('');
+                this.props.Logout();
                 this.setState({
                     password1: null,
                     password2: null,
@@ -158,9 +144,6 @@ class Container extends Component {
                     saveResult: false,
                 })
                 this.props.HideDefaultSpinner();
-                setTimeout(() => {
-                    this.props.fetchTempString();    
-                }, );
             } else {
                 return response.json();
             }
@@ -178,8 +161,7 @@ class Container extends Component {
                         saveResult: false,
                     })
                 }
-            } else {
-                this.props.SaveTempkey("");    
+            } else { 
                 this.setState({
                     saveResult: false,
                 })

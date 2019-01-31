@@ -35,9 +35,6 @@ class Container extends Component {
         investmentInfo: PropTypes.object,
         SaveBackgroundImage: PropTypes.func.isRequired,
         Logout: PropTypes.func.isRequired,
-        DeleteJwt: PropTypes.func.isRequired,
-        DeleteUsername: PropTypes.func.isRequired,
-        DeleteEmail: PropTypes.func.isRequired,
         SaveKyc: PropTypes.func.isRequired,
     };
 
@@ -133,15 +130,6 @@ class Container extends Component {
         )
     }
 
-    _DeleteUserInfo = () => { 
-        this.props.DeleteJwt();
-        this.props.DeleteUsername();
-        this.props.DeleteEmail();
-        this.props.SaveKyc(null);
-        this.props.SaveProfile(null);
-        this.props.Logout();
-    }
-
     calculateExchangeRate = (ethPrice, exchangePrice) => {
         return parseInt(ethPrice / exchangePrice);
     }
@@ -172,8 +160,7 @@ class Container extends Component {
         })
         .then( response => {
             if (response.status === 401){
-                this._DeleteUserInfo();
-                this.props.SaveProfile(null)
+                this.props.Logout();
             } else {
                 return response.json();
             }
@@ -200,7 +187,7 @@ class Container extends Component {
             })
             .then( response => {
                 if (response.status === 401){
-                    this._DeleteUserInfo();
+                    this.props.Logout();
                     reject(response.status);
                 } else {
                     return response.json();

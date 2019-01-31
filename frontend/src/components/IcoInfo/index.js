@@ -19,21 +19,6 @@ const mapDispatchToProps = (dispatch, ownProps) => {
         Logout: () => {
             dispatch(ActionCreator.Logout());
         },
-        SaveProfile: (profile) => {
-            dispatch(ActionCreator.SaveProfile(profile));
-        },
-        DeleteJwt: () => {
-            dispatch(ActionCreator.DeleteJwt());
-        },
-        DeleteUsername: () => {
-            dispatch(ActionCreator.DeleteUsername());
-        },
-        DeleteEmail: () => {
-            dispatch(ActionCreator.DeleteEmail());
-        },
-        SaveKyc: (kyc) => {
-            dispatch(ActionCreator.SaveKyc(kyc));
-        },
         SaveTempkey: (tempkey) => {
             dispatch(ActionCreator.SaveTempkey(tempkey));
         },    

@@ -21,12 +21,6 @@ const CurrentRound = (props, context) => {
         )
     } else {
         return(            
-            // <Segment basic>
-            //     <p>round_type : {props.currentRound.round_type}</p>
-            //     <p>start : {new Date(props.currentRound.start*1000).toUTCString()}</p>
-            //     <p>end : {new Date(props.currentRound.end*1000).toUTCString()}</p>
-            //     <p>is_completed : {props.currentRound.is_completed.toString()}</p>
-            // </Segment>
             <Segment className={styles.Statistic}>
                 <div className={styles.StatisticDivision}>
                     <Statistic>

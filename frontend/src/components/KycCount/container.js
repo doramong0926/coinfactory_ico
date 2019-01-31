@@ -17,10 +17,6 @@ class Container extends Component {
         kycCount: PropTypes.object,
         pathname: PropTypes.string,
         Logout: PropTypes.func.isRequired,
-        DeleteJwt: PropTypes.func.isRequired,
-        DeleteUsername: PropTypes.func.isRequired,
-        DeleteEmail: PropTypes.func.isRequired,
-        SaveKyc: PropTypes.func.isRequired,
     }
 
     componentDidMount () {
@@ -49,15 +45,6 @@ class Container extends Component {
         )
     }
 
-    _DeleteUserInfo = () => { 
-        this.props.DeleteJwt();
-        this.props.DeleteUsername();
-        this.props.DeleteEmail();
-        this.props.SaveKyc(null);
-        this.props.SaveProfile(null);
-        this.props.Logout();
-    }
-
     _fetchKycCount = () => {
         fetch('/users/kyc_count/', {
             method: "GET",
@@ -68,7 +55,7 @@ class Container extends Component {
         })
         .then( response => {
             if (response.status === 401){
-                this._DeleteUserInfo();
+                this.props.Logout();
             } else {
                 return response.json();
             }

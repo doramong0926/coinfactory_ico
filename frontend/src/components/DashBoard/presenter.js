@@ -16,15 +16,11 @@ const DashBoard = (props, context) => {
         <React.Fragment>
             <Segment basic vertical className={styles.RootSegment} >
                 <div className={styles.BodyDivision}>
-                    <KycCount />
-                    <CurrentRound />        
-                    <IcoFund />            
-                    {
-                        props.icoWalletList === null ? null : <IcoTransactionList />
-                    }  
-                    {
-                        props.icoWalletList === null ? null : <InternalIcoTransactionList />
-                    }                     
+                    <CurrentRound />     
+                    <IcoFund />
+                    <KycCount />                       
+                    {props.icoWalletList === null ? null : <IcoTransactionList />}  
+                    {props.icoWalletList === null ? null : <InternalIcoTransactionList />}                     
                 </div>
             </Segment>
         </React.Fragment>

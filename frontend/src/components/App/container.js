@@ -63,6 +63,9 @@ class Container extends Component {
                 backgroundImage: nextProps.backgroundImage,
             })
         }
+        if (this.props.isLoggedIn === true && nextProps.isLoggedIn === false) {
+            this._Logout();
+        }
     }
 
     render() {
@@ -87,6 +90,14 @@ class Container extends Component {
         this.setState({
             visibleAuthExpiredModal: true,
         })
+    }
+
+    _Logout = () => { 
+        this.props.DeleteJwt();
+        this.props.DeleteUsername();
+        this.props.DeleteEmail();
+        this.props.SaveKyc(null);
+        this.props.SaveProfile(null);
     }
 
     _handleCloseAuthExpiredModal = () => {
