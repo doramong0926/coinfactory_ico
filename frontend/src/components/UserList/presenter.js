@@ -13,8 +13,35 @@ import PropTypes from "prop-types";
 import styles from "./styles.module.scss";
 import _ from "lodash";
 import UserInfoModal from "./../UserInfoModal"
+import ConfirmModal from "./../ConfirmModal"
+import BasicModal from "./../BasicModal"
 
 const UserList = (props, context) => {
+    const ConfirmModalContents = [
+        {
+            title: null,
+            text: [
+                'Are you sure to change User KYC status?',
+            ]
+        },
+    ];
+    const ErrorModalContents = [
+        {
+            title: null,
+            text: [
+                "Fail to change User KYC."
+            ]
+        },
+    ];
+    
+    const SuccessModalContents = [
+        {
+            title: null,
+            text: [
+                "Success to change User KYC."
+            ]
+        },
+    ];
     return(            
         <React.Fragment>
             <Segment className={styles.RootSegment}>
@@ -59,6 +86,29 @@ const UserList = (props, context) => {
                 handleProcessDone={props.handleProcessDoneModal}
                 userInfomation={props.userInfomation}
                 icoWalletList={props.icoWalletList}
+            />
+            <ConfirmModal 
+                visible = {props.visibleConfirmModal}
+                handleClose = {props.handleCloseConfirmModal}
+                handleConfirm = {props.handleConfirm}
+                buttonString = {"Confirm"}
+                size={"mini"} 
+                title={"ChangeKYC "}
+                contents={ConfirmModalContents}                
+            />
+            <BasicModal 
+                visible = {props.visibleSuccessModal}
+                handleClose = {props.handleCloseSuccessModal}
+                size={"mini"} 
+                title="Success"
+                contents={SuccessModalContents}
+            />
+            <BasicModal 
+                visible = {props.visibleErrorModal}
+                handleClose = {props.handleCloseErrorModal}
+                size={"mini"} 
+                title="Error"
+                contents={ErrorModalContents}
             />
         </React.Fragment>
     )
@@ -169,6 +219,13 @@ UserList.propTypes = {
     visibleUserInfoModal: PropTypes.bool.isRequired,
     icoWalletList: PropTypes.object,
     userInfomation: PropTypes.object,
+    visibleConfirmModal: PropTypes.bool.isRequired,
+    handleCloseConfirmModal: PropTypes.func.isRequired,
+    handleConfirm: PropTypes.func.isRequired,
+    visibleSuccessModal: PropTypes.bool.isRequired,
+    visibleErrorModal: PropTypes.bool.isRequired,
+    handleCloseSuccessModal: PropTypes.func.isRequired,
+    handleCloseErrorModal: PropTypes.func.isRequired,
 }
 
 UserList.contextTypes = {

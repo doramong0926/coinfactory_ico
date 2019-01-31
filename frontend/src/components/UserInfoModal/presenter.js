@@ -5,11 +5,29 @@ import {
     Button,
     Icon,
     Segment,
+    Dropdown,
 } from 'semantic-ui-react'
 import 'semantic-ui-css/semantic.min.css';
 import styles from "./styles.module.scss"
+import { KYC_STATUS, KYC_REJECT_REASON } from "./../../config/constants"
 
 const UserInfoModal = (props, context) => {
+    const kycStatusOptions = [ 
+        { key: KYC_STATUS.READY, value: KYC_STATUS.READY.toString(), text: KYC_STATUS.READY},
+        { key: KYC_STATUS.APPROVING, value: KYC_STATUS.APPROVING, text: KYC_STATUS.APPROVING},
+        { key: KYC_STATUS.APPROVED, value: KYC_STATUS.APPROVED, text: KYC_STATUS.APPROVED},
+        { key: KYC_STATUS.PENDING, value: KYC_STATUS.PENDING, text: KYC_STATUS.PENDING},
+        { key: KYC_STATUS.REJECTED, value: KYC_STATUS.REJECTED, text: KYC_STATUS.REJECTED},
+        { key: KYC_STATUS.COMPLETED, value: KYC_STATUS.COMPLETED, text: KYC_STATUS.COMPLETED},
+    ]
+
+    const kycRejectReasonOptions = [ 
+        { key: KYC_REJECT_REASON.NONE, value: KYC_REJECT_REASON.NONE.toString(), text: KYC_REJECT_REASON.NONE},
+        { key: KYC_REJECT_REASON.PHOTO, value: KYC_REJECT_REASON.PHOTO.toString(), text: KYC_REJECT_REASON.PHOTO},
+        { key: KYC_REJECT_REASON.MOBILE_NUMBER, value: KYC_REJECT_REASON.MOBILE_NUMBER.toString(), text: KYC_REJECT_REASON.MOBILE_NUMBER},
+        { key: KYC_REJECT_REASON.COUNTRY, value: KYC_REJECT_REASON.COUNTRY.toString(), text: KYC_REJECT_REASON.COUNTRY},
+    ]
+
     return (        
         (props.userInfomation === null || props.userInfomation === '') ? null :
         <Modal
@@ -70,11 +88,35 @@ const UserInfoModal = (props, context) => {
                     </div>
                     <div className={styles.ItemDivision}>
                         <p className={styles.SubTitle}>Kyc Status :</p>
-                        <p className={styles.ItemText}>{props.userInfomation.kyc_status}</p>
+                        <Dropdown 
+                            placeholder={'KYC status'}
+                            options={kycStatusOptions} 
+                            className={styles.KycStatusDropDown}
+                            value={
+                                props.newKycStatus !== null && props.newKycStatus !== '' 
+                                    ? props.newKycStatus 
+                                    : props.userInfomation.kyc_status
+                            }
+                            onChange={props.handleChangeKycStatus}
+                            readOnly={!props.isEnableInputKycStatus}
+                            disabled={!props.isEnableInputKycStatus}
+                        />
                     </div>
                     <div className={styles.ItemDivision}>
                         <p className={styles.SubTitle}>Reject Reason :</p>
-                        <p className={styles.ItemText}>{props.userInfomation.kyc_reject_reason}</p>
+                        <Dropdown 
+                            placeholder={'KYC RejectReason'}
+                            options={kycRejectReasonOptions} 
+                            className={styles.KycStatusDropDown}
+                            value={
+                                props.newKycStatusRejectReason !== null && props.newKycStatusRejectReason !== '' 
+                                    ? props.newKycStatusRejectReason 
+                                    : props.userInfomation.kyc_reject_reason
+                            }
+                            onChange={props.handleChangeKycRejectReason}
+                            readOnly={!props.isEnableInputKycRejectReason}
+                            disabled={!props.isEnableInputKycRejectReason}
+                        />
                     </div>
                     <div className={styles.ItemDivision}>
                         <p className={styles.SubTitle}>Wallet addr:</p>
@@ -112,7 +154,16 @@ const UserInfoModal = (props, context) => {
                     </Button>
                     <Button 
                         color='green' 
-                        onClick={props.handleProcessDone}
+                        onClick={() => {
+                                props.handleProcessDone(
+                                    props.userInfomation.username, 
+                                    props.newKycStatus, 
+                                    (props.newKycStatusRejectReason === null || props.newKycStatusRejectReason === '')
+                                    ? props.userInfomation.kyc_reject_reason
+                                    : props.newKycStatusRejectReason
+                                )
+                            }
+                        }
                         disabled={!props.isEnableSubmit}
                     >
                         <Icon name='checkmark' />{context.t("변경")}
@@ -129,6 +180,12 @@ UserInfoModal.propTypes = {
     handleProcessDone: PropTypes.func.isRequired,
     userInfomation: PropTypes.object,
     isEnableSubmit: PropTypes.bool.isRequired,
+    isEnableInputKycStatus: PropTypes.bool.isRequired,
+    isEnableInputKycRejectReason: PropTypes.bool.isRequired,
+    handleChangeKycStatus: PropTypes.func.isRequired,
+    handleChangeKycRejectReason: PropTypes.func.isRequired,
+    newKycStatus: PropTypes.string,
+    newKycStatusRejectReason: PropTypes.string,
 }
 
 UserInfoModal.contextTypes = {

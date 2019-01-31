@@ -15,6 +15,10 @@ class Container extends Component {
             filterString: null,
             visibleUserInfoModal: false,
             userInfomation: null,
+            visibleConfirmModal: false,
+            newKycInfo: null,
+            visibleSuccessModal: false,
+            visibleErrorModal: false,
         }
     }
 
@@ -69,8 +73,34 @@ class Container extends Component {
                 visibleUserInfoModal={this.state.visibleUserInfoModal}
                 icoWalletList={this.state.icoWalletList}
                 userInfomation={this.state.userInfomation}
+                visibleConfirmModal={this.state.visibleConfirmModal}
+                handleCloseConfirmModal={this._handleCloseConfirmModal}
+                handleConfirm={this._handleConfirm}
+                visibleSuccessModal={this.state.visibleSuccessModal}
+                visibleErrorModal={this.state.visibleErrorModal}
+                handleCloseErrorModal={this._handleCloseErrorModal}
+                handleCloseSuccessModal={this._handleCloseSuccessModal}
             />
         )
+    }
+
+    _handleCloseErrorModal = () => {
+        this.setState({
+            visibleErrorModal: false,
+       }) 
+    }
+
+    _handleCloseSuccessModal = () => {
+        this.setState({
+            visibleSuccessModal: false,
+       }) 
+    }
+    
+    _handleCloseConfirmModal = () => {
+        this.setState({
+            visibleConfirmModal: false,
+            newKycInfo: null,
+       }) 
     }
 
     _handleCloseModal = () => {
@@ -79,8 +109,24 @@ class Container extends Component {
        }) 
     }
 
-    _handleProcessDoneModal = () => {
-        this._fetchUserList(); 
+    _handleConfirm = () => {        
+        this._changeUserKycStatus(this.state.newKycInfo.username, this.state.newKycInfo.kycStatus, this.state.newKycInfo.rejectReason);
+        this.setState({
+            visibleConfirmModal: false,
+            newKycInfo: null,
+        }) 
+    }
+
+    _handleProcessDoneModal = (username, kycStatus, rejectReason) => {   
+        const newKycInfo = {
+            username: [username],
+            kycStatus: kycStatus,
+            rejectReason: rejectReason,
+        }
+        this.setState({
+            visibleConfirmModal: true,
+            newKycInfo: newKycInfo,
+        })
     }
 
     _handleInputChange = (event) => {        
@@ -97,7 +143,6 @@ class Container extends Component {
         this.setState({
             userInfomation: found_userInfomation,
         })
-        console.log(found_userInfomation)
         setTimeout(() => {
            this.setState({
                 visibleUserInfoModal: true,
@@ -152,6 +197,52 @@ class Container extends Component {
                 })
             }
         )
+    }
+
+    _changeUserKycStatus = (userlist, kycStatus, rejectReason) => {
+        this.setState({
+            visibleSuccessModal: false,
+            visibleErrorModal: false,
+        })
+        this.props.ShowDefaultSpinner();
+        // event.preventDefault();       
+        fetch(`/users/kyc_status/`, {
+            method: "PUT",
+            headers: {
+                "Authorization": `JWT ${this.props.token}`,
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ 
+                userlist: userlist,
+                kyc_status: kycStatus,
+                kyc_reject_reason: rejectReason
+            })
+        })
+        .then(response => response.json())
+        .then( json => {                
+            if (json.status === '1') {
+                this.setState({
+                    visibleSuccessModal: true,
+                })
+                this._fetchUserList(); 
+            } else {
+                this.setState({
+                    visibleErrorModal: true,
+                })
+            }
+        })
+        .then(async() => {
+            this.props.HideDefaultSpinner();
+        })
+        .catch (
+            err => {
+                console.log(err)
+                this.props.HideDefaultSpinner();
+                this.setState({
+                    visibleErrorModal: true,
+                })
+            }
+        )        
     }
 }
 

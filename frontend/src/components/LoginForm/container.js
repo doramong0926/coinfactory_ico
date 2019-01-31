@@ -166,7 +166,6 @@ class Container extends Component {
         // )
         // .then(json => {
         //     this.props.HideDefaultSpinner();
-        //     console.log("dddddddddd: ", json)
         //     if (json.token && json.user) {
         //         this._setModalText(null)
         //         this.setState({

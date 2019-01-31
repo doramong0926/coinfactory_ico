@@ -691,6 +691,7 @@ class UserKycStatus(APIView):
             return Response(data=ret_data, status=status.HTTP_400_BAD_REQUEST)
 
         requested_kycStatus = request.data.get('kyc_status', None)
+        requested_kycRejectReason = request.data.get('kyc_reject_reason', None)        
         requested_userlist = request.data.get('userlist', None)
 
         for username in requested_userlist:
@@ -708,6 +709,7 @@ class UserKycStatus(APIView):
             try:
                 found_user = models.User.objects.get(username=username)
                 found_user.kyc_status = requested_kycStatus
+                found_user.kyc_reject_reason = requested_kycRejectReason
                 found_user.save()
             except models.User.DoesNotExist:
                 ret_data = {

@@ -10,6 +10,12 @@
         .ItemDivision {
             display: flex;
             flex-direction: row;
+            .KycStatusDropDown {
+                width: 100px;
+                text-align: left;
+                padding-left: 0em;
+                padding-right: 0em;
+            }
             .SubTitle {
                 font-size: 1em;                
                 margin-right: 1em;

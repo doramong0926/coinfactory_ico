@@ -332,7 +332,6 @@ class  Container extends Component {
     }
 
     _handleClickTerms = () => {
-        console.log("Ddddddddddddddddddddd")
         this.setState({
             visibleTermsModal: true,
         })
