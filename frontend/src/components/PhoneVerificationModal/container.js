@@ -29,20 +29,13 @@ class Container extends Component {
     componentDidMount() {        
         this.setState({
             confirmTimeout: this.props.confirmTimeout,
+            ReRequestTimeOut: this.props.ReRequestTimeOut,
         })
         if (this.props.confirmNumber !== null) {
             this.setState({
                 confirmNumber: this.props.confirmNumber,
             })
         }
-
-        setInterval(() => {
-            if (this.state.ReRequestTimeOut !== 0) {
-                this.setState({
-                    ReRequestTimeOut: (this.state.ReRequestTimeOut - 1),
-                })
-            }
-        }, 1000);
     }
 
     componentWillReceiveProps(nextProps) {
@@ -60,6 +53,12 @@ class Container extends Component {
         if (this.props.confirmTimeout !== nextProps.confirmTimeout) {
             this.setState({
                 confirmTimeout: nextProps.confirmTimeout,
+            })
+        }
+
+        if (this.props.ReRequestTimeOut !== nextProps.ReRequestTimeOut) {
+            this.setState({
+                ReRequestTimeOut: nextProps.ReRequestTimeOut,
             })
         }
 
@@ -116,7 +115,6 @@ class Container extends Component {
     _handleClickResend = () => {
         this.setState({
             inputNumber: null,
-            ReRequestTimeOut: 10,
         })
         this.props.resend()
     }

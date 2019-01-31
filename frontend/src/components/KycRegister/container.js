@@ -7,6 +7,7 @@ import {
     KYC_THUMNAIL_HEIGHT,
     KYC_STATUS,
     MOBILE_VERIFY_TIMEOUT,
+    MOBILE_VERIFY_RE_REQUEST_TIMEOUT,
 } from "./../../config/constants"
 import { IsValidWalletAddress } from "./../../utils/web3Control";
 import "isomorphic-fetch";
@@ -51,7 +52,7 @@ class  Container extends Component {
             
             mobile_confirm_number: null,
             mobile_confirm_timeout: 0,
-            
+            ReRequestTimeOut: 0,
         }
     }
 
@@ -75,6 +76,16 @@ class  Container extends Component {
             if (this.state.mobile_confirm_timeout > 0) {
                 this.setState({
                     mobile_confirm_timeout: this.state.mobile_confirm_timeout-1,
+                })
+            } else {
+                clearInterval(); 
+            }
+        }, 1000); 
+
+        setInterval(() => {
+            if (this.state.ReRequestTimeOut > 0) {
+                this.setState({
+                    ReRequestTimeOut: this.state.ReRequestTimeOut-1,
                 })
             } else {
                 clearInterval(); 
@@ -145,6 +156,7 @@ class  Container extends Component {
                                 visibleTermsModal={this.state.visibleTermsModal}
                                 handleCloseTermsModal={this._handleCloseTermsModal}
                                 handleClickTerms={this._handleClickTerms}
+                                ReRequestTimeOut={this.state.ReRequestTimeOut}
                             />
         )
     }
@@ -483,6 +495,7 @@ class  Container extends Component {
                 this.setState({
                     mobile_confirm_number: (parseInt(json.result)+parseInt(process.env.REACT_APP_MAGIC_NUM_FOR_PHONE)).toString(),
                     mobile_confirm_timeout: MOBILE_VERIFY_TIMEOUT,
+                    ReRequestTimeOut: MOBILE_VERIFY_RE_REQUEST_TIMEOUT,
                     visiblePhoneVerificationModal: true,
                 })
             } else {

@@ -1,4 +1,5 @@
 export const MOBILE_VERIFY_TIMEOUT = 120
+export const MOBILE_VERIFY_RE_REQUEST_TIMEOUT = 10
 export const TOKEN_DECIMALS = 18
 
 export const HOME_PAGE_ADDRESS = "https://www.bluecots.io/";

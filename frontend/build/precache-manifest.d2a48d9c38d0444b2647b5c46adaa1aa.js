@@ -1,11 +1,11 @@
 self.__precacheManifest = [
   {
-    "revision": "93e07eb36c017ba2e21a",
+    "revision": "96f8fc87067d9b5bf35e",
     "url": "https://bluecots-ico-bucket.s3.amazonaws.com/static/css/main.6480f5db.chunk.css"
   },
   {
-    "revision": "93e07eb36c017ba2e21a",
-    "url": "https://bluecots-ico-bucket.s3.amazonaws.com/static/js/main.93e07eb3.chunk.js"
+    "revision": "96f8fc87067d9b5bf35e",
+    "url": "https://bluecots-ico-bucket.s3.amazonaws.com/static/js/main.96f8fc87.chunk.js"
   },
   {
     "revision": "cb00ad3ab3b064414267",
@@ -44,12 +44,12 @@ self.__precacheManifest = [
     "url": "https://bluecots-ico-bucket.s3.amazonaws.com/static/media/icons.0ab54153.woff2"
   },
   {
-    "revision": "faff92145777a3cbaf8e7367b4807987",
-    "url": "https://bluecots-ico-bucket.s3.amazonaws.com/static/media/icons.faff9214.woff"
-  },
-  {
     "revision": "e8c322de9658cbeb8a774b6624167c2c",
     "url": "https://bluecots-ico-bucket.s3.amazonaws.com/static/media/brand-icons.e8c322de.woff2"
+  },
+  {
+    "revision": "faff92145777a3cbaf8e7367b4807987",
+    "url": "https://bluecots-ico-bucket.s3.amazonaws.com/static/media/icons.faff9214.woff"
   },
   {
     "revision": "a046592bac8f2fd96e994733faf3858c",
@@ -132,7 +132,7 @@ self.__precacheManifest = [
     "url": "https://bluecots-ico-bucket.s3.amazonaws.com/static/media/avatar.fcfe2bd1.jpg"
   },
   {
-    "revision": "280067ece0da91b85ecc969bd8d5debc",
+    "revision": "6a3227de0b673b12615e7cec731825bb",
     "url": "https://bluecots-ico-bucket.s3.amazonaws.com/index.html"
   }
 ];

@@ -439,6 +439,7 @@ const KycRegister = (props, context) => {
                 resend = {props.handleOnClickPhoneVerification}
                 processDone={props.confirmMobileProcessDone}
                 mobileVerificationError = {props.mobileVerificationError}
+                ReRequestTimeOut = {props.ReRequestTimeOut}
             />
             <StandardModal 
                 visible = {props.visibleTermsModal}
@@ -540,6 +541,7 @@ KycRegister.propTypes = {
     visibleTermsModal: PropTypes.bool.isRequired,
     handleCloseTermsModal: PropTypes.func.isRequired,
     handleClickTerms: PropTypes.func.isRequired,
+    ReRequestTimeOut: PropTypes.number.isRequired,
 }
 
 KycRegister.contextTypes = {
