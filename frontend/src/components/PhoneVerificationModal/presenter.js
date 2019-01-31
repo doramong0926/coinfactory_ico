@@ -64,8 +64,9 @@ const PhoneVerificationModal = (props, context) => {
                     <Button 
                         className={styles.Button} 
                         onClick={props.handleClickResend}
+                        disabled={props.ReRequestTimeOut !== 0}
                     >
-                        <Icon name='checkmark' />{context.t('인증번호 다시 받기')}
+                        <Icon name='checkmark' />{`${context.t('인증번호 다시 받기')} (${props.ReRequestTimeOut} ${context.t('초')})`}
                     </Button>
                 </Modal.Actions>
             </Segment>
@@ -84,6 +85,7 @@ PhoneVerificationModal.propTypes = {
     handleInputChange: PropTypes.func.isRequired,
     inputNumber: PropTypes.string,
     mobileVerificationError: PropTypes.bool.isRequired,
+    ReRequestTimeOut: PropTypes.number.isRequired,
 }
 
 PhoneVerificationModal.contextTypes = {

@@ -11,6 +11,7 @@ class Container extends Component {
             confirmTimeout: 0,
             inputNumber: null,
             mobileVerificationError: false,
+            ReRequestTimeOut: 0,
         }
     }
 
@@ -34,6 +35,14 @@ class Container extends Component {
                 confirmNumber: this.props.confirmNumber,
             })
         }
+
+        setInterval(() => {
+            if (this.state.ReRequestTimeOut !== 0) {
+                this.setState({
+                    ReRequestTimeOut: (this.state.ReRequestTimeOut - 1),
+                })
+            }
+        }, 1000);
     }
 
     componentWillReceiveProps(nextProps) {
@@ -74,6 +83,7 @@ class Container extends Component {
                 handleInputChange={this._handleInputChange}
                 inputNumber={this.state.inputNumber}
                 mobileVerificationError={this.state.mobileVerificationError}
+                ReRequestTimeOut={this.state.ReRequestTimeOut}
             />
         )
     }    
@@ -106,6 +116,7 @@ class Container extends Component {
     _handleClickResend = () => {
         this.setState({
             inputNumber: null,
+            ReRequestTimeOut: 10,
         })
         this.props.resend()
     }
