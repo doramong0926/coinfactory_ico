@@ -85,7 +85,8 @@ const UserList = (props, context) => {
                 handleClose={props.handleCloseModal}
                 handleProcessDone={props.handleProcessDoneModal}
                 userInfomation={props.userInfomation}
-                icoWalletList={props.icoWalletList}
+                investedEth={props.investedEth}
+                receivedBlc={props.receivedBlc}
             />
             <ConfirmModal 
                 visible = {props.visibleConfirmModal}
@@ -226,6 +227,8 @@ UserList.propTypes = {
     visibleErrorModal: PropTypes.bool.isRequired,
     handleCloseSuccessModal: PropTypes.func.isRequired,
     handleCloseErrorModal: PropTypes.func.isRequired,
+    investedEth: PropTypes.string,
+    receivedBlc: PropTypes.string,
 }
 
 UserList.contextTypes = {

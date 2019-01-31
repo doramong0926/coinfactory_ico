@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import UserList from "./presenter";
 import _ from "lodash";
+import { NETWORK } from "./../../config/constants"
 
 class Container extends Component {    
     constructor(props, context) {
@@ -19,6 +20,8 @@ class Container extends Component {
             newKycInfo: null,
             visibleSuccessModal: false,
             visibleErrorModal: false,
+            investedEth: false,
+            receivedBlc: false,
         }
     }
 
@@ -85,6 +88,8 @@ class Container extends Component {
                 visibleErrorModal={this.state.visibleErrorModal}
                 handleCloseErrorModal={this._handleCloseErrorModal}
                 handleCloseSuccessModal={this._handleCloseSuccessModal}
+                investedEth={this.state.investedEth}
+                receivedBlc={this.state.receivedBlc}
             />
         )
     }
@@ -147,8 +152,9 @@ class Container extends Component {
         })
         this.setState({
             userInfomation: found_userInfomation,
-        })
+        })        
         setTimeout(() => {
+            this._getUserFundAmount(this.state.userInfomation.wallet_address)
            this.setState({
                 visibleUserInfoModal: true,
            }) 
@@ -257,6 +263,42 @@ class Container extends Component {
                 })
             }
         )        
+    }
+
+    _getUserFundAmount = async (wallet_addr) => {        
+        this.setState({
+            investedEth: null,
+            receivedBlc: null,
+        })
+        const networkType = NETWORK;
+        const proxyUrl = 'https://cors-anywhere.herokuapp.com/';
+        fetch(proxyUrl+`http://blcscan.cafe24app.com/api/ico/fund_amount/?api_version=1.0.0&wallet_addr=${wallet_addr}&contract_addr=${this.state.icoWalletList.contractWallet}&ico_addr=${this.state.icoWalletList.icoWallet}&owner_addr=${this.state.icoWalletList.ownerWallet}&start_block=0&end_block=999999999&network_type=${networkType}`, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json"
+            },
+        })
+        .then(response => response.json())
+        .then( json => {
+            if (json.status === '1') {
+                this.setState({
+                    investedEth: json.result.eth_amount,
+                    receivedBlc: json.result.blc_amount,
+                });
+            } else {
+                this.setState({
+                    investedEth: 'error',
+                    receivedBlc: 'error'
+                });
+            }
+        })
+        .catch (
+            err => console.log(err),
+            this.setState({
+                investedEth: 'error',
+                receivedBlc: 'error'
+            })
+        )
     }
 }
 

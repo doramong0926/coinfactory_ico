@@ -7,6 +7,8 @@ import {
     Segment,
     Dropdown,
     Divider,
+    Dimmer,
+    Loader,
 } from 'semantic-ui-react'
 import 'semantic-ui-css/semantic.min.css';
 import styles from "./styles.module.scss"
@@ -163,6 +165,28 @@ const UserInfoModal = (props, context) => {
                             <p className={styles.SubTitle}>invitation :</p>
                             <p className={styles.ItemText}>{props.userInfomation.invitation === null ? "" : props.userInfomation.invitation.username}</p>
                         </div>    
+                        <Divider inverted section className={styles.Divider}/>
+                        <div className={styles.ItemDivision}>
+                            <p className={styles.SubTitle}>investedEth :</p>
+                            {
+                                props.investedEth === null 
+                                    ? <Dimmer active inverted>
+                                        <Loader inverted content='Loading' />
+                                    </Dimmer> 
+                                    : <p className={styles.ItemText}>{props.investedEth} ETH</p>
+                            }
+                        </div>   
+                        <Divider inverted section className={styles.Divider}/>
+                        <div className={styles.ItemDivision}>
+                            <p className={styles.SubTitle}>receivedBlc :</p>
+                            {
+                                props.receivedBlc === null 
+                                    ? <Dimmer active inverted>
+                                        <Loader inverted content='Loading' />
+                                    </Dimmer> 
+                                    : <p className={styles.ItemText}>{props.receivedBlc} ETH</p>
+                            }
+                        </div>                          
                     </Modal.Description>
                 </Modal.Content>
                 <Modal.Actions>
@@ -203,6 +227,8 @@ UserInfoModal.propTypes = {
     handleChangeKycRejectReason: PropTypes.func.isRequired,
     newKycStatus: PropTypes.string,
     newKycStatusRejectReason: PropTypes.string,
+    investedEth: PropTypes.string,
+    receivedBlc: PropTypes.string,
 }
 
 UserInfoModal.contextTypes = {

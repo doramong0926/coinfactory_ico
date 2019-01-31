@@ -21,7 +21,6 @@ class Container extends Component {
         handleClose: PropTypes.func.isRequired,
         handleProcessDone: PropTypes.func.isRequired,
         userInfomation: PropTypes.object,
-        icoWalletList: PropTypes.object,
     }
 
     componentDidMount () {
@@ -33,7 +32,21 @@ class Container extends Component {
                 this._checkEnableInputKycStatus();    
             }, );
         }
+
+        if (this.props.investedEth !== null) {
+            this.setState({
+                investedEth: this.props.investedEth,
+            })
+        }
+
+        if (this.props.receivedBlc !== null) {
+            this.setState({
+                receivedBlc: this.props.receivedBlc,
+            })
+        }
+
     }
+
     componentWillReceiveProps (nextProps) {
         if ((this.props.userInfomation === null || this.props.userInfomation === undefined) 
             && (nextProps.userInfomation !== null && nextProps.userInfomation !== undefined))
@@ -56,6 +69,17 @@ class Container extends Component {
                     }, );
             }
         }
+
+        if (this.props.investedEth !== nextProps.investedEth) {
+            this.setState({
+                investedEth: nextProps.investedEth,
+            })
+        }
+        if (this.props.receivedBlc !== nextProps.receivedBlc) {
+            this.setState({
+                receivedBlc: nextProps.receivedBlc,
+            })
+        }
     }
 
     render() {
@@ -72,6 +96,8 @@ class Container extends Component {
                 newKycStatus={this.state.newKycStatus}
                 newKycStatusRejectReason={this.state.newKycStatusRejectReason}
                 handleChangeKycRejectReason={this._handleChangeKycRejectReason}
+                investedEth={this.state.investedEth}
+                receivedBlc={this.state.receivedBlc}
             />
         )
     }    
