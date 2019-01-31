@@ -16,6 +16,11 @@ class Container extends Component {
         SaveKycCount: PropTypes.func.isRequired, 
         kycCount: PropTypes.object,
         pathname: PropTypes.string,
+        Logout: PropTypes.func.isRequired,
+        DeleteJwt: PropTypes.func.isRequired,
+        DeleteUsername: PropTypes.func.isRequired,
+        DeleteEmail: PropTypes.func.isRequired,
+        SaveKyc: PropTypes.func.isRequired,
     }
 
     componentDidMount () {
@@ -44,6 +49,15 @@ class Container extends Component {
         )
     }
 
+    _DeleteUserInfo = () => { 
+        this.props.DeleteJwt();
+        this.props.DeleteUsername();
+        this.props.DeleteEmail();
+        this.props.SaveKyc(null);
+        this.props.SaveProfile(null);
+        this.props.Logout();
+    }
+
     _fetchKycCount = () => {
         fetch('/users/kyc_count/', {
             method: "GET",
@@ -52,7 +66,13 @@ class Container extends Component {
                 "Content-Type": "application/json"
             },
         })
-        .then(response => response.json())
+        .then( response => {
+            if (response.status === 401){
+                this._DeleteUserInfo();
+            } else {
+                return response.json();
+            }
+        })
         .then( json => {
             if (json.status === '1') {
                 this.props.SaveKycCount(json.result)
@@ -65,6 +85,7 @@ class Container extends Component {
         .catch (
             err => {
                 console.log(err);
+                this.props.SaveKycCount(null)
             }
         )
     }

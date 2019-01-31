@@ -1,7 +1,7 @@
 {
   "main.css": "https://bluecots-ico-bucket.s3.amazonaws.com/static/css/main.07e13a58.chunk.css",
-  "main.js": "https://bluecots-ico-bucket.s3.amazonaws.com/static/js/main.abd44619.chunk.js",
-  "main.js.map": "https://bluecots-ico-bucket.s3.amazonaws.com/static/js/main.abd44619.chunk.js.map",
+  "main.js": "https://bluecots-ico-bucket.s3.amazonaws.com/static/js/main.dca06e8c.chunk.js",
+  "main.js.map": "https://bluecots-ico-bucket.s3.amazonaws.com/static/js/main.dca06e8c.chunk.js.map",
   "static/css/1.ea7c27b5.chunk.css": "https://bluecots-ico-bucket.s3.amazonaws.com/static/css/1.ea7c27b5.chunk.css",
   "static/js/1.5025a963.chunk.js": "https://bluecots-ico-bucket.s3.amazonaws.com/static/js/1.5025a963.chunk.js",
   "static/js/1.5025a963.chunk.js.map": "https://bluecots-ico-bucket.s3.amazonaws.com/static/js/1.5025a963.chunk.js.map",
@@ -23,6 +23,6 @@
   "static/css/main.07e13a58.chunk.css.map": "https://bluecots-ico-bucket.s3.amazonaws.com/static/css/main.07e13a58.chunk.css.map",
   "static/css/1.ea7c27b5.chunk.css.map": "https://bluecots-ico-bucket.s3.amazonaws.com/static/css/1.ea7c27b5.chunk.css.map",
   "index.html": "https://bluecots-ico-bucket.s3.amazonaws.com/index.html",
-  "precache-manifest.f1640627d15622aa2460a1b677dd0296.js": "https://bluecots-ico-bucket.s3.amazonaws.com/precache-manifest.f1640627d15622aa2460a1b677dd0296.js",
+  "precache-manifest.d8a92954200c6bbd265b130568581d22.js": "https://bluecots-ico-bucket.s3.amazonaws.com/precache-manifest.d8a92954200c6bbd265b130568581d22.js",
   "service-worker.js": "https://bluecots-ico-bucket.s3.amazonaws.com/service-worker.js"
 }

@@ -22,9 +22,7 @@ class Container extends Component {
         pathname: PropTypes.string.isRequired,
         isLoggedIn: PropTypes.bool.isRequired,
         token: PropTypes.string,
-        DeleteJwt: PropTypes.func.isRequired,
         SaveProfile: PropTypes.func.isRequired,
-        Logout: PropTypes.func.isRequired,
         icoWalletList: PropTypes.object,
         SaveIcoWalletList: PropTypes.func.isRequired,
         SaveRoundList: PropTypes.func.isRequired,
@@ -36,6 +34,11 @@ class Container extends Component {
         currentRound: PropTypes.object,
         roundList: PropTypes.object,
         backgroundImage: PropTypes.number,
+        Logout: PropTypes.func.isRequired,
+        DeleteJwt: PropTypes.func.isRequired,
+        DeleteUsername: PropTypes.func.isRequired,
+        DeleteEmail: PropTypes.func.isRequired,
+        SaveKyc: PropTypes.func.isRequired,
     }
 
     componentDidMount() {

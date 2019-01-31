@@ -29,6 +29,11 @@ class Container extends Component {
         pathname: PropTypes.string,
         ShowDefaultSpinner: PropTypes.func.isRequired,
         HideDefaultSpinner: PropTypes.func.isRequired,
+        Logout: PropTypes.func.isRequired,
+        DeleteJwt: PropTypes.func.isRequired,
+        DeleteUsername: PropTypes.func.isRequired,
+        DeleteEmail: PropTypes.func.isRequired,
+        SaveKyc: PropTypes.func.isRequired,
     }
 
     componentDidMount () {
@@ -176,7 +181,16 @@ class Container extends Component {
                 "Authorization": `JWT ${this.props.token}`,
             },
         })
-        .then(response => response.json())
+        .then( response => {
+            if (response.status === 401){
+                this._DeleteUserInfo();
+                this.setState({
+                    isLoading: false,
+                })
+            } else {
+                return response.json();
+            }
+        })
         .then( json => {
             if (json.status === '1') {
                 this.setState({

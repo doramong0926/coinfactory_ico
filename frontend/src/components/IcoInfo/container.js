@@ -29,12 +29,16 @@ class Container extends Component {
         icoWalletList: PropTypes.object,
         pathname: PropTypes.string,
         SaveTempkey: PropTypes.func.isRequired,
-        Logout: PropTypes.func.isRequired,
         token: PropTypes.string,
         ShowDefaultSpinner: PropTypes.func.isRequired,
         HideDefaultSpinner: PropTypes.func.isRequired,
         username: PropTypes.string,
         tempkey: PropTypes.string,
+        Logout: PropTypes.func.isRequired,
+        DeleteJwt: PropTypes.func.isRequired,
+        DeleteUsername: PropTypes.func.isRequired,
+        DeleteEmail: PropTypes.func.isRequired,
+        SaveKyc: PropTypes.func.isRequired,
     }
 
     componentDidMount () {
@@ -131,6 +135,15 @@ class Container extends Component {
         })
     }
 
+    _DeleteUserInfo = () => { 
+        this.props.DeleteJwt();
+        this.props.DeleteUsername();
+        this.props.DeleteEmail();
+        this.props.SaveKyc(null);
+        this.props.SaveProfile(null);
+        this.props.Logout();
+    }
+
     _fetchTempString = () => {
         fetch(`/users/${this.props.username}/tempstring/`, {
             method: "GET",
@@ -139,7 +152,18 @@ class Container extends Component {
                 "Content-Type": "application/json"
             },
         })
-        .then(response => response.json())
+        .then( response => {
+            if (response.status === 401){
+                this._DeleteUserInfo();
+                this.setState({
+                    user_type: null,
+                    is_superuser: false,
+                    is_staff: false,
+                })
+            } else {
+                return response.json();
+            }
+        })
         .then( json => {
             if (json.status === '1') {        
                 this.setState({
@@ -165,6 +189,11 @@ class Container extends Component {
         .catch (
             err => {
                 console.log(err);
+                this.setState({
+                    user_type: null,
+                    is_superuser: false,
+                    is_staff: false,
+                })
             }
         )
     }

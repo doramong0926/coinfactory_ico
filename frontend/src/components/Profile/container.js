@@ -24,6 +24,11 @@ class Container extends Component {
         SaveProfile: PropTypes.func.isRequired,
         icoWalletList: PropTypes.object,
         SaveBackgroundImage: PropTypes.func.isRequired,
+        Logout: PropTypes.func.isRequired,
+        DeleteJwt: PropTypes.func.isRequired,
+        DeleteUsername: PropTypes.func.isRequired,
+        DeleteEmail: PropTypes.func.isRequired,
+        SaveKyc: PropTypes.func.isRequired,
     }
 
     componentDidMount() {
@@ -68,6 +73,15 @@ class Container extends Component {
         )
     }
 
+    _DeleteUserInfo = () => { 
+        this.props.DeleteJwt();
+        this.props.DeleteUsername();
+        this.props.DeleteEmail();
+        this.props.SaveKyc(null);
+        this.props.SaveProfile(null);
+        this.props.Logout();
+    }
+
     _getProfile = () => {
         fetch(`users/${this.props.username}/profile/`, {
             method: "GET",
@@ -75,7 +89,14 @@ class Container extends Component {
                 "Authorization": `JWT ${this.props.token}`
             },
         })
-        .then(response => response.json())
+        .then( response => {
+            if (response.status === 401){
+                this._DeleteUserInfo();
+                this.props.SaveProfile(null)
+            } else {
+                return response.json();
+            }
+        })
         .then( json => {
             if (json.status === '1') {
                 this.props.SaveProfile(json.result)

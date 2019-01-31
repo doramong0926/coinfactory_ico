@@ -22,7 +22,6 @@ class Container extends Component {
         isLoggedIn: PropTypes.bool.isRequired,
         pathname: PropTypes.string,
         SaveTempkey: PropTypes.func.isRequired,
-        Logout: PropTypes.func.isRequired,
         token: PropTypes.string,
         ShowDefaultSpinner: PropTypes.func.isRequired,
         HideDefaultSpinner: PropTypes.func.isRequired,
@@ -30,6 +29,11 @@ class Container extends Component {
         saveTempString: PropTypes.func.isRequired,
         fetchTempString: PropTypes.func.isRequired,
         is_superuser: PropTypes.bool.isRequired,
+        Logout: PropTypes.func.isRequired,
+        DeleteJwt: PropTypes.func.isRequired,
+        DeleteUsername: PropTypes.func.isRequired,
+        DeleteEmail: PropTypes.func.isRequired,
+        SaveKyc: PropTypes.func.isRequired,
     }
 
     componentDidMount () {
@@ -116,6 +120,15 @@ class Container extends Component {
         this._saveTempString("remove");              
     }
 
+    _DeleteUserInfo = () => { 
+        this.props.DeleteJwt();
+        this.props.DeleteUsername();
+        this.props.DeleteEmail();
+        this.props.SaveKyc(null);
+        this.props.SaveProfile(null);
+        this.props.Logout();
+    }
+
     _saveTempString = (cmdType) => {
         // event.preventDefault();
         this.props.ShowDefaultSpinner();
@@ -133,9 +146,25 @@ class Container extends Component {
                 temp_string: stringValue,
             })
         })
-        .then(
-            response => response.json()
-        )
+        .then( response => {
+            if (response.status === 401){
+                this._DeleteUserInfo();
+                this.props.SaveTempkey('');
+                this.setState({
+                    password1: null,
+                    password2: null,
+                    tempkeyInputValue: null,
+                    visibleModal: true,
+                    saveResult: false,
+                })
+                this.props.HideDefaultSpinner();
+                setTimeout(() => {
+                    this.props.fetchTempString();    
+                }, );
+            } else {
+                return response.json();
+            }
+        })
         .then(json => {            
             if (json.status === '1') {
                 if (cmdType === "save") {

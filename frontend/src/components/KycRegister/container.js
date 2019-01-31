@@ -62,6 +62,11 @@ class  Container extends Component {
         ShowDefaultSpinner: PropTypes.func.isRequired,
         HideDefaultSpinner: PropTypes.func.isRequired,
         FetchKyc: PropTypes.func.isRequired,
+        Logout: PropTypes.func.isRequired,
+        DeleteJwt: PropTypes.func.isRequired,
+        DeleteUsername: PropTypes.func.isRequired,
+        DeleteEmail: PropTypes.func.isRequired,
+        SaveKyc: PropTypes.func.isRequired,
     }
 
     static contextTypes = {
@@ -373,6 +378,15 @@ class  Container extends Component {
         }
     }
 
+    _DeleteUserInfo = () => { 
+        this.props.DeleteJwt();
+        this.props.DeleteUsername();
+        this.props.DeleteEmail();
+        this.props.SaveKyc(null);
+        this.props.SaveProfile(null);
+        this.props.Logout();
+    }
+
     _registerKycInfomation = () => {        
         const data = new FormData();
         this.setState({
@@ -400,7 +414,19 @@ class  Container extends Component {
             },
             body: data
         })
-        .then(response => response.json())
+        .then( response => {
+            if (response.status === 401){
+                this._DeleteUserInfo();
+                this.setState({
+                    errorType: "auth error",
+                    isSendSuccess: false,
+                    visibleModal: true,
+                })
+                this.props.HideDefaultSpinner();
+            } else {
+                return response.json();
+            }
+        })
         .then( json => {                
             if (json.status === '1') {
                 this.setState({
@@ -452,7 +478,19 @@ class  Container extends Component {
             },
             body: data
         })
-        .then(response => response.json())
+        .then( response => {
+            if (response.status === 401){
+                this._DeleteUserInfo();
+                this.setState({
+                    errorType: 'auth error',
+                    isSendSuccess: false,
+                    visibleModal: true,
+                })
+                this.props.HideDefaultSpinner();
+            } else {
+                return response.json();
+            }
+        })
         .then( json => {                
             if (json.status === '1') {
                 this.setState({
